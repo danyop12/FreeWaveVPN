@@ -18,7 +18,7 @@ PUBLIC = ROOT / "public"
 SOURCE = PUBLIC / "freewave-tcp.txt"
 XRAY = os.environ.get("XRAY_PATH", "xray")
 CURL = shutil.which("curl")
-MAX_TESTS = int(os.environ.get("FREEWAVE_MAX_XRAY_TESTS", "160"))
+MAX_TESTS = int(os.environ.get("FREEWAVE_MAX_XRAY_TESTS", "500"))
 WORKERS = 8
 LATENCY_URLS = (
     "https://www.gstatic.com/generate_204",
