@@ -1,6 +1,6 @@
 # FreeWave VPN status
 
-- Last run: 2026-11-04 23:42:47 UTC
+- Last run: 2026-11-04 23:50:42 UTC
 - TCP candidates: 424
 - Tested through Xray: 424
 - Passed real HTTPS request through VLESS: 20
@@ -13,16 +13,16 @@
 
 | # | Server | Median latency | Jitter (MAD) | Download | History | Score |
 |---:|---|---:|---:|---:|---:|---:|
-| 1 | 79.141.164.83:443 | 257 ms | 54.9 ms | 9.65 Mbps | new | 0.949 |
-| 2 | 79.141.164.83:443 | 266 ms | 56.9 ms | 9.64 Mbps | new | 0.938 |
-| 3 | book.jarbook.net:443 | 274 ms | 49.0 ms | 8.58 Mbps | new | 0.875 |
-| 4 | api.ferrin.uk:443 | 586 ms | 6.6 ms | 10.11 Mbps | new | 0.830 |
-| 5 | api.ferrin.uk:443 | 604 ms | 22.5 ms | 9.19 Mbps | new | 0.772 |
-| 6 | 51.158.206.97:23576 | 443 ms | 4.2 ms | 7.94 Mbps | new | 0.754 |
-| 7 | 51.158.206.25:23576 | 419 ms | 5.8 ms | 7.70 Mbps | new | 0.751 |
-| 8 | 217.30.10.72:443 | 514 ms | 11.3 ms | 7.50 Mbps | new | 0.705 |
-| 9 | direct-nl.bachidze.com:443 | 507 ms | 22.6 ms | 6.78 Mbps | new | 0.664 |
-| 10 | 89.110.64.15:443 | 444 ms | 11.6 ms | 6.06 Mbps | new | 0.649 |
+| 1 | 79.141.164.83:443 | 283 ms | 57.0 ms | 8.66 Mbps | 2/2 | 0.971 |
+| 2 | 79.141.164.83:443 | 293 ms | 57.4 ms | 8.69 Mbps | 2/2 | 0.962 |
+| 3 | book.jarbook.net:443 | 298 ms | 57.3 ms | 7.38 Mbps | 2/2 | 0.876 |
+| 4 | api.ferrin.uk:443 | 730 ms | 50.6 ms | 8.73 Mbps | 2/2 | 0.807 |
+| 5 | api.ferrin.uk:443 | 737 ms | 3.9 ms | 8.37 Mbps | 2/2 | 0.792 |
+| 6 | 51.158.206.97:23576 | 482 ms | 5.2 ms | 7.39 Mbps | 2/2 | 0.790 |
+| 7 | 89.110.64.15:443 | 474 ms | 18.3 ms | 7.37 Mbps | 2/2 | 0.788 |
+| 8 | 51.158.206.25:23576 | 462 ms | 3.0 ms | 6.98 Mbps | 2/2 | 0.773 |
+| 9 | 217.30.10.72:443 | 540 ms | 6.6 ms | 6.86 Mbps | 2/2 | 0.738 |
+| 10 | 79.141.164.125:443 | 577 ms | 170.9 ms | 7.39 Mbps | 2/2 | 0.729 |
 
 ## Subscription files
 
