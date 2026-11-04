@@ -92,7 +92,7 @@
   <header>
     <img class="logo" src="./icon.svg" alt="" width="46" height="46">
     <div class="brand"><h1>FreeWave VPN</h1><p>Мобильная панель подписок</p></div>
-    <span class="version">0.3.4 · Android</span>
+    <span class="version">0.3.7 · Android</span>
   </header>
 
   <section class="hero">
@@ -181,6 +181,8 @@
   <section class="card">
     <div class="card-head"><h3>Быстрые узлы</h3><span class="muted" id="nodeCount">топ-5</span></div>
     <div class="list" id="nodes"><div class="muted">Получаю список узлов…</div></div>
+    <div class="server-meta" style="margin-top:13px;font-weight:650;color:var(--text)">Нестабильные за последние проверки</div>
+    <div class="list" id="unstableNodes"><div class="muted">Собираю историю…</div></div>
   </section>
 
   <section class="card">
@@ -249,7 +251,13 @@
       <button class="secondary" id="refresh" type="button">↻ Обновить данные</button>
       <a class="btn secondary" href="https://github.com/danyop12/FreeWaveVPN/actions" target="_blank" rel="noopener">История проверок</a>
     </div>
-    <div class="server-meta" id="updatedAt" style="margin-top:12px">Время последней проверки: —</div>
+    <div class="server-meta" id="updatedAt" style="margin-top:12px">Последнее успешное обновление: —</div>
+    <div class="server-meta" id="attemptAt">Последняя попытка: —</div>
+    <div class="actions">
+      <button class="secondary" id="enableNotifications" type="button">Включить уведомления</button>
+      <a class="btn secondary" id="workflowLink" href="https://github.com/danyop12/FreeWaveVPN/actions" target="_blank" rel="noopener">Открыть журнал</a>
+    </div>
+    <p class="notice" style="margin-bottom:0">Уведомления браузера приходят, пока панель открыта или работает как приложение. Для push-уведомлений при полностью закрытом приложении нужен отдельный push-сервис.</p>
   </section>
 
   <p class="notice"><strong>Важно.</strong> FreeWave не владеет серверами. Это публичные узлы третьих лиц: они могут отключиться, ограничивать трафик или собирать метаданные. Репозиторий, панель и опубликованные подписки тоже открыты всем — личным этот VPN-сервер не становится. Результаты измеряются на GitHub Actions, поэтому скорость на телефоне будет другой. Не используй такие узлы для чувствительных данных.</p>
@@ -293,6 +301,17 @@
     if (!response.ok) throw new Error(name + ": HTTP " + response.status);
     return response.text();
   };
+  const getOptionalJson = async name => {
+    try { return JSON.parse(await getText(name)); } catch { return null; }
+  };
+  const notifyProblem = (title, body, key) => {
+    if (!("Notification" in window) || Notification.permission !== "granted") return;
+    try {
+      if (localStorage.getItem("freewave-last-alert") === key) return;
+      new Notification(title, {body, icon:fileUrl("icon.svg"), tag:"freewave-health"});
+      localStorage.setItem("freewave-last-alert", key);
+    } catch {}
+  };
   const parseLink = line => {
     try {
       const url = new URL(line.trim());
@@ -310,8 +329,9 @@
   async function refresh() {
     $("statusText").textContent = "Обновляю данные…";
     try {
-      const [metricsText, bestText, fastText] = await Promise.all([
-        getText("metrics.json"), getText("freewave-best.txt"), getText("freewave-fast.txt")
+      const [metricsText, bestText, fastText, health] = await Promise.all([
+        getText("metrics.json"), getText("freewave-best.txt"), getText("freewave-fast.txt"),
+        getOptionalJson("health.json")
       ]);
       const metrics = JSON.parse(metricsText);
       const validated = Number(metrics.validated_count || 0);
@@ -321,11 +341,29 @@
       $("validated").textContent = validated;
       $("tested").textContent = tested;
       $("rate").textContent = rate;
-      $("statusText").textContent = validated
-        ? validated + " узлов прошли две HTTPS-проверки"
-        : "В последней проверке нет подтверждённых узлов";
-      $("statusDot").style.background = validated ? "var(--green)" : "var(--yellow)";
-      $("updatedAt").textContent = "Последняя проверка: " + fmtTime(metrics.generated_at_utc);
+      const lastSuccess = health?.last_success_at_utc || metrics.generated_at_utc;
+      const lastAttempt = health?.last_attempt_at_utc || metrics.generated_at_utc;
+      const isFailed = health?.status === "failed";
+      const successDate = lastSuccess ? new Date(lastSuccess.replace(" UTC","Z").replace(" ","T")) : null;
+      const stale = successDate && !Number.isNaN(successDate.getTime()) && Date.now() - successDate.getTime() > 12 * 60 * 60 * 1000;
+      $("statusText").textContent = isFailed
+        ? "Последнее обновление завершилось ошибкой; показаны данные прошлого успешного сканирования"
+        : stale ? "Данные давно не обновлялись"
+        : validated ? "Подписка актуальна · " + validated + " рабочих узлов"
+        : "В последней проверке нет рабочих узлов";
+      $("statusDot").style.background = (isFailed || stale || !validated) ? "var(--yellow)" : "var(--green)";
+      $("updatedAt").textContent = "Последнее успешное обновление: " + fmtTime(lastSuccess);
+      $("attemptAt").textContent = "Последняя попытка: " + fmtTime(lastAttempt) + (isFailed ? " · ошибка" : " · успешно");
+      if (health?.workflow_run_url) $("workflowLink").href = health.workflow_run_url;
+      const alertKey = isFailed ? "failed:" + lastAttempt
+        : !validated ? "empty:" + metrics.generated_at_utc
+        : stale ? "stale:" + lastSuccess : "";
+      if (alertKey) {
+        const message = isFailed ? "Обновление FreeWave завершилось ошибкой."
+          : !validated ? "В последней проверке не осталось рабочих серверов."
+          : "Последнее успешное обновление было более 12 часов назад.";
+        notifyProblem("Проблема FreeWaveVPN", message, alertKey);
+      }
       bestKey = bestText.trim().split(/\r?\n/).find(line => line.startsWith("vless://")) || "";
       const best = parseLink(bestKey);
       if (best) {
@@ -343,8 +381,12 @@
       $("nodeCount").textContent = links.length + " узлов";
       $("nodes").innerHTML = links.length ? links.map((node,index) => {
         const stat = allMetrics.find(item => item.host === node.host && String(item.port) === String(node.port) && item.ok);
+        const reliability = stat && stat.history_attempts >= 2
+          ? " · надёжность " + stat.history_successes + "/" + stat.history_attempts
+          : " · история накапливается";
+        const speed = stat && stat.speed_mbps != null ? Number(stat.speed_mbps).toFixed(2) + " Мбит/с" : "скорость не измерена";
         const meta = stat
-          ? Math.round(stat.latency_ms) + " мс · " + Number(stat.speed_mbps).toFixed(2) + " Мбит/с"
+          ? Math.round(stat.latency_ms) + " мс · " + speed + reliability
           : node.host + ":" + node.port;
         return '<div class="node"><div class="rank">' + (index+1) + '</div><div class="node-main"><div class="node-name">' + safe(node.name) + '</div><div class="node-meta">' + safe(meta) + '</div></div><button class="secondary" type="button" data-open="' + index + '">Открыть</button></div>';
       }).join("") : '<div class="muted">Сейчас нет проверенных конфигураций.</div>';
@@ -354,6 +396,18 @@
           if (node) location.href = "v2rayng://install-config?url=" + encodeURIComponent(encodeURIComponent(node.raw)) + "#FreeWave-" + (Number(button.dataset.open) + 1);
         });
       });
+      const unstable = allMetrics
+        .filter(item => item.history_attempts >= 2 && (
+          !item.ok || (item.history_success_rate != null && Number(item.history_success_rate) < 0.7)
+        ))
+        .sort((a,b) => Number(a.history_success_rate ?? 0) - Number(b.history_success_rate ?? 0))
+        .slice(0,3);
+      $("unstableNodes").innerHTML = unstable.length ? unstable.map(item =>
+        '<div class="node"><div class="rank">!</div><div class="node-main"><div class="node-name">' +
+        safe(item.host + ":" + item.port) + '</div><div class="node-meta">Успешно ' +
+        Number(item.history_successes || 0) + ' из ' + Number(item.history_attempts || 0) +
+        ' проверок' + (item.ok ? "" : " · сейчас не прошёл тест") + '</div></div></div>'
+      ).join("") : '<div class="muted">Пока нет узлов с повторяющимися сбоями.</div>';
     } catch (error) {
       $("statusText").textContent = "Не удалось загрузить данные. Проверь интернет.";
       $("statusDot").style.background = "var(--red)";
@@ -398,6 +452,22 @@
     button.addEventListener("click", () => copy(fileUrl(button.dataset.copyUrl)));
   });
   $("refresh").addEventListener("click", refresh);
+  const notificationButton = $("enableNotifications");
+  const updateNotificationButton = () => {
+    notificationButton.textContent = !("Notification" in window) ? "Уведомления недоступны"
+      : Notification.permission === "granted" ? "Уведомления включены"
+      : Notification.permission === "denied" ? "Уведомления запрещены браузером"
+      : "Включить уведомления";
+    notificationButton.disabled = !("Notification" in window) || Notification.permission !== "default";
+  };
+  notificationButton.addEventListener("click", async () => {
+    if (!("Notification" in window)) return showToast("Этот браузер не поддерживает уведомления");
+    const permission = await Notification.requestPermission();
+    updateNotificationButton();
+    showToast(permission === "granted" ? "Уведомления включены" : "Разрешение не выдано");
+    if (permission === "granted") refresh();
+  });
+  updateNotificationButton();
   $("openBest").addEventListener("click", event => {
     if (!bestKey) { event.preventDefault(); showToast("Сейчас нет доступного ключа"); }
   });
