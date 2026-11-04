@@ -1,11 +1,10 @@
 # FreeWave VPN status
 
-- Last successful build: 2026-11-04 21:46:51 UTC
-- TCP-reachable configurations: 216
-- Configurations checked: 250
-- Configurations not reachable: 34
-- EU-name heuristic matches: 0
+- Preliminary scan: 2026-11-04 21:47:13 UTC
+- TCP-reachable candidates: 216
+- Unique candidates checked: 250
+- Candidates not reachable by TCP: 34
 
-> TCP reachability is not a VLESS handshake, TLS/REALITY validation,
-> authentication test, speed test, privacy audit, or geolocation check.
-> The EU list is inferred from configuration names only.
+These are preliminary candidates only. The Xray stage must verify an
+actual VLESS connection and HTTPS request before publishing them as
+working subscription nodes.
