@@ -1,11 +1,11 @@
 # FreeWave VPN status
 
-- Last run: 2026-11-04 21:52:32 UTC
+- Last run: 2026-11-04 21:54:36 UTC
 - TCP candidates: 216
-- Tested through Xray: 12
+- Tested through Xray: 80
 - Passed real HTTPS request through VLESS: 0
-- Failed VLESS test: 12
-- Not tested due to limit: 204
+- Failed VLESS test: 80
+- Not tested due to limit: 136
 - Successful 256 KiB download tests: 0
 
 ## Top nodes from this GitHub Actions run
