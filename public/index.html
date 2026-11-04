@@ -134,10 +134,10 @@
     <details class="guide">
       <summary>Настроить автообновление и автоподключение</summary>
       <ol>
-        <li>Нажми <strong>«Добавить в v2rayNG»</strong> выше и подтверди импорт подписки FreeWave. Первый раз приложение попросит разрешение Android на VPN.</li>
+        <li>Нажми <strong>«Добавить в v2rayNG»</strong> выше и подтверди импорт подписки FreeWave. После импорта открой группу FreeWave и нажми «Обновить текущую подписку» один раз. Первый запуск VPN попросит разрешение Android.</li>
         <li>В v2rayNG открой настройки группы FreeWave и включи <strong>автоматическое обновление</strong>. В общих настройках включи обновление подписок и поставь интервал <strong>360 минут</strong> — FreeWave обновляет список примерно раз в 6 часов.</li>
         <li>Включи <strong>автотест после обновления</strong> и <strong>сортировку после теста</strong>. Так клиент сможет проверить узлы уже с телефона и упорядочить их по результату.</li>
-        <li>В настройках v2rayNG открой VPN Settings и включи <strong>Connect after device boot</strong>, чтобы приложение пыталось подключаться после перезагрузки телефона.</li>
+        <li>В настройках v2rayNG открой VPN Settings и включи <strong>Connect after device boot</strong>, чтобы приложение пыталось подключаться после перезагрузки телефона. Для быстрого ручного старта добавь плитку v2rayNG в панель быстрых настроек Android.</li>
         <li>В Android открой <strong>Настройки → VPN → v2rayNG</strong> и включи <strong>Always-on VPN</strong>. Пункт «Блокировать соединения без VPN» — необязательный: включай его только после проверки, иначе при падении узла интернет может полностью пропасть.</li>
         <li>На Infinix разреши v2rayNG работу в фоне и автозапуск, а для батареи выбери «Без ограничений» / «Не оптимизировать». Названия пунктов зависят от версии XOS.</li>
       </ol>
@@ -233,8 +233,8 @@
       const best = parseLink(bestKey);
       if (best) {
         $("bestServer").textContent = best.name;
-        $("bestMeta").textContent = best.host + ":" + best.port + " · узел №1 в последнем рейтинге";
-        $("openBest").href = best.raw;
+        $("bestMeta").textContent = best.host + ":" + best.port + " · узел №1 в рейтинге GitHub Actions";
+        $("openBest").href = "v2rayng://install-config?url=" + encodeURIComponent(best.raw) + "#FreeWave-best";
         $("openBest").style.opacity = "1";
       } else {
         $("bestServer").textContent = "Нет доступного ключа";
@@ -254,7 +254,7 @@
       $("nodes").querySelectorAll("[data-open]").forEach(button => {
         button.addEventListener("click", () => {
           const node = links[Number(button.dataset.open)];
-          if (node) location.href = node.raw;
+          if (node) location.href = "v2rayng://install-config?url=" + encodeURIComponent(node.raw) + "#FreeWave-" + (Number(button.dataset.open) + 1);
         });
       });
     } catch (error) {
