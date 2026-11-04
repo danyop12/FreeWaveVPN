@@ -3,6 +3,7 @@ from __future__ import annotations
 import base64
 import concurrent.futures
 import ipaddress
+import hashlib
 import json
 import os
 import shutil
@@ -17,6 +18,8 @@ from urllib.parse import parse_qs, unquote, urlsplit
 ROOT = Path(__file__).resolve().parent.parent
 PUBLIC = ROOT / "public"
 SOURCE = PUBLIC / "freewave-tcp.txt"
+HISTORY_PATH = PUBLIC / "history.json"
+HISTORY_RUNS = 10
 XRAY = os.environ.get("XRAY_PATH", "xray")
 CURL = shutil.which("curl")
 MAX_TESTS = int(os.environ.get("FREEWAVE_MAX_XRAY_TESTS", "500"))
@@ -390,6 +393,60 @@ def test_node(uri: str) -> dict:
     return {"uri": uri, "ok": False, "host": host, "port": port, "error": last_error}
 
 
+def load_history() -> list[dict]:
+    """Load the last scan observations; malformed history is safely ignored."""
+    try:
+        data = json.loads(HISTORY_PATH.read_text(encoding="utf-8"))
+        runs = data.get("runs", []) if isinstance(data, dict) else []
+        return [run for run in runs if isinstance(run, dict)][-(HISTORY_RUNS - 1):]
+    except (OSError, json.JSONDecodeError, TypeError):
+        return []
+
+
+def node_fingerprint(uri: str) -> str:
+    # Store only a one-way identifier: never copy public VLESS credentials into history.
+    return hashlib.sha256(uri.encode("utf-8")).hexdigest()
+
+
+def update_history(history: list[dict], results: list[dict]) -> list[dict]:
+    nodes = []
+    for item in results:
+        uri = item.get("uri")
+        if not uri:
+            continue
+        nodes.append({
+            "id": node_fingerprint(uri),
+            "ok": bool(item.get("ok")),
+            "latency_ms": item.get("latency_ms"),
+            "speed_mbps": item.get("speed_mbps"),
+        })
+    run = {
+        "generated_at_utc": time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime()),
+        "tested_count": len(nodes),
+        "validated_count": sum(1 for node in nodes if node["ok"]),
+        "nodes": nodes,
+    }
+    updated = (history + [run])[-HISTORY_RUNS:]
+    HISTORY_PATH.write_text(
+        json.dumps({"schema_version": 1, "runs": updated}, indent=2) + "\\n",
+        encoding="utf-8",
+    )
+    return updated
+
+
+def history_reliability(history: list[dict]) -> dict[str, tuple[int, int]]:
+    observations: dict[str, list[int]] = {}
+    for run in history:
+        for node in run.get("nodes", []):
+            node_id = node.get("id")
+            if isinstance(node_id, str) and isinstance(node.get("ok"), bool):
+                observations.setdefault(node_id, []).append(1 if node["ok"] else 0)
+    return {
+        node_id: (sum(values), len(values))
+        for node_id, values in observations.items()
+    }
+
+
 def main() -> int:
     if not (Path(XRAY).is_file() or shutil.which(XRAY)):
         raise RuntimeError("Xray binary missing; configure XRAY_PATH")
@@ -428,6 +485,14 @@ def main() -> int:
             else:
                 log(f"VLESS failed: {item.get('error', 'unknown error')}")
 
+    history = update_history(load_history(), results)
+    reliability = history_reliability(history)
+    for item in results:
+        successes, attempts = reliability.get(node_fingerprint(item["uri"]), (0, 0))
+        item["history_attempts"] = attempts
+        item["history_successes"] = successes
+        item["history_success_rate"] = round(successes / attempts, 4) if attempts >= 2 else None
+
     passed = [item for item in results if item.get("ok")]
     speeds = [item["speed_mbps"] for item in passed if item.get("speed_mbps") is not None]
     min_latency = min((item["latency_ms"] for item in passed), default=1)
@@ -438,9 +503,13 @@ def main() -> int:
         speed_score = speed / max_speed if max_speed else 0
         stability_score = item.get("stability_score", 0)
         # Prefer fast nodes, while still rewarding low response time and consistency.
-        item["score"] = round(
-            0.55 * speed_score + 0.30 * latency_score + 0.15 * stability_score, 4
-        )
+        current_score = 0.55 * speed_score + 0.30 * latency_score + 0.15 * stability_score
+        # Do not punish new nodes. Once there are at least two observations,
+        # gently reduce the score of nodes that have repeatedly failed validation.
+        success_rate = item.get("history_success_rate")
+        reliability_factor = 0.75 + 0.25 * success_rate if success_rate is not None else 1.0
+        item["score"] = round(current_score * reliability_factor, 4)
+        item["reliability_factor"] = round(reliability_factor, 4)
 
     passed.sort(
         key=lambda x: (x.get("score", 0), x.get("speed_mbps") or 0, -x["latency_ms"]),
@@ -503,11 +572,13 @@ def main() -> int:
         "not_tested_count": max(0, len(candidates) - len(results)),
         "required_https_probes_per_node": REQUIRED_HTTPS_PROBES,
         "download_probe_bytes": DOWNLOAD_BYTES,
+        "history_window_runs": len(history),
         "results": [
             {key: item.get(key) for key in (
                 "host", "port", "ok", "latency_ms", "jitter_ms", "stability_score",
                 "speed_mbps", "score", "speed_test_ok", "speed_test_bytes", "confirmed_https_probes",
-                "latency_samples_ms", "probe_urls", "error"
+                "latency_samples_ms", "probe_urls", "history_attempts",
+                "history_successes", "history_success_rate", "reliability_factor", "error"
             )}
             for item in passed + [x for x in results if not x.get("ok")]
         ],
@@ -528,15 +599,18 @@ def main() -> int:
         f"- Nodes confirmed by at least {REQUIRED_HTTPS_PROBES} separate HTTPS probes: {sum(1 for x in passed if x.get('confirmed_https_probes', 0) >= REQUIRED_HTTPS_PROBES)}",
         f"- Successful {DOWNLOAD_BYTES // 1024} KiB download tests: {sum(1 for x in passed if x.get('speed_test_ok'))}",
         "", "## Top nodes from this GitHub Actions run", "",
-        "| # | Server | Median latency | Jitter (MAD) | 1 MiB download | Score |",
-        "|---:|---|---:|---:|---:|---:|",
+        "| # | Server | Median latency | Jitter (MAD) | Download | History | Score |",
+        "|---:|---|---:|---:|---:|---:|---:|",
     ]
     for index, item in enumerate(passed[:10], 1):
         speed = f"{item['speed_mbps']:.2f} Mbps" if item.get("speed_mbps") is not None else "not measured"
+        attempts = item.get("history_attempts", 0)
+        successes = item.get("history_successes", 0)
+        history_label = f"{successes}/{attempts}" if attempts >= 2 else "new"
         lines.append(
             f"| {index} | {item['host']}:{item['port']} | "
             f"{item['latency_ms']:.0f} ms | {item.get('jitter_ms', 0):.1f} ms | "
-            f"{speed} | {item.get('score', 0):.3f} |"
+            f"{speed} | {history_label} | {item.get('score', 0):.3f} |"
         )
     lines += [
         "", "## Subscription files", "",
@@ -547,7 +621,8 @@ def main() -> int:
         "- freewave-fast-base64.txt — Base64 version of the top 25",
         "- freewave-vless-base64.txt — Base64 version of validated nodes",
         "- freewave-tcp.txt — preliminary TCP-only candidates",
-        "- metrics.json — detailed test results",
+        "- metrics.json — detailed test results and rolling reliability scores",
+        "- history.json — last 10 scan outcomes per hashed node identifier; contains no VLESS links",
         "",
         "> Measurements are from GitHub Actions, not from your phone. Your ISP,",
         "> country, route, time of day, and client settings can change the result.",
@@ -555,6 +630,8 @@ def main() -> int:
         "> Two successful HTTPS probes verify two HTTPS destinations through the VLESS tunnel at test time;",
         "> they do not prove all sites/apps, UDP support, privacy, or future uptime.",
         "> Ranking weights: 55% measured download rate, 30% median HTTPS latency, 15% latency stability (median absolute deviation).",
+        "> After two observations, a rolling reliability multiplier gently penalizes nodes that repeatedly fail; new nodes are not penalized.",
+        "> Reliability history covers at most the last 10 scans and stores SHA-256 identifiers, not VLESS credentials.",
         "> Latency is the median of successful independent HTTPS probes; at least three must pass.",
         "> Download rate uses curl's measured average transfer rate from a 1 MiB probe, not first-byte latency.",
         "> Public nodes are third-party infrastructure and may log metadata or disappear.",
