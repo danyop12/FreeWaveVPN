@@ -1,4 +1,4 @@
-const CACHE = "freewave-shell-v1";
+const CACHE = "freewave-shell-v2";
 const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon.svg"];
 
 self.addEventListener("install", event => {
@@ -20,6 +20,21 @@ self.addEventListener("fetch", event => {
   if (url.origin !== self.location.origin) return;
 
   const name = url.pathname.split("/").pop();
+  if (request.mode === "navigate" || name === "index.html") {
+    event.respondWith(
+      fetch(request, {cache:"no-store"})
+        .then(response => {
+          if (response.ok) {
+            const copy = response.clone();
+            caches.open(CACHE).then(cache => cache.put(request, copy));
+          }
+          return response;
+        })
+        .catch(() => caches.match(request).then(cached => cached || Response.error()))
+    );
+    return;
+  }
+
   const liveData = name === "metrics.json" || name === "STATUS.md" || name.startsWith("freewave-");
   if (liveData) {
     event.respondWith(
