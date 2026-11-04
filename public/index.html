@@ -52,6 +52,22 @@
     .sub-icon{font-size:19px;width:25px;text-align:center}.sub-text{min-width:0;flex:1}.sub-text strong{display:block;font-size:13px}.sub-text small{display:block;color:var(--muted);font-size:10px;margin-top:2px;overflow-wrap:anywhere}
     .sub button{min-height:36px;padding:7px 10px;font-size:11px}
     .notice{font-size:11px;color:var(--muted);line-height:1.55;margin:12px 2px}
+    .setup-wrap{display:grid;gap:10px;margin-top:13px}
+    .setup-item{display:flex;gap:11px;align-items:flex-start;padding:12px;border:1px solid #22344a;background:var(--panel2);border-radius:13px}
+    .setup-item input{appearance:none;width:19px;height:19px;flex:none;border:1.5px solid #547089;border-radius:6px;margin:1px 0 0;display:grid;place-items:center;cursor:pointer}
+    .setup-item input:checked{background:var(--green);border-color:var(--green)}
+    .setup-item input:checked:after{content:"✓";color:#09231b;font-size:13px;font-weight:900}
+    .setup-copy{min-width:0;flex:1}
+    .setup-copy strong{font-size:13px;display:block}
+    .setup-copy p{font-size:11px;color:var(--muted);margin:3px 0 0;line-height:1.45}
+    .setup-copy a{color:var(--cyan);text-decoration:none;font-weight:650}
+    .setup-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .setup-actions .btn,.setup-actions button{min-height:34px;padding:7px 10px;font-size:11px}
+    .setup-progress{display:flex;align-items:center;gap:10px;margin-top:12px}
+    .setup-progress-text{font-size:11px;color:var(--muted);white-space:nowrap}
+    .setup-track{height:6px;background:#26384d;border-radius:999px;overflow:hidden;flex:1}
+    .setup-track span{display:block;height:100%;width:0;background:var(--green);border-radius:999px;transition:width .2s}
+    .setup-note{font-size:10px;color:#8194aa;margin:8px 1px 0}
     .guide{margin-top:14px;border:1px solid var(--line);background:#0d1929;border-radius:13px;padding:12px 14px}
     .guide summary{cursor:pointer;color:#dcefff;font-size:13px;font-weight:650;list-style:none}
     .guide summary::-webkit-details-marker{display:none}
@@ -76,7 +92,7 @@
   <header>
     <img class="logo" src="./icon.svg" alt="" width="46" height="46">
     <div class="brand"><h1>FreeWave VPN</h1><p>Мобильная панель подписок</p></div>
-    <span class="version">0.3.1 · Android</span>
+    <span class="version">0.3.2 · Android</span>
   </header>
 
   <section class="hero">
@@ -84,6 +100,66 @@
     <h2>Твои узлы —<br>в одном месте.</h2>
     <p>Открывай проверенные VLESS-конфигурации и копируй подписки прямо с телефона. Python и ручной запуск сканера на Android не нужны.</p>
     <div class="statusline"><span class="dot" id="statusDot"></span><span id="statusText">Загружаю последний результат проверки…</span></div>
+  </section>
+
+  <section class="card" id="firstSetup">
+    <div class="card-head"><h3>Первый запуск на телефоне</h3><span class="tag">один раз</span></div>
+    <p class="notice" style="margin-top:0">Настрой один раз — дальше v2rayNG будет обновлять список и выбирать подходящий узел сам. Отметки сохраняются только в этом браузере на телефоне.</p>
+    <div class="setup-wrap">
+      <div class="setup-item">
+        <input class="setup-check" type="checkbox" data-step="0" aria-label="Отметить установку v2rayNG">
+        <div class="setup-copy">
+          <strong>1. Установить VPN-клиент</strong>
+          <p>Само подключение выполняет v2rayNG, а не эта веб-панель.</p>
+          <div class="setup-actions"><a class="btn secondary" href="https://github.com/2dust/v2rayNG/releases/latest" target="_blank" rel="noopener">Скачать v2rayNG</a></div>
+        </div>
+      </div>
+      <div class="setup-item">
+        <input class="setup-check" type="checkbox" data-step="1" aria-label="Отметить импорт подписки">
+        <div class="setup-copy">
+          <strong>2. Добавить подписку FreeWave</strong>
+          <p>Нажми кнопку — v2rayNG откроется и получит ссылку на весь список проверенных узлов.</p>
+          <div class="setup-actions"><a class="btn primary" id="setupImport" href="#" rel="nofollow">Добавить подписку</a></div>
+        </div>
+      </div>
+      <div class="setup-item">
+        <input class="setup-check" type="checkbox" data-step="2" aria-label="Отметить создание авто-группы">
+        <div class="setup-copy">
+          <strong>3. Включить автоматический выбор узла</strong>
+          <p>Создай группу Least Ping: Xray будет выбирать узел с наименьшей измеренной задержкой из импортированной подписки.</p>
+          <details class="guide">
+            <summary>Как создать группу FreeWave Auto</summary>
+            <ol>
+              <li>В v2rayNG нажми меню добавления профиля и выбери <strong>Add [Policy group]</strong>.</li>
+              <li>Название группы: <strong>FreeWave Auto</strong>.</li>
+              <li>Тип группы: <strong>Least Ping</strong>.</li>
+              <li>В поле <strong>From subscription group</strong> выбери только что импортированную подписку FreeWave.</li>
+              <li>В поле <strong>Remarks regex filter</strong> введи <code>.*</code>, чтобы включить все узлы этой подписки.</li>
+              <li>Сохрани группу. На главном экране выбери <strong>FreeWave Auto</strong> вместо отдельного сервера и подключись.</li>
+            </ol>
+            <p class="notice">Least Ping ориентируется на задержку до тестового адреса, а не на гарантированную максимальную скорость загрузки. Новые соединения могут выбирать другой подходящий узел по обновлённым измерениям; это не гарантирует бесшовного переноса уже открытых соединений.</p>
+          </details>
+        </div>
+      </div>
+      <div class="setup-item">
+        <input class="setup-check" type="checkbox" data-step="3" aria-label="Отметить настройку автообновления и автоподключения">
+        <div class="setup-copy">
+          <strong>4. Включить автообновление и автозапуск</strong>
+          <p>В v2rayNG включи автоматическое обновление подписок, интервал 360 минут и Connect after device boot. В Android VPN Settings включи Always-on VPN.</p>
+          <details class="guide">
+            <summary>Настройки для Android и Infinix</summary>
+            <ol>
+              <li>В настройках подписки включи <strong>Enable automatic update</strong>. В общих настройках включи <strong>Automatically update subscriptions</strong> и поставь <strong>360 минут</strong>.</li>
+              <li>В <strong>VPN Settings</strong> включи <strong>Connect after device boot</strong>.</li>
+              <li>Открой системные настройки Android → <strong>VPN → v2rayNG</strong> → <strong>Always-on VPN</strong>. «Блокировать соединения без VPN» включай только после проверки, иначе при падении узла интернет может пропасть полностью.</li>
+              <li>На Infinix разреши v2rayNG автозапуск и фоновую работу, а для батареи выбери «Без ограничений» / «Не оптимизировать». Названия пунктов зависят от версии XOS.</li>
+            </ol>
+          </details>
+        </div>
+      </div>
+    </div>
+    <div class="setup-progress"><span class="setup-progress-text" id="setupProgressText">0 из 4 шагов</span><div class="setup-track"><span id="setupProgressFill"></span></div><button class="secondary" id="resetSetup" type="button">Сбросить</button></div>
+    <div class="setup-note">Галочки — только твои заметки о настройке. Сайт не может сам менять VPN-разрешения Android или запускать VPN без согласия системы.</div>
   </section>
 
   <section class="grid" aria-label="Статистика">
@@ -131,18 +207,6 @@
       <a class="btn primary" id="addSubscription" href="#" rel="nofollow">Добавить в v2rayNG</a>
       <a class="btn secondary" href="https://github.com/2dust/v2rayNG/releases/latest" target="_blank" rel="noopener">Установить v2rayNG</a>
     </div>
-    <details class="guide">
-      <summary>Настроить автообновление и автоподключение</summary>
-      <ol>
-        <li>Нажми <strong>«Добавить в v2rayNG»</strong> выше и подтверди импорт подписки FreeWave. После импорта открой группу FreeWave и нажми «Обновить текущую подписку» один раз. Первый запуск VPN попросит разрешение Android.</li>
-        <li>В v2rayNG открой настройки группы FreeWave и включи <strong>автоматическое обновление</strong>. В общих настройках включи обновление подписок и поставь интервал <strong>360 минут</strong> — FreeWave обновляет список примерно раз в 6 часов.</li>
-        <li>Включи <strong>автотест после обновления</strong> и <strong>сортировку после теста</strong>. Так клиент сможет проверить узлы уже с телефона и упорядочить их по результату.</li>
-        <li>В настройках v2rayNG открой VPN Settings и включи <strong>Connect after device boot</strong>, чтобы приложение пыталось подключаться после перезагрузки телефона. Для быстрого ручного старта добавь плитку v2rayNG в панель быстрых настроек Android.</li>
-        <li>В Android открой <strong>Настройки → VPN → v2rayNG</strong> и включи <strong>Always-on VPN</strong>. Пункт «Блокировать соединения без VPN» — необязательный: включай его только после проверки, иначе при падении узла интернет может полностью пропасть.</li>
-        <li>На Infinix попробуй путь <strong>Настройки → Приложения → Управление приложениями → v2rayNG → Батарея</strong>: разреши фоновую работу и выбери «Без ограничений». В управлении автозапуском включи v2rayNG, а в оптимизации батареи поставь «Не оптимизировать». В разных версиях XOS пункты могут называться иначе — ищи в настройках «Автозапуск», «Фоновая активность» и «Батарея».</li>
-      </ol>
-      <p class="notice">Автоподключение после перезагрузки — да. Мгновенное переключение на другой узел при обрыве не гарантируется: если выбранный сервер перестанет отвечать, может понадобиться выбрать другой после тестирования.</p>
-    </details>
   </section>
 
   <section class="card">
@@ -264,8 +328,37 @@
     }
   }
 
+  const setupImport = $("setupImport");
+  const setupStateKey = "freewave-personal-setup-v1";
+  const setupChecks = Array.from(document.querySelectorAll(".setup-check"));
+  let setupState = [false,false,false,false];
+  try {
+    const stored = JSON.parse(localStorage.getItem(setupStateKey) || "null");
+    if (Array.isArray(stored) && stored.length === 4) setupState = stored.map(Boolean);
+  } catch {}
+  const renderSetup = () => {
+    const done = setupState.filter(Boolean).length;
+    setupChecks.forEach((box,index) => { box.checked = !!setupState[index]; });
+    $("setupProgressText").textContent = done + " из 4 шагов";
+    $("setupProgressFill").style.width = (done / 4 * 100) + "%";
+  };
+  setupChecks.forEach((box,index) => box.addEventListener("change", () => {
+    setupState[index] = box.checked;
+    try { localStorage.setItem(setupStateKey, JSON.stringify(setupState)); } catch {}
+    renderSetup();
+  }));
+  $("resetSetup").addEventListener("click", () => {
+    setupState = [false,false,false,false];
+    try { localStorage.removeItem(setupStateKey); } catch {}
+    renderSetup();
+    showToast("Отметки сброшены");
+  });
+  renderSetup();
+
   const fullSubscriptionUrl = fileUrl("freewave-vless.txt");
-  $("addSubscription").href = "v2rayng://install-sub?url=" + encodeURIComponent(encodeURIComponent(fullSubscriptionUrl)) + "#FreeWave";
+  const importLink = "v2rayng://install-sub?url=" + encodeURIComponent(encodeURIComponent(fullSubscriptionUrl)) + "#FreeWave";
+  $("addSubscription").href = importLink;
+  setupImport.href = importLink;
 
   $("copyBest").addEventListener("click", () => copy(bestKey));
   document.querySelectorAll("[data-copy-url]").forEach(button => {
