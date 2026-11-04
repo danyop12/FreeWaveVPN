@@ -17,7 +17,7 @@ permissions:
 
 concurrency:
   group: freewave-update
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -46,7 +46,7 @@ jobs:
 
       - name: Verify VLESS and measure performance
         env:
-          FREEWAVE_MAX_XRAY_TESTS: "216"
+          FREEWAVE_MAX_XRAY_TESTS: "80"
         run: python -m freewave.rank
 
       - name: Commit generated subscriptions and status
