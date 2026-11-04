@@ -234,7 +234,7 @@
       if (best) {
         $("bestServer").textContent = best.name;
         $("bestMeta").textContent = best.host + ":" + best.port + " · узел №1 в рейтинге GitHub Actions";
-        $("openBest").href = "v2rayng://install-config?url=" + encodeURIComponent(best.raw) + "#FreeWave-best";
+        $("openBest").href = "v2rayng://install-config?url=" + encodeURIComponent(encodeURIComponent(best.raw)) + "#FreeWave-best";
         $("openBest").style.opacity = "1";
       } else {
         $("bestServer").textContent = "Нет доступного ключа";
@@ -254,7 +254,7 @@
       $("nodes").querySelectorAll("[data-open]").forEach(button => {
         button.addEventListener("click", () => {
           const node = links[Number(button.dataset.open)];
-          if (node) location.href = "v2rayng://install-config?url=" + encodeURIComponent(node.raw) + "#FreeWave-" + (Number(button.dataset.open) + 1);
+          if (node) location.href = "v2rayng://install-config?url=" + encodeURIComponent(encodeURIComponent(node.raw)) + "#FreeWave-" + (Number(button.dataset.open) + 1);
         });
       });
     } catch (error) {
@@ -265,7 +265,7 @@
   }
 
   const fullSubscriptionUrl = fileUrl("freewave-vless.txt");
-  $("addSubscription").href = "v2rayng://install-sub?url=" + encodeURIComponent(fullSubscriptionUrl) + "#FreeWave";
+  $("addSubscription").href = "v2rayng://install-sub?url=" + encodeURIComponent(encodeURIComponent(fullSubscriptionUrl)) + "#FreeWave";
 
   $("copyBest").addEventListener("click", () => copy(bestKey));
   document.querySelectorAll("[data-copy-url]").forEach(button => {
