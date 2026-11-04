@@ -307,8 +307,10 @@ def test_node(uri: str) -> dict:
 
                 latency_samples = []
                 successful_probe_urls = []
-                # Use every independent endpoint to measure both typical latency and jitter.
+                # Stop after three successful independent probes; later endpoints are fallbacks.
                 for endpoint in LATENCY_URLS:
+                    if len(latency_samples) >= REQUIRED_HTTPS_PROBES:
+                        break
                     try:
                         status, values, curl_error = curl_request(
                             local_port, endpoint, 10, "%{http_code}\t%{time_total}"
