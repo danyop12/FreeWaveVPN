@@ -1,0 +1,1611 @@
+{
+  "generated_at_utc": "2026-11-04 21:48:05 UTC",
+  "measurement_location": "GitHub Actions runner; not device-specific",
+  "candidate_count": 216,
+  "tested_count": 160,
+  "validated_count": 0,
+  "failed_count": 160,
+  "not_tested_count": 56,
+  "results": [
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "Xray SOCKS inbound did not start"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "Xray SOCKS inbound did not start"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "Xray SOCKS inbound did not start"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "Xray SOCKS inbound did not start"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "Xray SOCKS inbound did not start"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "Xray SOCKS inbound did not start"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "Xray SOCKS inbound did not start"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "Xray SOCKS inbound did not start"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "Xray SOCKS inbound did not start"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "Xray SOCKS inbound did not start"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "Xray SOCKS inbound did not start"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "Xray SOCKS inbound did not start"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "Xray SOCKS inbound did not start"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "Xray SOCKS inbound did not start"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "Xray SOCKS inbound did not start"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "Xray SOCKS inbound did not start"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "Xray SOCKS inbound did not start"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "Xray SOCKS inbound did not start"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "Xray SOCKS inbound did not start"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "Xray SOCKS inbound did not start"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "Xray SOCKS inbound did not start"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    },
+    {
+      "host": null,
+      "port": null,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "No successful HTTPS request through VLESS"
+    }
+  ]
+}
