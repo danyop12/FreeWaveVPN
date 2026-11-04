@@ -124,6 +124,8 @@ To run it manually, open **Actions → FreeWave update → Run workflow**.
 
 ## Important limitations
 
+The GitHub repository, Pages dashboard, and generated subscription URLs are public, so anyone can read and import these public configurations. FreeWave is a personal dashboard for convenience, not a private VPN server or a private account.
+
 FreeWave does not own, operate, or control any listed server. Nodes are run by
 unknown third parties and may log metadata, inspect unencrypted traffic, limit
 usage, or disappear without notice. Do not use public nodes for sensitive work.
