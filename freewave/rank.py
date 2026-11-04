@@ -7,6 +7,7 @@ import json
 import os
 import shutil
 import socket
+import statistics
 import subprocess
 import tempfile
 import time
@@ -26,9 +27,9 @@ LATENCY_URLS = (
     "https://github.com/robots.txt",
     "https://example.com/",
 )
-DOWNLOAD_URL = "https://speed.cloudflare.com/__down?bytes=262144"
-DOWNLOAD_BYTES = 262144
-REQUIRED_HTTPS_PROBES = 2
+DOWNLOAD_URL = "https://speed.cloudflare.com/__down?bytes=1048576"
+DOWNLOAD_BYTES = 1048576
+REQUIRED_HTTPS_PROBES = 3
 KNOWN_KEYS = {
     "security", "encryption", "host", "type", "sni", "servername", "fp",
     "pbk", "publickey", "sid", "shortid", "spx", "spiderx", "flow",
@@ -306,12 +307,11 @@ def test_node(uri: str) -> dict:
 
                 latency_samples = []
                 successful_probe_urls = []
+                # Use every independent endpoint to measure both typical latency and jitter.
                 for endpoint in LATENCY_URLS:
-                    if len(latency_samples) >= REQUIRED_HTTPS_PROBES:
-                        break
                     try:
                         status, values, curl_error = curl_request(
-                            local_port, endpoint, 8, "%{http_code}\t%{time_total}"
+                            local_port, endpoint, 10, "%{http_code}\t%{time_total}"
                         )
                         if 200 <= status < 400 and values and values[0] > 0:
                             latency_samples.append(values[0] * 1000)
@@ -336,7 +336,12 @@ def test_node(uri: str) -> dict:
                         last_error += " | Xray: " + " | ".join(runtime_lines[-2:])[-360:]
                     continue
 
-                latency_ms = sum(latency_samples) / len(latency_samples)
+                latency_ms = statistics.median(latency_samples)
+                median_deviation = statistics.median(
+                    abs(sample - latency_ms) for sample in latency_samples
+                )
+                jitter_ms = round(median_deviation, 2)
+                stability_score = 1.0 / (1.0 + median_deviation / max(latency_ms, 1.0))
 
                 speed_mbps = None
                 speed_test_bytes = 0
@@ -344,7 +349,7 @@ def test_node(uri: str) -> dict:
                     status, values, _curl_error = curl_request(
                         local_port,
                         DOWNLOAD_URL,
-                        12,
+                        15,
                         "%{http_code}\t%{speed_download}\t%{size_download}",
                     )
                     if (
@@ -361,6 +366,8 @@ def test_node(uri: str) -> dict:
                 return {
                     "uri": uri, "ok": True, "host": host, "port": port,
                     "latency_ms": round(latency_ms, 2),
+                    "jitter_ms": jitter_ms,
+                    "stability_score": round(stability_score, 4),
                     "latency_samples_ms": [round(value, 2) for value in latency_samples],
                     "confirmed_https_probes": len(successful_probe_urls),
                     "probe_urls": successful_probe_urls,
@@ -427,7 +434,11 @@ def main() -> int:
         latency_score = min_latency / max(item["latency_ms"], 1)
         speed = item.get("speed_mbps") or 0
         speed_score = speed / max_speed if max_speed else 0
-        item["score"] = round(0.35 * latency_score + 0.65 * speed_score, 4)
+        stability_score = item.get("stability_score", 0)
+        # Prefer fast nodes, while still rewarding low response time and consistency.
+        item["score"] = round(
+            0.55 * speed_score + 0.30 * latency_score + 0.15 * stability_score, 4
+        )
 
     passed.sort(
         key=lambda x: (x.get("score", 0), x.get("speed_mbps") or 0, -x["latency_ms"]),
@@ -492,8 +503,8 @@ def main() -> int:
         "download_probe_bytes": DOWNLOAD_BYTES,
         "results": [
             {key: item.get(key) for key in (
-                "host", "port", "ok", "latency_ms", "speed_mbps", "score",
-                "speed_test_ok", "speed_test_bytes", "confirmed_https_probes",
+                "host", "port", "ok", "latency_ms", "jitter_ms", "stability_score",
+                "speed_mbps", "score", "speed_test_ok", "speed_test_bytes", "confirmed_https_probes",
                 "latency_samples_ms", "probe_urls", "error"
             )}
             for item in passed + [x for x in results if not x.get("ok")]
@@ -512,17 +523,18 @@ def main() -> int:
         f"- Passed real HTTPS request through VLESS: {len(passed)}",
         f"- Failed VLESS test: {len(results) - len(passed)}",
         f"- Not tested due to limit: {max(0, len(candidates) - len(results))}",
-        f"- Nodes confirmed by {REQUIRED_HTTPS_PROBES} separate HTTPS probes: {sum(1 for x in passed if x.get('confirmed_https_probes') == REQUIRED_HTTPS_PROBES)}",
+        f"- Nodes confirmed by at least {REQUIRED_HTTPS_PROBES} separate HTTPS probes: {sum(1 for x in passed if x.get('confirmed_https_probes', 0) >= REQUIRED_HTTPS_PROBES)}",
         f"- Successful {DOWNLOAD_BYTES // 1024} KiB download tests: {sum(1 for x in passed if x.get('speed_test_ok'))}",
         "", "## Top nodes from this GitHub Actions run", "",
-        "| # | Server | Latency | Download test | Score |",
-        "|---:|---|---:|---:|---:|",
+        "| # | Server | Median latency | Jitter (MAD) | 1 MiB download | Score |",
+        "|---:|---|---:|---:|---:|---:|",
     ]
     for index, item in enumerate(passed[:10], 1):
         speed = f"{item['speed_mbps']:.2f} Mbps" if item.get("speed_mbps") is not None else "not measured"
         lines.append(
             f"| {index} | {item['host']}:{item['port']} | "
-            f"{item['latency_ms']:.0f} ms | {speed} | {item.get('score', 0):.3f} |"
+            f"{item['latency_ms']:.0f} ms | {item.get('jitter_ms', 0):.1f} ms | "
+            f"{speed} | {item.get('score', 0):.3f} |"
         )
     lines += [
         "", "## Subscription files", "",
@@ -540,7 +552,9 @@ def main() -> int:
         "> The small download test is a snapshot, not a sustained-speed or unlimited-traffic guarantee.",
         "> Two successful HTTPS probes verify two HTTPS destinations through the VLESS tunnel at test time;",
         "> they do not prove all sites/apps, UDP support, privacy, or future uptime.",
-        "> Download rate uses curl's measured average transfer rate, not first-byte latency.",
+        "> Ranking weights: 55% measured download rate, 30% median HTTPS latency, 15% latency stability (median absolute deviation).",
+        "> Latency is the median of successful independent HTTPS probes; at least three must pass.",
+        "> Download rate uses curl's measured average transfer rate from a 1 MiB probe, not first-byte latency.",
         "> Public nodes are third-party infrastructure and may log metadata or disappear.",
         "",
     ]
