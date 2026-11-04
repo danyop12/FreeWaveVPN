@@ -92,7 +92,7 @@
   <header>
     <img class="logo" src="./icon.svg" alt="" width="46" height="46">
     <div class="brand"><h1>FreeWave VPN</h1><p>Мобильная панель подписок</p></div>
-    <span class="version">0.3.2 · Android</span>
+    <span class="version">0.3.3 · Android</span>
   </header>
 
   <section class="hero">
@@ -181,6 +181,39 @@
   <section class="card">
     <div class="card-head"><h3>Быстрые узлы</h3><span class="muted" id="nodeCount">топ-5</span></div>
     <div class="list" id="nodes"><div class="muted">Получаю список узлов…</div></div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><h3>DNS-фильтрация рекламы</h3><span class="tag">экспериментально</span></div>
+    <p class="notice" style="margin-top:0">Можно попробовать AdGuard DNS для блокировки многих рекламных и отслеживающих доменов. Это не убирает рекламу гарантированно во всех приложениях и не является способом убрать рекламу в официальном YouTube.</p>
+    <details class="guide">
+      <summary>Как попробовать через v2rayNG</summary>
+      <ol>
+        <li>Сначала запомни текущие значения DNS в v2rayNG, чтобы можно было вернуть их обратно.</li>
+        <li>Открой меню → <strong>Settings</strong> и найди <strong>VPN DNS</strong>. Укажи <code>94.140.14.14</code>.</li>
+        <li>Найди <strong>Remote DNS</strong> и укажи <code>https://dns.adguard-dns.com/dns-query</code>, если поле принимает HTTPS DNS-адрес.</li>
+        <li>Сохрани настройки, отключи и снова подключи VPN. Проверь обычные сайты, приложения и загрузку видео.</li>
+        <li>Если сайты перестали открываться, очисти эти значения или верни прежние DNS-настройки.</li>
+      </ol>
+      <p class="notice">Это DNS-фильтрация, а не полноценный блокировщик рекламы. Она может убрать часть рекламы и трекеров, но реклама YouTube в официальном приложении обычно продолжит показываться. Для YouTube DNS-фильтрация не даёт надёжного результата.</p>
+      <p class="notice">Адреса взяты из публичных настроек AdGuard DNS. Подробнее: <a href="https://adguard-dns.io/en/public-dns.html" target="_blank" rel="noopener">официальная инструкция AdGuard</a>.</p>
+    </details>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><h3>Проверка скорости на телефоне</h3><span class="muted">локальный тест</span></div>
+    <p class="notice" style="margin-top:0">Рейтинг FreeWave измеряется на GitHub Actions и не показывает скорость именно на твоём Infinix. Чтобы выбрать лучший сервер для себя, сравнивай реальные замеры на одном и том же телефоне и сети.</p>
+    <details class="guide">
+      <summary>Как сравнить узлы правильно</summary>
+      <ol>
+        <li>Оставь включённым тот же Wi-Fi или мобильный интернет.</li>
+        <li>Открой <a href="https://www.speedtest.net/" target="_blank" rel="noopener">Speedtest</a> и сделай один замер с VPN выключенным. Запиши загрузку, отдачу и ping.</li>
+        <li>В v2rayNG открой тест задержки для группы <strong>FreeWave Auto</strong>, затем подключись и повтори Speedtest.</li>
+        <li>Для сравнения отдельных серверов временно выбирай их по одному, каждый раз повторяя тест в тех же условиях.</li>
+        <li>Сделай по два-три замера и сравни средний результат. Не выбирай сервер только по минимальному ping: важны скорость загрузки и стабильность.</li>
+      </ol>
+      <p class="notice">Не запускай много тестов одновременно: это расходует трафик и может перегружать публичные узлы. Результаты меняются в зависимости от времени, маршрута и нагрузки сервера.</p>
+    </details>
   </section>
 
   <section class="card">
