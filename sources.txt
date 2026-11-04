@@ -1,0 +1,2 @@
+# One public HTTPS subscription URL per line.
+https://raw.githubusercontent.com/morpheusadam/v2ray-config/main/subs/bundles/best-base64.txt
