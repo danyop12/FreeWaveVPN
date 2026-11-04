@@ -428,7 +428,7 @@ def update_history(history: list[dict], results: list[dict]) -> list[dict]:
     }
     updated = (history + [run])[-HISTORY_RUNS:]
     HISTORY_PATH.write_text(
-        json.dumps({"schema_version": 1, "runs": updated}, indent=2) + "\\n",
+        json.dumps({"schema_version": 1, "runs": updated}, indent=2) + "\n",
         encoding="utf-8",
     )
     return updated
