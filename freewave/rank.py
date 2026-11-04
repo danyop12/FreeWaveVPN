@@ -27,6 +27,8 @@ LATENCY_URLS = (
     "https://example.com/",
 )
 DOWNLOAD_URL = "https://speed.cloudflare.com/__down?bytes=262144"
+DOWNLOAD_BYTES = 262144
+REQUIRED_HTTPS_PROBES = 2
 KNOWN_KEYS = {
     "security", "encryption", "host", "type", "sni", "servername", "fp",
     "pbk", "publickey", "sid", "shortid", "spx", "spiderx", "flow",
@@ -302,19 +304,28 @@ def test_node(uri: str) -> dict:
                     last_error = f"Xray did not start: {reason}"
                     continue
 
-                latency_ms = None
+                latency_samples = []
+                successful_probe_urls = []
                 for endpoint in LATENCY_URLS:
+                    if len(latency_samples) >= REQUIRED_HTTPS_PROBES:
+                        break
                     try:
-                        code, values, curl_error = curl_request(
+                        status, values, curl_error = curl_request(
                             local_port, endpoint, 8, "%{http_code}\t%{time_total}"
                         )
-                        if 200 <= code < 400 and values and values[0] > 0:
-                            latency_ms = values[0] * 1000
-                            break
-                        last_error = f"HTTPS probe returned HTTP {code}: {curl_error or 'no response'}"
-                    except (subprocess.TimeoutExpired, OSError):
-                        pass
-                if latency_ms is None:
+                        if 200 <= status < 400 and values and values[0] > 0:
+                            latency_samples.append(values[0] * 1000)
+                            successful_probe_urls.append(endpoint)
+                        else:
+                            last_error = f"HTTPS probe returned HTTP {status}: {curl_error or 'no response'}"
+                    except (subprocess.TimeoutExpired, OSError) as exc:
+                        last_error = f"HTTPS probe failed: {str(exc)[:120]}"
+
+                if len(latency_samples) < REQUIRED_HTTPS_PROBES:
+                    last_error = (
+                        f"Only {len(latency_samples)}/{REQUIRED_HTTPS_PROBES} independent HTTPS probes passed. "
+                        + last_error
+                    )
                     log_handle.flush()
                     runtime_lines = [
                         line.strip()
@@ -325,24 +336,32 @@ def test_node(uri: str) -> dict:
                         last_error += " | Xray: " + " | ".join(runtime_lines[-2:])[-360:]
                     continue
 
+                latency_ms = sum(latency_samples) / len(latency_samples)
+
                 speed_mbps = None
+                speed_test_bytes = 0
                 try:
-                    code, values, _curl_error = curl_request(
+                    status, values, _curl_error = curl_request(
                         local_port,
                         DOWNLOAD_URL,
                         12,
-                        "%{http_code}\t%{time_starttransfer}\t%{speed_download}\t%{size_download}",
+                        "%{http_code}\t%{speed_download}\t%{size_download}",
                     )
-                    if code == 200 and len(values) >= 3 and values[2] > 0:
-                        speed_mbps = values[1] * 8 / 1_000_000
+                    if status == 200 and len(values) >= 2 and values[0] > 0:
+                        speed_mbps = values[0] * 8 / 1_000_000
+                        speed_test_bytes = int(values[1])
                 except (subprocess.TimeoutExpired, OSError):
                     pass
 
                 return {
                     "uri": uri, "ok": True, "host": host, "port": port,
                     "latency_ms": round(latency_ms, 2),
+                    "latency_samples_ms": [round(value, 2) for value in latency_samples],
+                    "confirmed_https_probes": len(successful_probe_urls),
+                    "probe_urls": successful_probe_urls,
                     "speed_mbps": round(speed_mbps, 3) if speed_mbps is not None else None,
-                    "speed_test_ok": speed_mbps is not None,
+                    "speed_test_bytes": speed_test_bytes,
+                    "speed_test_ok": speed_mbps is not None and speed_test_bytes >= DOWNLOAD_BYTES,
                 }
             finally:
                 if process.poll() is None:
@@ -413,6 +432,12 @@ def main() -> int:
     if passed:
         full = "\n".join(item["uri"] for item in passed) + "\n"
         (PUBLIC / "freewave-vless.txt").write_text(full, encoding="utf-8")
+        best_text = passed[0]["uri"] + "\n"
+        (PUBLIC / "freewave-best.txt").write_text(best_text, encoding="utf-8")
+        (PUBLIC / "freewave-best-base64.txt").write_text(
+            base64.b64encode(best_text.encode()).decode() + "\n",
+            encoding="utf-8",
+        )
         (PUBLIC / "freewave-vless-base64.txt").write_text(
             base64.b64encode(full.encode()).decode() + "\n", encoding="utf-8"
         )
@@ -441,6 +466,8 @@ def main() -> int:
         for filename in (
             "freewave-vless.txt",
             "freewave-vless-base64.txt",
+            "freewave-best.txt",
+            "freewave-best-base64.txt",
             "freewave-fast.txt",
             "freewave-fast-base64.txt",
             "freewave-eu.txt",
@@ -456,10 +483,13 @@ def main() -> int:
         "validated_count": len(passed),
         "failed_count": len(results) - len(passed),
         "not_tested_count": max(0, len(candidates) - len(results)),
+        "required_https_probes_per_node": REQUIRED_HTTPS_PROBES,
+        "download_probe_bytes": DOWNLOAD_BYTES,
         "results": [
             {key: item.get(key) for key in (
                 "host", "port", "ok", "latency_ms", "speed_mbps", "score",
-                "speed_test_ok", "error"
+                "speed_test_ok", "speed_test_bytes", "confirmed_https_probes",
+                "latency_samples_ms", "probe_urls", "error"
             )}
             for item in passed + [x for x in results if not x.get("ok")]
         ],
@@ -477,7 +507,8 @@ def main() -> int:
         f"- Passed real HTTPS request through VLESS: {len(passed)}",
         f"- Failed VLESS test: {len(results) - len(passed)}",
         f"- Not tested due to limit: {max(0, len(candidates) - len(results))}",
-        f"- Successful 256 KiB download tests: {sum(1 for x in passed if x.get('speed_test_ok'))}",
+        f"- Nodes confirmed by {REQUIRED_HTTPS_PROBES} separate HTTPS probes: {sum(1 for x in passed if x.get('confirmed_https_probes') == REQUIRED_HTTPS_PROBES)}",
+        f"- Successful {DOWNLOAD_BYTES // 1024} KiB download tests: {sum(1 for x in passed if x.get('speed_test_ok'))}",
         "", "## Top nodes from this GitHub Actions run", "",
         "| # | Server | Latency | Download test | Score |",
         "|---:|---|---:|---:|---:|",
@@ -490,7 +521,9 @@ def main() -> int:
         )
     lines += [
         "", "## Subscription files", "",
-        "- freewave-vless.txt — only nodes passing a real HTTPS request through Xray",
+        "- freewave-vless.txt — nodes passing two independent HTTPS probes through Xray",
+        "- freewave-best.txt — the single highest-ranked VLESS key for clients that import one key",
+        "- freewave-best-base64.txt — Base64 version of the single best key",
         "- freewave-fast.txt — top 25 by relative score",
         "- freewave-fast-base64.txt — Base64 version of the top 25",
         "- freewave-vless-base64.txt — Base64 version of validated nodes",
@@ -500,8 +533,9 @@ def main() -> int:
         "> Measurements are from GitHub Actions, not from your phone. Your ISP,",
         "> country, route, time of day, and client settings can change the result.",
         "> The small download test is a snapshot, not a sustained-speed or unlimited-traffic guarantee.",
-        "> A successful HTTPS request verifies one VLESS route to the probe target at test time;",
-        "> it does not prove all sites/apps, UDP support, privacy, or future uptime.",
+        "> Two successful HTTPS probes verify two HTTPS destinations through the VLESS tunnel at test time;",
+        "> they do not prove all sites/apps, UDP support, privacy, or future uptime.",
+        "> Download rate uses curl's measured average transfer rate, not first-byte latency.",
         "> Public nodes are third-party infrastructure and may log metadata or disappear.",
         "",
     ]
