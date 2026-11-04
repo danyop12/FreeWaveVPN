@@ -1,8 +1,8 @@
-# FreeWave VPN 0.2.1
+# FreeWave VPN 0.2.2
 
 FreeWave VPN collects public VLESS links from configured HTTPS sources, removes
 duplicates, checks only the exact endpoints published in those links, and
-publishes subscriptions for nodes that pass an actual Xray VLESS + HTTPS test.
+publishes subscriptions for nodes that pass two independent Xray VLESS + HTTPS probes.
 
 ## How the pipeline works
 
@@ -42,6 +42,8 @@ https://raw.githubusercontent.com/danyop12/FreeWaveVPN/main/public/freewave-vles
 https://raw.githubusercontent.com/danyop12/FreeWaveVPN/main/public/freewave-vless-base64.txt
 https://raw.githubusercontent.com/danyop12/FreeWaveVPN/main/public/freewave-fast.txt
 https://raw.githubusercontent.com/danyop12/FreeWaveVPN/main/public/freewave-fast-base64.txt
+https://raw.githubusercontent.com/danyop12/FreeWaveVPN/main/public/freewave-best.txt
+https://raw.githubusercontent.com/danyop12/FreeWaveVPN/main/public/freewave-best-base64.txt
 ```
 
 The subscription files may be empty when no node passes the real VLESS check.
