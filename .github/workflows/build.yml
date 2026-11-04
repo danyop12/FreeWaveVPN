@@ -66,3 +66,53 @@ jobs:
           else
             echo "No subscription changes."
           fi
+
+  report-failure:
+    if: failure()
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out latest repository state
+        uses: actions/checkout@v4
+
+      - name: Record failed update without deleting last known-good feeds
+        env:
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          path = Path("public/health.json")
+          try:
+              previous = json.loads(path.read_text(encoding="utf-8"))
+          except (OSError, json.JSONDecodeError, TypeError):
+              previous = {}
+
+          now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+          data = {
+              "status": "failed",
+              "last_attempt_at_utc": now,
+              "last_success_at_utc": previous.get("last_success_at_utc"),
+              "last_success_validated_count": previous.get("last_success_validated_count"),
+              "last_attempt_validated_count": None,
+              "last_attempt_tested_count": None,
+              "workflow_run_url": os.environ.get("RUN_URL", ""),
+              "error": "GitHub Actions update failed; see workflow log.",
+          }
+          path.parent.mkdir(parents=True, exist_ok=True)
+          path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+          PY
+
+      - name: Commit failed-update status
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/health.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Record failed FreeWave update"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
