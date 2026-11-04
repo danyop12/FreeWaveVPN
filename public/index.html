@@ -52,6 +52,16 @@
     .sub-icon{font-size:19px;width:25px;text-align:center}.sub-text{min-width:0;flex:1}.sub-text strong{display:block;font-size:13px}.sub-text small{display:block;color:var(--muted);font-size:10px;margin-top:2px;overflow-wrap:anywhere}
     .sub button{min-height:36px;padding:7px 10px;font-size:11px}
     .notice{font-size:11px;color:var(--muted);line-height:1.55;margin:12px 2px}
+    .guide{margin-top:14px;border:1px solid var(--line);background:#0d1929;border-radius:13px;padding:12px 14px}
+    .guide summary{cursor:pointer;color:#dcefff;font-size:13px;font-weight:650;list-style:none}
+    .guide summary::-webkit-details-marker{display:none}
+    .guide summary:after{content:"＋";float:right;color:var(--cyan);font-size:16px}
+    .guide[open] summary:after{content:"−"}
+    .guide ol{padding-left:20px;margin:13px 0 6px;color:#b7c6d8;font-size:12px}
+    .guide li{padding-left:3px;margin:8px 0}
+    .guide li strong{color:#eef5ff}
+    .guide a{color:var(--cyan);text-decoration:none}
+
     .notice strong{color:#d9e7f5}
     .footer{padding:16px 3px 0;color:#71849d;font-size:10px;text-align:center}
     .toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#e8fbff;color:#09202a;padding:10px 15px;border-radius:999px;font-size:12px;font-weight:700;box-shadow:0 8px 30px #0006;transition:.2s;z-index:5;max-width:90%;text-align:center}
@@ -66,7 +76,7 @@
   <header>
     <img class="logo" src="./icon.svg" alt="" width="46" height="46">
     <div class="brand"><h1>FreeWave VPN</h1><p>Мобильная панель подписок</p></div>
-    <span class="version">0.3.0 · Android</span>
+    <span class="version">0.3.1 · Android</span>
   </header>
 
   <section class="hero">
@@ -93,7 +103,7 @@
   </section>
 
   <section class="card">
-    <div class="card-head"><h3>Быстрые узлы</h3><span class="muted" id="nodeCount">до 25</span></div>
+    <div class="card-head"><h3>Быстрые узлы</h3><span class="muted" id="nodeCount">топ-5</span></div>
     <div class="list" id="nodes"><div class="muted">Получаю список узлов…</div></div>
   </section>
 
@@ -116,7 +126,23 @@
         <button class="secondary" data-copy-url="freewave-fast.txt" type="button">Копировать URL</button>
       </div>
     </div>
-    <p class="notice">Скопируй URL и добавь его в разделе подписок своего VPN-клиента. Для AvoVPN используй отдельный ключ, открыв его выше или скопировав сам VLESS-ключ. Поддержка подписок зависит от приложения.</p>
+    <p class="notice">Для личного использования удобнее добавить полную подписку: она обновляет список серверов, а не сохраняет один устаревающий ключ.</p>
+    <div class="actions">
+      <a class="btn primary" id="addSubscription" href="#" rel="nofollow">Добавить в v2rayNG</a>
+      <a class="btn secondary" href="https://github.com/2dust/v2rayNG/releases/latest" target="_blank" rel="noopener">Установить v2rayNG</a>
+    </div>
+    <details class="guide">
+      <summary>Настроить автообновление и автоподключение</summary>
+      <ol>
+        <li>Нажми <strong>«Добавить в v2rayNG»</strong> выше и подтверди импорт подписки FreeWave. Первый раз приложение попросит разрешение Android на VPN.</li>
+        <li>В v2rayNG открой настройки группы FreeWave и включи <strong>автоматическое обновление</strong>. В общих настройках включи обновление подписок и поставь интервал <strong>360 минут</strong> — FreeWave обновляет список примерно раз в 6 часов.</li>
+        <li>Включи <strong>автотест после обновления</strong> и <strong>сортировку после теста</strong>. Так клиент сможет проверить узлы уже с телефона и упорядочить их по результату.</li>
+        <li>В настройках v2rayNG открой VPN Settings и включи <strong>Connect after device boot</strong>, чтобы приложение пыталось подключаться после перезагрузки телефона.</li>
+        <li>В Android открой <strong>Настройки → VPN → v2rayNG</strong> и включи <strong>Always-on VPN</strong>. Пункт «Блокировать соединения без VPN» — необязательный: включай его только после проверки, иначе при падении узла интернет может полностью пропасть.</li>
+        <li>На Infinix разреши v2rayNG работу в фоне и автозапуск, а для батареи выбери «Без ограничений» / «Не оптимизировать». Названия пунктов зависят от версии XOS.</li>
+      </ol>
+      <p class="notice">Автоподключение после перезагрузки — да. Мгновенное переключение на другой узел при обрыве не гарантируется: если выбранный сервер перестанет отвечать, может понадобиться выбрать другой после тестирования.</p>
+    </details>
   </section>
 
   <section class="card">
@@ -216,7 +242,7 @@
         $("openBest").href = "#";
       }
       const allMetrics = Array.isArray(metrics.results) ? metrics.results : [];
-      const links = fastText.split(/\r?\n/).map(parseLink).filter(Boolean).slice(0,25);
+      const links = fastText.split(/\r?\n/).map(parseLink).filter(Boolean).slice(0,5);
       $("nodeCount").textContent = links.length + " узлов";
       $("nodes").innerHTML = links.length ? links.map((node,index) => {
         const stat = allMetrics.find(item => item.host === node.host && String(item.port) === String(node.port) && item.ok);
@@ -237,6 +263,9 @@
       showToast("Ошибка загрузки: " + error.message);
     }
   }
+
+  const fullSubscriptionUrl = fileUrl("freewave-vless.txt");
+  $("addSubscription").href = "v2rayng://install-sub?url=" + encodeURIComponent(fullSubscriptionUrl) + "#FreeWave";
 
   $("copyBest").addEventListener("click", () => copy(bestKey));
   document.querySelectorAll("[data-copy-url]").forEach(button => {
