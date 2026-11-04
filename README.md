@@ -17,7 +17,7 @@ publishes subscriptions for nodes that pass an actual Xray VLESS + HTTPS test.
 6. Measure a small download and rank passing nodes by a relative score
    (65% measured download rate, 35% HTTPS response time).
 
-The current workflow tests up to 80 evenly distributed nodes per run. The rest
+The current workflow tests up to 160 evenly distributed nodes per run. The rest
 remain marked as untested in `metrics.json`. A new run happens every six hours.
 
 ## Subscription files
