@@ -1,2 +1,3 @@
 # One public HTTPS subscription URL per line.
 https://raw.githubusercontent.com/morpheusadam/v2ray-config/main/subs/bundles/best-base64.txt
+https://raw.githubusercontent.com/chaishpish/free_server_v2ray/main/%40TFMTProto
