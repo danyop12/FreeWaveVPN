@@ -27,11 +27,15 @@ self.addEventListener("fetch", event => {
         .then(response => {
           if (response.ok) {
             const copy = response.clone();
-            caches.open(CACHE).then(cache => cache.put(request, copy));
+            const cacheKey = new Request(url.origin + url.pathname);
+            caches.open(CACHE).then(cache => cache.put(cacheKey, copy));
           }
           return response;
         })
-        .catch(() => caches.match(request).then(cached => cached || Response.error()))
+        .catch(() => {
+          const cacheKey = new Request(url.origin + url.pathname);
+          return caches.match(cacheKey).then(cached => cached || Response.error());
+        })
     );
     return;
   }
