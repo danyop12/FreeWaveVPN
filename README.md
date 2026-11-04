@@ -54,16 +54,18 @@ That is intentional: TCP-only endpoints are not published as verified VPN nodes.
 
 ## Android client notes
 
-- **v2RayTun:** import `freewave-vless.txt` as a subscription URL. The list is sorted
-  by the latest GitHub-runner score. Whether the app automatically chooses or switches
-  nodes depends on the features exposed by the installed version; the subscription
-  itself cannot force an app's auto-selection behavior.
+- **v2RayTun:** import `freewave-vless.txt` for the validated server pool, or
+  `freewave-best.txt` as a one-node subscription when you want FreeWave to preselect
+  the latest top-ranked node. The best-key URL is refreshed on the six-hour workflow.
+  It is not instant failover: a node can fail between updates. Native auto-selection
+  and live switching depend on the features exposed by your installed app version.
 - **AvoVPN:** its published Google Play instructions describe importing a single
   `vless://` key. Use `freewave-best.txt` and paste its one VLESS link as a key.
   Do not paste the subscription URL where the app expects a single key.
 
 The GitHub-runner ranking is only a starting point. Your phone may see a different
-fastest node because routes and performance vary by network and location.
+fastest node because routes and performance vary by network and location. The best-key
+feed is a periodic preselection, not a guarantee of the fastest node on your own ISP.
 
 ## Run locally
 
