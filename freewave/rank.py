@@ -100,10 +100,15 @@ def make_config(uri: str, target_ip: str, socks_port: int) -> dict:
     early_data = get(q, "ed")
     if early_data and "ed=" not in path:
         path += ("&" if "?" in path else "?") + "ed=" + early_data
-    # If a link omits the optional transport Host, preserve its original
-    # URI hostname even though the network connection is pinned to a checked IP.
-    host_header = get(q, "host", default=parsed.hostname)
     server_name = get(q, "sni", "servername", default=parsed.hostname)
+    # When a CDN IP is used as the endpoint and the URI omits host=, use SNI
+    # for the HTTP Host/authority instead of sending the raw IP to the CDN.
+    try:
+        ipaddress.ip_address(parsed.hostname)
+        default_host = server_name
+    except ValueError:
+        default_host = parsed.hostname
+    host_header = get(q, "host", default=default_host)
     fingerprint = get(q, "fp", default="chrome")
     flow = get(q, "flow")
     encryption = get(q, "encryption", default="none")
@@ -130,7 +135,7 @@ def make_config(uri: str, target_ip: str, socks_port: int) -> dict:
             "serviceName": get(q, "servicename", "service_name", "path"),
             "multiMode": get(q, "mode").lower() in {"multi", "multimode"},
         }
-        authority = get(q, "authority", "host", default=parsed.hostname)
+        authority = get(q, "authority", "host", default=default_host)
         if authority:
             grpc["authority"] = authority
         stream["grpcSettings"] = grpc
