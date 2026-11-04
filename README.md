@@ -1,4 +1,4 @@
-# FreeWave VPN 0.3.2
+# FreeWave VPN 0.3.3
 
 FreeWave VPN collects public VLESS links from configured HTTPS sources, removes
 duplicates, checks only the exact endpoints published in those links, and
@@ -96,7 +96,7 @@ For a simple one-phone setup, use the full validated subscription rather than im
 
 Android's **Block connections without VPN** option is optional. It acts as a kill switch, but if the chosen node stops working it can block all internet access until the VPN reconnects. Test normal connection and recovery before enabling it.
 
-The browser dashboard cannot silently start a VPN tunnel. Android requires the VPN client and the operating system's connection permission; the one-tap v2rayNG link only imports the subscription. Boot auto-connect is handled by v2rayNG and Android. The **Least Ping** policy group selects a route using periodically measured latency; it does not guarantee maximum download speed or seamless migration of existing connections.
+The mobile dashboard also includes optional DNS-filtering guidance using public AdGuard DNS and a repeatable on-device speed-comparison procedure. DNS filtering can reduce requests to known ad and tracking domains, but it does not reliably remove ads in the official YouTube app. v2rayNG DNS settings vary by version; record existing values first and restore them if connectivity breaks.\n\nThe browser dashboard cannot silently start a VPN tunnel. Android requires the VPN client and the operating system's connection permission; the one-tap v2rayNG link only imports the subscription. Boot auto-connect is handled by v2rayNG and Android. The **Least Ping** policy group selects a route using periodically measured latency; it does not guarantee maximum download speed or seamless migration of existing connections.
 
 ## Run locally
 
