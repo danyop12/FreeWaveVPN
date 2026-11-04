@@ -92,7 +92,7 @@
   <header>
     <img class="logo" src="./icon.svg" alt="" width="46" height="46">
     <div class="brand"><h1>FreeWave VPN</h1><p>Мобильная панель подписок</p></div>
-    <span class="version">0.3.3 · Android</span>
+    <span class="version">0.3.4 · Android</span>
   </header>
 
   <section class="hero">
@@ -244,7 +244,7 @@
 
   <section class="card">
     <div class="card-head"><h3>Обновление и установка</h3></div>
-    <p class="notice">Список перепроверяется GitHub Actions примерно раз в 6 часов. Можно установить эту панель как приложение: в Chrome нажми меню <strong>⋮ → Установить приложение</strong> или <strong>Добавить на главный экран</strong>.</p>
+    <p class="notice">GitHub Actions перепроверяет серверы примерно раз в 6 часов. Открытая панель сама обновляет опубликованные данные каждые 5 минут и при возвращении на вкладку. Это обновление не запускает внеплановое сканирование серверов. Можно установить эту панель как приложение: в Chrome нажми меню <strong>⋮ → Установить приложение</strong> или <strong>Добавить на главный экран</strong>.</p>
     <div class="actions">
       <button class="secondary" id="refresh" type="button">↻ Обновить данные</button>
       <a class="btn secondary" href="https://github.com/danyop12/FreeWaveVPN/actions" target="_blank" rel="noopener">История проверок</a>
@@ -407,6 +407,7 @@
   }
   refresh();
   document.addEventListener("visibilitychange", () => { if (!document.hidden) refresh(); });
+  window.setInterval(() => { if (!document.hidden) refresh(); }, 5 * 60 * 1000);
 })();
 </script>
 </body>
