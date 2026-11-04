@@ -356,7 +356,18 @@ def main() -> int:
         line.strip() for line in SOURCE.read_text(encoding="utf-8").splitlines()
         if line.strip().lower().startswith("vless://")
     ))
-    selected = candidates[:MAX_TESTS]
+    if len(candidates) <= MAX_TESTS:
+        selected = candidates
+    elif MAX_TESTS <= 1:
+        selected = candidates[:1]
+    else:
+        # Spread probes across the complete upstream list instead of favoring
+        # the first entries, which may all belong to one stale server batch.
+        indices = [
+            round(index * (len(candidates) - 1) / (MAX_TESTS - 1))
+            for index in range(MAX_TESTS)
+        ]
+        selected = [candidates[index] for index in indices]
     log(f"Testing {len(selected)} of {len(candidates)} TCP candidates with Xray.")
 
     results = []
