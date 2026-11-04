@@ -23,7 +23,8 @@ WORKERS = 8
 LATENCY_URLS = (
     "https://www.gstatic.com/generate_204",
     "https://www.google.com/generate_204",
-    "https://cp.cloudflare.com/generate_204",
+    "https://github.com/robots.txt",
+    "https://example.com/",
 )
 DOWNLOAD_URL = "https://speed.cloudflare.com/__down?bytes=262144"
 KNOWN_KEYS = {
@@ -307,7 +308,7 @@ def test_node(uri: str) -> dict:
                         code, values, curl_error = curl_request(
                             local_port, endpoint, 8, "%{http_code}\t%{time_total}"
                         )
-                        if code == 204 and values and values[0] > 0:
+                        if 200 <= code < 400 and values and values[0] > 0:
                             latency_ms = values[0] * 1000
                             break
                         last_error = f"HTTPS probe returned HTTP {code}: {curl_error or 'no response'}"
@@ -415,8 +416,10 @@ def main() -> int:
         (PUBLIC / "freewave-vless-base64.txt").write_text(
             base64.b64encode(full.encode()).decode() + "\n", encoding="utf-8"
         )
-        (PUBLIC / "freewave-fast.txt").write_text(
-            "\n".join(item["uri"] for item in passed[:25]) + "\n",
+        fast_text = "\n".join(item["uri"] for item in passed[:25]) + "\n"
+        (PUBLIC / "freewave-fast.txt").write_text(fast_text, encoding="utf-8")
+        (PUBLIC / "freewave-fast-base64.txt").write_text(
+            base64.b64encode(fast_text.encode()).decode() + "\n",
             encoding="utf-8",
         )
         eu_hints = (
@@ -439,6 +442,7 @@ def main() -> int:
             "freewave-vless.txt",
             "freewave-vless-base64.txt",
             "freewave-fast.txt",
+            "freewave-fast-base64.txt",
             "freewave-eu.txt",
         ):
             (PUBLIC / filename).write_text("", encoding="utf-8")
@@ -488,6 +492,7 @@ def main() -> int:
         "", "## Subscription files", "",
         "- freewave-vless.txt — only nodes passing a real HTTPS request through Xray",
         "- freewave-fast.txt — top 25 by relative score",
+        "- freewave-fast-base64.txt — Base64 version of the top 25",
         "- freewave-vless-base64.txt — Base64 version of validated nodes",
         "- freewave-tcp.txt — preliminary TCP-only candidates",
         "- metrics.json — detailed test results",
