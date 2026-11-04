@@ -1,54 +1,97 @@
-# FreeWave VPN
+# FreeWave VPN 0.2.1
 
-FreeWave VPN is a public VLESS configuration aggregator. It downloads VLESS
-links from the HTTPS sources listed in `sources.txt`, removes duplicates,
-performs a conservative TCP reachability check, and writes subscription files.
+FreeWave VPN collects public VLESS links from configured HTTPS sources, removes
+duplicates, checks only the exact endpoints published in those links, and
+publishes subscriptions for nodes that pass an actual Xray VLESS + HTTPS test.
 
-## Important limitations
+## How the pipeline works
 
-FreeWave does not own or operate these servers. Public nodes are controlled by
-unknown third parties and may log metadata, restrict traffic, or disappear.
-Unlimited traffic, speed, privacy, and uptime are not guaranteed. Do not use
-public nodes for sensitive activity.
+1. Fetch public subscriptions from `sources.txt` and decode plain-text or Base64.
+2. Extract only `vless://` links, validate URI host/port, and remove duplicates.
+3. Resolve each advertised hostname and reject endpoints whose DNS answers include
+   private, loopback, link-local, multicast, reserved, or otherwise non-global IPs.
+4. Make a TCP connection attempt only to the exact public IP and port in each URI.
+5. Run a pinned Xray-core client against an evenly distributed sample of TCP
+   candidates. A node is considered validated only after an HTTPS request succeeds
+   through its VLESS tunnel.
+6. Measure a small download and rank passing nodes by a relative score
+   (65% measured download rate, 35% HTTPS response time).
 
-A successful TCP check only means that a TCP connection was accepted at the
-time of testing. It does not prove a VLESS handshake, TLS/REALITY validation,
-authentication, speed, or privacy. The optional EU list uses configuration
-name hints only; it is not verified geolocation.
+The current workflow tests up to 80 evenly distributed nodes per run. The rest
+remain marked as untested in `metrics.json`. A new run happens every six hours.
+
+## Subscription files
+
+Generated files are committed under `public/` after each successful workflow:
+
+- `freewave-vless.txt` — only nodes that passed the Xray VLESS + HTTPS test.
+- `freewave-vless-base64.txt` — Base64 version of the validated subscription.
+- `freewave-fast.txt` — up to 25 highest-ranked validated nodes.
+- `freewave-fast-base64.txt` — Base64 version of the fast list.
+- `freewave-tcp.txt` — preliminary TCP-only candidates; **not a working-node list**.
+- `freewave-eu.txt` — name-based heuristic subset, not verified geolocation.
+- `metrics.json` — tested counts, response times, download rates, score and failure reasons.
+- `STATUS.md` — latest run summary.
+
+Subscription URLs:
+
+```text
+https://raw.githubusercontent.com/danyop12/FreeWaveVPN/main/public/freewave-vless.txt
+https://raw.githubusercontent.com/danyop12/FreeWaveVPN/main/public/freewave-vless-base64.txt
+https://raw.githubusercontent.com/danyop12/FreeWaveVPN/main/public/freewave-fast.txt
+https://raw.githubusercontent.com/danyop12/FreeWaveVPN/main/public/freewave-fast-base64.txt
+```
+
+The subscription files may be empty when no node passes the real VLESS check.
+That is intentional: TCP-only endpoints are not published as verified VPN nodes.
 
 ## Run locally
 
-Requires Python 3.10+ and no third-party packages:
+Requires Python 3.10+:
 
 ```bash
 python -m freewave.build
 ```
 
-Generated files are written to `public/`:
-- `freewave-vless.txt` — plain VLESS links
-- `freewave-vless-base64.txt` — Base64 subscription
-- `freewave-eu.txt` — heuristic name-based subset
-- `STATUS.md` — last successful build summary
+This performs only the preliminary TCP scan. The full VLESS and speed stage also
+requires an Xray-core binary and `curl`:
 
-If no TCP-reachable nodes are found, the previous output files are preserved.
+```bash
+XRAY_PATH=/path/to/xray python -m freewave.rank
+```
 
 ## GitHub Actions
 
-The workflow runs manually, after relevant pushes, and every six hours.
+The workflow runs on manual dispatch, relevant source/code changes, and every
+six hours. Xray-core is pinned to a specific release and its archive SHA-256 is
+verified before execution. The workflow has `contents: write` permission to
+commit the generated subscription and status files.
 
-1. Enable GitHub Actions in repository settings.
-2. Open **Actions → FreeWave update → Run workflow** for the first run.
-3. After a successful run, the subscription URLs will be:
+To run it manually, open **Actions → FreeWave update → Run workflow**.
 
-```text
-https://raw.githubusercontent.com/danyop12/FreeWaveVPN/main/public/freewave-vless.txt
-https://raw.githubusercontent.com/danyop12/FreeWaveVPN/main/public/freewave-vless-base64.txt
-https://raw.githubusercontent.com/danyop12/FreeWaveVPN/main/public/freewave-eu.txt
-```
+## Important limitations
 
-These files do not exist until the first successful workflow run commits them.
+FreeWave does not own, operate, or control any listed server. Nodes are run by
+unknown third parties and may log metadata, inspect unencrypted traffic, limit
+usage, or disappear without notice. Do not use public nodes for sensitive work.
+
+A passing HTTPS probe proves only that one HTTPS request succeeded through that
+VLESS node from the GitHub Actions runner at that time. It does not prove that
+all websites, apps, UDP, streaming, or future sessions will work. Download rate
+and response time are measured from GitHub infrastructure, not from your phone;
+your local ISP, country, route, device, and time of day can produce very
+different results.
+
+The `fast` subscription is a list sorted by the latest GitHub-runner measurements.
+It does not force V2RayTun or AvoVPN to switch servers automatically. Actual
+automatic selection depends on whether the client supports a URL-test or
+auto-select group.
+
+There is no guarantee of unlimited traffic, speed, privacy, or uptime. The
+project itself is not a VPN exit server and does not carry your traffic.
 
 ## Sources
 
-Edit `sources.txt` to add or remove public HTTPS subscription sources.
-Only use sources you are legally allowed to access.
+The configured upstreams are listed in `sources.txt`. They are community
+repositories with public third-party configurations. Only publicly advertised
+VLESS endpoints are tested; the collector does not scan IP ranges.
