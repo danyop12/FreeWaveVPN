@@ -588,6 +588,31 @@ def main() -> int:
         encoding="utf-8",
     )
 
+    health_path = PUBLIC / "health.json"
+    try:
+        previous_health = json.loads(health_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError, TypeError):
+        previous_health = {}
+    run_id = os.environ.get("GITHUB_RUN_ID", "")
+    run_url = (
+        f"{os.environ.get('GITHUB_SERVER_URL', 'https://github.com')}/"
+        f"{os.environ.get('GITHUB_REPOSITORY', 'danyop12/FreeWaveVPN')}/actions/runs/{run_id}"
+        if run_id else ""
+    )
+    health = {
+        "status": "success",
+        "last_attempt_at_utc": timestamp,
+        "last_success_at_utc": timestamp,
+        "last_success_validated_count": len(passed),
+        "last_attempt_validated_count": len(passed),
+        "last_attempt_tested_count": len(results),
+        "workflow_run_url": run_url,
+    }
+    health_path.write_text(
+        json.dumps(health, indent=2, ensure_ascii=False) + "\\n",
+        encoding="utf-8",
+    )
+
     lines = [
         "# FreeWave VPN status", "",
         f"- Last run: {timestamp}",
