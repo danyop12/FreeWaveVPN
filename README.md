@@ -14,11 +14,13 @@ publishes subscriptions for nodes that pass an actual Xray VLESS + HTTPS test.
 5. Run a pinned Xray-core client against an evenly distributed sample of TCP
    candidates. A node is considered validated only after an HTTPS request succeeds
    through its VLESS tunnel.
-6. Measure a small download and rank passing nodes by a relative score
-   (65% measured download rate, 35% HTTPS response time).
+6. Require two independent HTTPS destinations to respond through the same VLESS tunnel.
+7. Measure a small download using curl's actual average transfer-rate field and rank
+   passing nodes by a relative score (65% measured download rate, 35% HTTPS response time).
 
-The current workflow tests up to 160 evenly distributed nodes per run. The rest
-remain marked as untested in `metrics.json`. A new run happens every six hours.
+The current workflow tests up to all 500 evenly distributed candidates per run (or every candidate when fewer are available). The rest
+remain marked as untested in `metrics.json`. Each accepted node must pass two separate
+HTTPS probes; a successful TCP connection alone is never enough. A new run happens every six hours.
 
 ## Subscription files
 
@@ -44,6 +46,20 @@ https://raw.githubusercontent.com/danyop12/FreeWaveVPN/main/public/freewave-fast
 
 The subscription files may be empty when no node passes the real VLESS check.
 That is intentional: TCP-only endpoints are not published as verified VPN nodes.
+
+
+## Android client notes
+
+- **v2RayTun:** import `freewave-vless.txt` as a subscription URL. The list is sorted
+  by the latest GitHub-runner score. Whether the app automatically chooses or switches
+  nodes depends on the features exposed by the installed version; the subscription
+  itself cannot force an app's auto-selection behavior.
+- **AvoVPN:** its published Google Play instructions describe importing a single
+  `vless://` key. Use `freewave-best.txt` and paste its one VLESS link as a key.
+  Do not paste the subscription URL where the app expects a single key.
+
+The GitHub-runner ranking is only a starting point. Your phone may see a different
+fastest node because routes and performance vary by network and location.
 
 ## Run locally
 
