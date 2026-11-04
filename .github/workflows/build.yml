@@ -5,6 +5,7 @@ on:
   push:
     branches: [main]
     paths:
+      - ".gitignore"
       - "sources.txt"
       - "freewave/**"
       - ".github/workflows/build.yml"
