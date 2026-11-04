@@ -1,4 +1,4 @@
-# FreeWave VPN 0.3.4
+# FreeWave VPN 0.3.5
 
 FreeWave VPN collects public VLESS links from configured HTTPS sources, removes
 duplicates, checks only the exact endpoints published in those links, and
@@ -15,8 +15,10 @@ publishes subscriptions for nodes that pass two independent Xray VLESS + HTTPS p
    candidates. A node is considered validated only after an HTTPS request succeeds
    through its VLESS tunnel.
 6. Require two independent HTTPS destinations to respond through the same VLESS tunnel.
-7. Measure a small download using curl's actual average transfer-rate field and rank
-   passing nodes by a relative score (65% measured download rate, 35% HTTPS response time).
+7. Require at least three independent HTTPS probes, use their median response time
+   and median absolute deviation to estimate latency stability, then measure a 1 MiB
+   download using curl's actual average transfer-rate field. Rank passing nodes by a
+   relative score: 55% download rate, 30% median latency, and 15% stability.
 
 The current workflow tests up to all 500 evenly distributed candidates per run (or every candidate when fewer are available). The rest
 remain marked as untested in `metrics.json`. Each accepted node must pass two separate
