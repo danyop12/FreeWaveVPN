@@ -15,11 +15,11 @@ SOURCES_FILE = ROOT / "sources.txt"
 OUTPUT_DIR = ROOT / "public"
 
 MAX_SOURCE_BYTES = 2 * 1024 * 1024
-MAX_NODES = 250
+MAX_NODES = 500
 MAX_WORKERS = 40
 FETCH_TIMEOUT = 15
 TCP_TIMEOUT = 2.5
-USER_AGENT = "FreeWaveVPN-Collector/0.2.0"
+USER_AGENT = "FreeWaveVPN-Collector/0.2.1"
 
 VLESS_PATTERN = re.compile(r"vless://[^\s\"'<>]+", re.IGNORECASE)
 EU_HINTS = (
@@ -243,7 +243,15 @@ def main() -> int:
         except ValueError:
             continue
 
-    candidates = candidates[:MAX_NODES]
+    if len(candidates) > MAX_NODES:
+        if MAX_NODES <= 1:
+            candidates = candidates[:1]
+        else:
+            indices = [
+                round(index * (len(candidates) - 1) / (MAX_NODES - 1))
+                for index in range(MAX_NODES)
+            ]
+            candidates = [candidates[index] for index in indices]
     log(f"Checking {len(candidates)} unique valid candidate(s).")
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
