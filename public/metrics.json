@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-11-04 21:50:58 UTC",
+  "generated_at_utc": "2026-11-04 21:51:41 UTC",
   "measurement_location": "GitHub Actions runner; not device-specific",
   "candidate_count": 216,
   "tested_count": 12,
@@ -15,7 +15,7 @@
       "speed_mbps": null,
       "score": null,
       "speed_test_ok": null,
-      "error": "Xray config rejected: Failed to start: main: failed to load config files: [/tmp/freewave-probe-1i9mlqcj/xray.json] > infra/conf: failed to bui"
+      "error": "Xray config rejected: 2026/11/04 21:51:36.898803 [Info] infra/conf/serial: Reading config: &{Name:/tmp/freewave-probe-e82ui15f/xray.json Format:json} | 2026/11/04 21:51:36.900437 [Warning] common/errors: The feature WebSocket transport (with ALPN http/1.1, etc.) is deprecated, not recommended for using and might be removed. Please migrate to XHTTP H2 & H3 as soon as possible. | Failed to start: main: failed to load config files: [/tmp/freewave-probe-e82ui15f/xray.json] > infra/conf: failed to build outbound config with tag vless-node > infra/conf: vless without TLS or other encryption is prohibited unless the server address is a private IP or domain"
     },
     {
       "host": null,
@@ -25,7 +25,7 @@
       "speed_mbps": null,
       "score": null,
       "speed_test_ok": null,
-      "error": "Xray config rejected: Failed to start: main: failed to load config files: [/tmp/freewave-probe-ptg_8j8g/xray.json] > infra/conf: failed to bui"
+      "error": "Xray config rejected: Xray 26.10.31 (Xray, Penetrates Everything.) a4a3dff (go1.27.3 linux/amd64) | A unified platform for anti-censorship. | Failed to start: main: failed to load config files: [/tmp/freewave-probe-v41vuhe0/xray.json] > infra/conf: failed to build outbound config with tag vless-node > infra/conf: vless without TLS or other encryption is prohibited unless the server address is a private IP or domain"
     },
     {
       "host": null,
@@ -35,7 +35,7 @@
       "speed_mbps": null,
       "score": null,
       "speed_test_ok": null,
-      "error": "Xray config rejected: Failed to start: main: failed to load config files: [/tmp/freewave-probe-s4db3u_v/xray.json] > infra/conf: failed to bui"
+      "error": "Xray config rejected: 2026/11/04 21:51:36.973907 [Info] infra/conf/serial: Reading config: &{Name:/tmp/freewave-probe-_1wqhrk9/xray.json Format:json} | 2026/11/04 21:51:36.975641 [Warning] common/errors: The feature WebSocket transport (with ALPN http/1.1, etc.) is deprecated, not recommended for using and might be removed. Please migrate to XHTTP H2 & H3 as soon as possible. | Failed to start: main: failed to load config files: [/tmp/freewave-probe-_1wqhrk9/xray.json] > infra/conf: failed to build outbound config with tag vless-node > infra/conf: vless without TLS or other encryption is prohibited unless the server address is a private IP or domain"
     },
     {
       "host": null,
@@ -45,7 +45,7 @@
       "speed_mbps": null,
       "score": null,
       "speed_test_ok": null,
-      "error": "No successful HTTPS request through VLESS"
+      "error": "HTTPS probe returned HTTP 0: curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to cp.cloudflare.com:443"
     },
     {
       "host": null,
@@ -55,7 +55,7 @@
       "speed_mbps": null,
       "score": null,
       "speed_test_ok": null,
-      "error": "No successful HTTPS request through VLESS"
+      "error": "HTTPS probe returned HTTP 0: curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to cp.cloudflare.com:443"
     },
     {
       "host": null,
@@ -65,7 +65,7 @@
       "speed_mbps": null,
       "score": null,
       "speed_test_ok": null,
-      "error": "No successful HTTPS request through VLESS"
+      "error": "HTTPS probe returned HTTP 0: curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to cp.cloudflare.com:443"
     },
     {
       "host": null,
@@ -75,7 +75,7 @@
       "speed_mbps": null,
       "score": null,
       "speed_test_ok": null,
-      "error": "No successful HTTPS request through VLESS"
+      "error": "HTTPS probe returned HTTP 0: curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to cp.cloudflare.com:443"
     },
     {
       "host": null,
@@ -85,7 +85,7 @@
       "speed_mbps": null,
       "score": null,
       "speed_test_ok": null,
-      "error": "No successful HTTPS request through VLESS"
+      "error": "HTTPS probe returned HTTP 0: curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to cp.cloudflare.com:443"
     },
     {
       "host": null,
@@ -95,7 +95,7 @@
       "speed_mbps": null,
       "score": null,
       "speed_test_ok": null,
-      "error": "No successful HTTPS request through VLESS"
+      "error": "HTTPS probe returned HTTP 0: curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to cp.cloudflare.com:443"
     },
     {
       "host": null,
@@ -105,7 +105,7 @@
       "speed_mbps": null,
       "score": null,
       "speed_test_ok": null,
-      "error": "No successful HTTPS request through VLESS"
+      "error": "HTTPS probe returned HTTP 0: curl: (35) Recv failure: Connection reset by peer"
     },
     {
       "host": null,
@@ -115,7 +115,7 @@
       "speed_mbps": null,
       "score": null,
       "speed_test_ok": null,
-      "error": "No successful HTTPS request through VLESS"
+      "error": "HTTPS probe returned HTTP 0: curl: (35) Recv failure: Connection reset by peer"
     },
     {
       "host": null,
@@ -125,7 +125,7 @@
       "speed_mbps": null,
       "score": null,
       "speed_test_ok": null,
-      "error": "No successful HTTPS request through VLESS"
+      "error": "HTTPS probe returned HTTP 0: curl: (35) Recv failure: Connection reset by peer"
     }
   ]
 }
