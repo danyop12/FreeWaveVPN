@@ -41,12 +41,15 @@ jobs:
           chmod +x /tmp/xray/xray
           echo "XRAY_PATH=/tmp/xray/xray" >> "$GITHUB_ENV"
 
+      - name: Check Python syntax
+        run: python -m py_compile freewave/*.py
+
       - name: Build preliminary TCP candidate list
         run: python -m freewave.build
 
       - name: Verify VLESS and measure performance
         env:
-          FREEWAVE_MAX_XRAY_TESTS: "160"
+          FREEWAVE_MAX_XRAY_TESTS: "500"
         run: python -m freewave.rank
 
       - name: Commit generated subscriptions and status
