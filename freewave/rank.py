@@ -112,6 +112,10 @@ def make_config(uri: str, target_ip: str, socks_port: int) -> dict:
     fingerprint = get(q, "fp", default="chrome")
     flow = get(q, "flow")
     encryption = get(q, "encryption", default="none")
+    # One upstream concatenates a node label onto the "none" encryption value.
+    # Strip only this known malformed suffix; keep all other values for Xray validation.
+    if encryption.lower().startswith("none@shadowsocks"):
+        encryption = "none"
     user_id = unquote(parsed.username)
 
     if security == "none" and encryption.lower() in {"", "none"}:
@@ -310,6 +314,14 @@ def test_node(uri: str) -> dict:
                     except (subprocess.TimeoutExpired, OSError):
                         pass
                 if latency_ms is None:
+                    log_handle.flush()
+                    runtime_lines = [
+                        line.strip()
+                        for line in log_path.read_text(encoding="utf-8", errors="replace").splitlines()
+                        if line.strip()
+                    ]
+                    if runtime_lines:
+                        last_error += " | Xray: " + " | ".join(runtime_lines[-2:])[-360:]
                     continue
 
                 speed_mbps = None
