@@ -609,7 +609,7 @@ def main() -> int:
         "workflow_run_url": run_url,
     }
     health_path.write_text(
-        json.dumps(health, indent=2, ensure_ascii=False) + "\\n",
+        json.dumps(health, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
     )
 
