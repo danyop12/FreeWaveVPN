@@ -1,4 +1,4 @@
-const CACHE = "freewave-shell-v2";
+const CACHE = "freewave-shell-v3";
 const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon.svg"];
 
 self.addEventListener("install", event => {
