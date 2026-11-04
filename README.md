@@ -92,7 +92,7 @@ For a simple one-phone setup, use the full validated subscription rather than im
 - In the subscription group's settings, enable automatic updating. In the app's general settings, enable automatic subscription updates and choose 360 minutes. FreeWave's GitHub workflow refreshes its generated list every six hours.
 - Enable **Auto test after updating subscription** and **Auto sort after test** so v2rayNG measures the servers from the phone's own network, rather than relying only on GitHub-runner rankings.
 - In v2rayNG VPN settings, enable **Connect after device boot**. Then open Android **Settings → VPN → v2rayNG** and enable **Always-on VPN** if the device exposes that setting. Optionally add the v2rayNG Quick Settings tile for a one-tap manual connect/disconnect.
-- On Infinix/XOS, allow v2rayNG background activity and auto-start, and set its battery use to **Unrestricted / Don't optimize**. Menu labels vary across XOS versions.
+- On Infinix/XOS, open **Settings → Apps → App Management → v2rayNG → Battery**, allow background activity, and set battery use to **Unrestricted**. Also enable v2rayNG in Auto-start management and exclude it from battery optimization. Menu labels vary by XOS version; search Settings for “autostart”, “background activity”, and “battery”.
 
 Android's **Block connections without VPN** option is optional. It acts as a kill switch, but if the chosen node stops working it can block all internet access until the VPN reconnects. Test normal connection and recovery before enabling it.
 
