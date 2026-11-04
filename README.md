@@ -1,4 +1,4 @@
-# FreeWave VPN 0.3.6
+# FreeWave VPN 0.3.7
 
 FreeWave VPN collects public VLESS links from configured HTTPS sources, removes
 duplicates, checks only the exact endpoints published in those links, and
@@ -34,7 +34,7 @@ working nodes from nodes that only pass occasionally.
 
 Generated files are committed under `public/` after each successful workflow:
 
-- `freewave-vless.txt` — nodes that passed at least three independent HTTPS probes through Xray.
+- `freewave-vless.txt` — only nodes that passed at least three independent HTTPS probes through Xray. A completed scan with zero passing nodes clears all generated subscription feeds; a failed workflow preserves the last known-good feeds and marks health status as failed.
 - `freewave-best.txt` — the single highest-ranked VLESS key for clients that import one key.
 - `freewave-best-base64.txt` — Base64 version of that single key.
 - `freewave-vless-base64.txt` — Base64 version of the validated subscription.
@@ -44,7 +44,8 @@ Generated files are committed under `public/` after each successful workflow:
 - `freewave-eu.txt` — name-based heuristic subset, not verified geolocation.
 - `metrics.json` — tested counts, response times, download rates, reliability and failure reasons.
 - `history.json` — the last 10 scan outcomes keyed by one-way node fingerprints; contains no VLESS links.
-- `STATUS.md` — latest run summary.
+- `STATUS.md` — latest successful scan summary.
+- `health.json` — last update attempt, last successful scan time and result; failed runs preserve the last known-good subscription files.
 
 Subscription URLs:
 
@@ -88,7 +89,7 @@ The repository includes an installable mobile web app in `public/`. It does not 
 4. Open [https://danyop12.github.io/FreeWaveVPN/](https://danyop12.github.io/FreeWaveVPN/) in Chrome on Android.
 5. In Chrome's menu, choose **Install app** or **Add to Home screen**.
 
-The mobile page shows the last verified-node count, top configurations, and copyable subscription URLs. Tapping a `vless://` key can hand it to a compatible VPN client when that client has registered the link type.
+The mobile page shows subscription health, last successful update, verified-node count, top configurations, rolling reliability over up to 10 scans, and copyable subscription URLs. Browser notifications can be enabled from the dashboard for empty feeds, failed updates and data older than 12 hours; they work while the dashboard is open or active as an installed web app, not as remote push notifications after it is fully closed. Tapping a `vless://` key can hand it to a compatible VPN client when that client has registered the link type.
 
 **Important:** the mobile page is a companion dashboard, not a VPN engine. It cannot create Android's system VPN tunnel by itself. Install a compatible client such as V2RayTun or AvoVPN to make the actual connection. It also does not run the Python collector on the phone.
 
