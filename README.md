@@ -1,8 +1,8 @@
-# FreeWave VPN 0.3.5
+# FreeWave VPN 0.3.6
 
 FreeWave VPN collects public VLESS links from configured HTTPS sources, removes
 duplicates, checks only the exact endpoints published in those links, and
-publishes subscriptions for nodes that pass two independent Xray VLESS + HTTPS probes.
+publishes subscriptions for nodes that pass three independent Xray VLESS + HTTPS probes.
 
 ## How the pipeline works
 
@@ -14,21 +14,27 @@ publishes subscriptions for nodes that pass two independent Xray VLESS + HTTPS p
 5. Run a pinned Xray-core client against an evenly distributed sample of TCP
    candidates. A node is considered validated only after an HTTPS request succeeds
    through its VLESS tunnel.
-6. Require two independent HTTPS destinations to respond through the same VLESS tunnel.
-7. Require at least three independent HTTPS probes, use their median response time
+6. Require at least three independent HTTPS destinations to respond through the same VLESS tunnel.
+7. Use their median response time
    and median absolute deviation to estimate latency stability, then measure a 1 MiB
    download using curl's actual average transfer-rate field. Rank passing nodes by a
    relative score: 55% download rate, 30% median latency, and 15% stability.
 
 The current workflow tests up to all 500 evenly distributed candidates per run (or every candidate when fewer are available). The rest
-remain marked as untested in `metrics.json`. Each accepted node must pass two separate
+remain marked as untested in `metrics.json`. Each accepted node must pass at least three separate
 HTTPS probes; a successful TCP connection alone is never enough. A new run happens every six hours.
+
+The ranking also keeps a rolling history of the last 10 scans. After a node has at least
+two observations, repeated failed validations gently reduce its score; new nodes are not
+penalized for having no history. `history.json` stores SHA-256 fingerprints and test
+outcomes only, not VLESS links or credentials. This helps distinguish consistently
+working nodes from nodes that only pass occasionally.
 
 ## Subscription files
 
 Generated files are committed under `public/` after each successful workflow:
 
-- `freewave-vless.txt` — nodes that passed two independent HTTPS probes through Xray.
+- `freewave-vless.txt` — nodes that passed at least three independent HTTPS probes through Xray.
 - `freewave-best.txt` — the single highest-ranked VLESS key for clients that import one key.
 - `freewave-best-base64.txt` — Base64 version of that single key.
 - `freewave-vless-base64.txt` — Base64 version of the validated subscription.
@@ -36,7 +42,8 @@ Generated files are committed under `public/` after each successful workflow:
 - `freewave-fast-base64.txt` — Base64 version of the fast list.
 - `freewave-tcp.txt` — preliminary TCP-only candidates; **not a working-node list**.
 - `freewave-eu.txt` — name-based heuristic subset, not verified geolocation.
-- `metrics.json` — tested counts, response times, download rates, score and failure reasons.
+- `metrics.json` — tested counts, response times, download rates, reliability and failure reasons.
+- `history.json` — the last 10 scan outcomes keyed by one-way node fingerprints; contains no VLESS links.
 - `STATUS.md` — latest run summary.
 
 Subscription URLs:
