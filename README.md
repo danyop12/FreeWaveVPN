@@ -26,7 +26,9 @@ HTTPS probes; a successful TCP connection alone is never enough. A new run happe
 
 Generated files are committed under `public/` after each successful workflow:
 
-- `freewave-vless.txt` — only nodes that passed the Xray VLESS + HTTPS test.
+- `freewave-vless.txt` — nodes that passed two independent HTTPS probes through Xray.
+- `freewave-best.txt` — the single highest-ranked VLESS key for clients that import one key.
+- `freewave-best-base64.txt` — Base64 version of that single key.
 - `freewave-vless-base64.txt` — Base64 version of the validated subscription.
 - `freewave-fast.txt` — up to 25 highest-ranked validated nodes.
 - `freewave-fast-base64.txt` — Base64 version of the fast list.
