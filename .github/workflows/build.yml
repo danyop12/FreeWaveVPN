@@ -46,7 +46,7 @@ jobs:
 
       - name: Verify VLESS and measure performance
         env:
-          FREEWAVE_MAX_XRAY_TESTS: "80"
+          FREEWAVE_MAX_XRAY_TESTS: "160"
         run: python -m freewave.rank
 
       - name: Commit generated subscriptions and status
