@@ -22,6 +22,7 @@ MAX_TESTS = int(os.environ.get("FREEWAVE_MAX_XRAY_TESTS", "160"))
 WORKERS = 8
 LATENCY_URLS = (
     "https://www.gstatic.com/generate_204",
+    "https://www.google.com/generate_204",
     "https://cp.cloudflare.com/generate_204",
 )
 DOWNLOAD_URL = "https://speed.cloudflare.com/__down?bytes=262144"
@@ -96,12 +97,20 @@ def make_config(uri: str, target_ip: str, socks_port: int) -> dict:
         raise ValueError(f"Unsupported security: {security}")
 
     path = get(q, "path", default="/") or "/"
-    host_header = get(q, "host")
+    early_data = get(q, "ed")
+    if early_data and "ed=" not in path:
+        path += ("&" if "?" in path else "?") + "ed=" + early_data
+    # If a link omits the optional transport Host, preserve its original
+    # URI hostname even though the network connection is pinned to a checked IP.
+    host_header = get(q, "host", default=parsed.hostname)
     server_name = get(q, "sni", "servername", default=parsed.hostname)
     fingerprint = get(q, "fp", default="chrome")
     flow = get(q, "flow")
     encryption = get(q, "encryption", default="none")
     user_id = unquote(parsed.username)
+
+    if security == "none" and encryption.lower() in {"", "none"}:
+        raise ValueError("Public VLESS without TLS/REALITY or VLESS encryption is rejected")
 
     stream = {"method": method, "security": security}
     if method == "raw":
@@ -121,7 +130,7 @@ def make_config(uri: str, target_ip: str, socks_port: int) -> dict:
             "serviceName": get(q, "servicename", "service_name", "path"),
             "multiMode": get(q, "mode").lower() in {"multi", "multimode"},
         }
-        authority = get(q, "authority", "host")
+        authority = get(q, "authority", "host", default=parsed.hostname)
         if authority:
             grpc["authority"] = authority
         stream["grpcSettings"] = grpc
@@ -224,9 +233,9 @@ def test_node(uri: str) -> dict:
     try:
         addresses = public_addresses(host, port)
     except Exception as exc:
-        return {"uri": uri, "ok": False, "error": str(exc)[:120]}
+        return {"uri": uri, "ok": False, "host": host, "port": port, "error": str(exc)[:200]}
     if not addresses:
-        return {"uri": uri, "ok": False, "error": "No exclusively public DNS result"}
+        return {"uri": uri, "ok": False, "host": host, "port": port, "error": "No exclusively public DNS result"}
 
     last_error = "No resolved address accepted the test"
     for address in addresses[:3]:
@@ -234,7 +243,7 @@ def test_node(uri: str) -> dict:
         try:
             config = make_config(uri, address, local_port)
         except Exception as exc:
-            return {"uri": uri, "ok": False, "error": str(exc)[:120]}
+            return {"uri": uri, "ok": False, "host": host, "port": port, "error": str(exc)[:200]}
 
         with tempfile.TemporaryDirectory(prefix="freewave-probe-") as tmp:
             config_file = Path(tmp) / "xray.json"
@@ -246,7 +255,7 @@ def test_node(uri: str) -> dict:
             if validation.returncode != 0:
                 detail = (validation.stderr or validation.stdout).strip().splitlines()
                 reason = " | ".join(detail[-3:])[-700:] if detail else "unknown config error"
-                return {"uri": uri, "ok": False, "error": f"Xray config rejected: {reason}"}
+                return {"uri": uri, "ok": False, "host": host, "port": port, "error": f"Xray config rejected: {reason}"}
 
             log_path = Path(tmp) / "xray.log"
             log_handle = log_path.open("w", encoding="utf-8")
@@ -327,7 +336,7 @@ def test_node(uri: str) -> dict:
                     process.wait(timeout=2)
                 log_handle.close()
 
-    return {"uri": uri, "ok": False, "error": last_error}
+    return {"uri": uri, "ok": False, "host": host, "port": port, "error": last_error}
 
 
 def main() -> int:
