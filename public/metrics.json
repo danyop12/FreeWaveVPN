@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-11-04 21:51:41 UTC",
+  "generated_at_utc": "2026-11-04 21:52:32 UTC",
   "measurement_location": "GitHub Actions runner; not device-specific",
   "candidate_count": 216,
   "tested_count": 12,
@@ -8,48 +8,38 @@
   "not_tested_count": 204,
   "results": [
     {
-      "host": null,
-      "port": null,
+      "host": "104.17.234.128",
+      "port": 8080,
       "ok": false,
       "latency_ms": null,
       "speed_mbps": null,
       "score": null,
       "speed_test_ok": null,
-      "error": "Xray config rejected: 2026/11/04 21:51:36.898803 [Info] infra/conf/serial: Reading config: &{Name:/tmp/freewave-probe-e82ui15f/xray.json Format:json} | 2026/11/04 21:51:36.900437 [Warning] common/errors: The feature WebSocket transport (with ALPN http/1.1, etc.) is deprecated, not recommended for using and might be removed. Please migrate to XHTTP H2 & H3 as soon as possible. | Failed to start: main: failed to load config files: [/tmp/freewave-probe-e82ui15f/xray.json] > infra/conf: failed to build outbound config with tag vless-node > infra/conf: vless without TLS or other encryption is prohibited unless the server address is a private IP or domain"
+      "error": "Public VLESS without TLS/REALITY or VLESS encryption is rejected"
     },
     {
-      "host": null,
-      "port": null,
+      "host": "104.21.220.87",
+      "port": 80,
       "ok": false,
       "latency_ms": null,
       "speed_mbps": null,
       "score": null,
       "speed_test_ok": null,
-      "error": "Xray config rejected: Xray 26.10.31 (Xray, Penetrates Everything.) a4a3dff (go1.27.3 linux/amd64) | A unified platform for anti-censorship. | Failed to start: main: failed to load config files: [/tmp/freewave-probe-v41vuhe0/xray.json] > infra/conf: failed to build outbound config with tag vless-node > infra/conf: vless without TLS or other encryption is prohibited unless the server address is a private IP or domain"
+      "error": "Public VLESS without TLS/REALITY or VLESS encryption is rejected"
     },
     {
-      "host": null,
-      "port": null,
+      "host": "104.18.7.36",
+      "port": 8443,
       "ok": false,
       "latency_ms": null,
       "speed_mbps": null,
       "score": null,
       "speed_test_ok": null,
-      "error": "Xray config rejected: 2026/11/04 21:51:36.973907 [Info] infra/conf/serial: Reading config: &{Name:/tmp/freewave-probe-_1wqhrk9/xray.json Format:json} | 2026/11/04 21:51:36.975641 [Warning] common/errors: The feature WebSocket transport (with ALPN http/1.1, etc.) is deprecated, not recommended for using and might be removed. Please migrate to XHTTP H2 & H3 as soon as possible. | Failed to start: main: failed to load config files: [/tmp/freewave-probe-_1wqhrk9/xray.json] > infra/conf: failed to build outbound config with tag vless-node > infra/conf: vless without TLS or other encryption is prohibited unless the server address is a private IP or domain"
+      "error": "Public VLESS without TLS/REALITY or VLESS encryption is rejected"
     },
     {
-      "host": null,
-      "port": null,
-      "ok": false,
-      "latency_ms": null,
-      "speed_mbps": null,
-      "score": null,
-      "speed_test_ok": null,
-      "error": "HTTPS probe returned HTTP 0: curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to cp.cloudflare.com:443"
-    },
-    {
-      "host": null,
-      "port": null,
+      "host": "198.41.208.147",
+      "port": 443,
       "ok": false,
       "latency_ms": null,
       "speed_mbps": null,
@@ -58,8 +48,8 @@
       "error": "HTTPS probe returned HTTP 0: curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to cp.cloudflare.com:443"
     },
     {
-      "host": null,
-      "port": null,
+      "host": "104.20.20.123",
+      "port": 443,
       "ok": false,
       "latency_ms": null,
       "speed_mbps": null,
@@ -68,8 +58,8 @@
       "error": "HTTPS probe returned HTTP 0: curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to cp.cloudflare.com:443"
     },
     {
-      "host": null,
-      "port": null,
+      "host": "104.20.21.91",
+      "port": 443,
       "ok": false,
       "latency_ms": null,
       "speed_mbps": null,
@@ -78,8 +68,8 @@
       "error": "HTTPS probe returned HTTP 0: curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to cp.cloudflare.com:443"
     },
     {
-      "host": null,
-      "port": null,
+      "host": "108.162.192.223",
+      "port": 443,
       "ok": false,
       "latency_ms": null,
       "speed_mbps": null,
@@ -88,8 +78,8 @@
       "error": "HTTPS probe returned HTTP 0: curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to cp.cloudflare.com:443"
     },
     {
-      "host": null,
-      "port": null,
+      "host": "172.66.47.182",
+      "port": 443,
       "ok": false,
       "latency_ms": null,
       "speed_mbps": null,
@@ -98,8 +88,18 @@
       "error": "HTTPS probe returned HTTP 0: curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to cp.cloudflare.com:443"
     },
     {
-      "host": null,
-      "port": null,
+      "host": "172.66.44.194",
+      "port": 8443,
+      "ok": false,
+      "latency_ms": null,
+      "speed_mbps": null,
+      "score": null,
+      "speed_test_ok": null,
+      "error": "HTTPS probe returned HTTP 0: curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to cp.cloudflare.com:443"
+    },
+    {
+      "host": "172.67.137.11",
+      "port": 2087,
       "ok": false,
       "latency_ms": null,
       "speed_mbps": null,
@@ -108,8 +108,8 @@
       "error": "HTTPS probe returned HTTP 0: curl: (35) Recv failure: Connection reset by peer"
     },
     {
-      "host": null,
-      "port": null,
+      "host": "162.159.136.234",
+      "port": 2087,
       "ok": false,
       "latency_ms": null,
       "speed_mbps": null,
@@ -118,8 +118,8 @@
       "error": "HTTPS probe returned HTTP 0: curl: (35) Recv failure: Connection reset by peer"
     },
     {
-      "host": null,
-      "port": null,
+      "host": "69.84.182.145",
+      "port": 443,
       "ok": false,
       "latency_ms": null,
       "speed_mbps": null,
