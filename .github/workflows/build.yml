@@ -22,23 +22,40 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Build subscriptions
+
+      - name: Install pinned Xray-core
+        run: |
+          curl -fsSL "https://github.com/XTLS/Xray-core/releases/download/v26.10.31/Xray-linux-64.zip" -o /tmp/xray.zip
+          echo "e4bd9119f50ae7c41658b1abd0679ae06f98bd864a2907ff33f2f2cf7081b214  /tmp/xray.zip" | sha256sum -c -
+          mkdir -p /tmp/xray
+          unzip -q /tmp/xray.zip -d /tmp/xray
+          chmod +x /tmp/xray/xray
+          echo "XRAY_PATH=/tmp/xray/xray" >> "$GITHUB_ENV"
+
+      - name: Build preliminary TCP candidate list
         run: python -m freewave.build
-      - name: Commit generated subscriptions
+
+      - name: Verify VLESS and measure performance
+        env:
+          FREEWAVE_MAX_XRAY_TESTS: "160"
+        run: python -m freewave.rank
+
+      - name: Commit generated subscriptions and status
         run: |
           if [ -n "$(git status --porcelain public/)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add public/
-            git commit -m "Update public VLESS subscriptions"
+            git commit -m "Update verified VLESS subscriptions"
             git push
           else
             echo "No subscription changes."
