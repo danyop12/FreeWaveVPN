@@ -1,4 +1,4 @@
-# FreeWave VPN 0.3.0
+# FreeWave VPN 0.3.1
 
 FreeWave VPN collects public VLESS links from configured HTTPS sources, removes
 duplicates, checks only the exact endpoints published in those links, and
@@ -82,6 +82,21 @@ The repository includes an installable mobile web app in `public/`. It does not 
 The mobile page shows the last verified-node count, top configurations, and copyable subscription URLs. Tapping a `vless://` key can hand it to a compatible VPN client when that client has registered the link type.
 
 **Important:** the mobile page is a companion dashboard, not a VPN engine. It cannot create Android's system VPN tunnel by itself. Install a compatible client such as V2RayTun or AvoVPN to make the actual connection. It also does not run the Python collector on the phone.
+
+## Personal Android connection
+
+For a simple one-phone setup, use the full validated subscription rather than importing the single `freewave-best.txt` key:
+
+- Open the mobile dashboard: [https://danyop12.github.io/FreeWaveVPN/](https://danyop12.github.io/FreeWaveVPN/).
+- Install [v2rayNG](https://github.com/2dust/v2rayNG/releases/latest) from its official releases and use **Add to v2rayNG** on the dashboard to import `freewave-vless.txt`.
+- In the subscription group's settings, enable automatic updating. In the app's general settings, enable automatic subscription updates and choose 360 minutes. FreeWave's GitHub workflow refreshes its generated list every six hours.
+- Enable **Auto test after updating subscription** and **Auto sort after test** so v2rayNG measures the servers from the phone's own network, rather than relying only on GitHub-runner rankings.
+- In v2rayNG VPN settings, enable **Connect after device boot**. Then open Android **Settings → VPN → v2rayNG** and enable **Always-on VPN** if the device exposes that setting.
+- On Infinix/XOS, allow v2rayNG background activity and auto-start, and set its battery use to **Unrestricted / Don't optimize**. Menu labels vary across XOS versions.
+
+Android's **Block connections without VPN** option is optional. It acts as a kill switch, but if the chosen node stops working it can block all internet access until the VPN reconnects. Test normal connection and recovery before enabling it.
+
+The browser dashboard cannot silently start a VPN tunnel. Android requires the VPN client and the operating system's connection permission; the one-tap v2rayNG link only imports the subscription. Boot auto-connect is handled by v2rayNG and Android.
 
 ## Run locally
 
