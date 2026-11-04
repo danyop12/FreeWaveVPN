@@ -1,4 +1,4 @@
-# FreeWave VPN 0.2.2
+# FreeWave VPN 0.3.0
 
 FreeWave VPN collects public VLESS links from configured HTTPS sources, removes
 duplicates, checks only the exact endpoints published in those links, and
@@ -66,6 +66,22 @@ That is intentional: TCP-only endpoints are not published as verified VPN nodes.
 The GitHub-runner ranking is only a starting point. Your phone may see a different
 fastest node because routes and performance vary by network and location. The best-key
 feed is a periodic preselection, not a guarantee of the fastest node on your own ISP.
+
+## Android mobile app
+
+The repository includes an installable mobile web app in `public/`. It does not require Python on Android: the heavier candidate collection and Xray checks continue to run in GitHub Actions, while the mobile page reads the already-published feeds and lets you copy or open VLESS keys.
+
+### Enable the mobile page once
+
+1. Open **Settings → Pages** in this repository.
+2. Under **Build and deployment → Source**, select **GitHub Actions**.
+3. Open **Actions → FreeWave Pages → Run workflow**. The page is also redeployed after a successful **FreeWave update** run.
+4. Open [https://danyop12.github.io/FreeWaveVPN/](https://danyop12.github.io/FreeWaveVPN/) in Chrome on Android.
+5. In Chrome's menu, choose **Install app** or **Add to Home screen**.
+
+The mobile page shows the last verified-node count, top configurations, and copyable subscription URLs. Tapping a `vless://` key can hand it to a compatible VPN client when that client has registered the link type.
+
+**Important:** the mobile page is a companion dashboard, not a VPN engine. It cannot create Android's system VPN tunnel by itself. Install a compatible client such as V2RayTun or AvoVPN to make the actual connection. It also does not run the Python collector on the phone.
 
 ## Run locally
 
