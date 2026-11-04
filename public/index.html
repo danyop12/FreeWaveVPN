@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#09111f">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="FreeWave VPN — мобильная панель проверенных публичных VLESS-конфигураций.">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <title>FreeWave VPN</title>
+  <style>
+    :root{color-scheme:dark;--bg:#08111f;--panel:#101c2d;--panel2:#142238;--line:#26364b;--text:#eef5ff;--muted:#9aabc1;--cyan:#56d6e8;--green:#69e0b0;--yellow:#f0c978;--red:#ff8c96}
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(ellipse at 80% -10%,#12334a 0,transparent 38%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
+    a{color:inherit}
+    .wrap{max-width:760px;margin:0 auto;padding:calc(20px + env(safe-area-inset-top)) 18px calc(34px + env(safe-area-inset-bottom))}
+    header{display:flex;align-items:center;gap:12px;margin:0 0 24px}
+    .logo{width:46px;height:46px;flex:none}
+    .brand{min-width:0}.brand h1{font-size:20px;line-height:1.15;margin:0;letter-spacing:.2px}.brand p{margin:4px 0 0;color:var(--muted);font-size:12px}
+    .version{margin-left:auto;border:1px solid var(--line);border-radius:999px;padding:5px 9px;font-size:11px;color:var(--muted);white-space:nowrap}
+    .hero{background:linear-gradient(135deg,#132a3b,#102033 62%,#122b35);border:1px solid #2a5060;border-radius:22px;padding:20px;margin-bottom:14px;box-shadow:0 18px 48px #0002}
+    .eyebrow{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--cyan);font-weight:700}
+    .hero h2{font-size:25px;line-height:1.18;margin:7px 0 8px}
+    .hero p{margin:0;color:#b8c9da;font-size:13px;max-width:550px}
+    .statusline{display:flex;align-items:center;gap:8px;margin-top:16px;font-size:12px;color:#c9e8ed}
+    .dot{width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 0 4px #69e0b01c}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0}
+    .stat,.card{background:var(--panel);border:1px solid var(--line);border-radius:17px}
+    .stat{padding:14px 13px;min-width:0}
+    .stat span{display:block;color:var(--muted);font-size:11px}
+    .stat strong{display:block;font-size:23px;line-height:1.25;margin-top:5px;font-weight:700;overflow-wrap:anywhere}
+    .stat small{display:block;color:var(--muted);font-size:10px;margin-top:2px}
+    .card{padding:17px;margin:14px 0}
+    .card-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+    h3{font-size:16px;margin:0}
+    .tag{font-size:10px;padding:4px 8px;border:1px solid #2d5a56;background:#15332f;color:var(--green);border-radius:999px;white-space:nowrap}
+    .server{font-size:18px;font-weight:700;overflow-wrap:anywhere}
+    .server-meta{font-size:12px;color:var(--muted);margin-top:4px}
+    .actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:15px}
+    button,.btn{appearance:none;border:1px solid var(--line);border-radius:12px;padding:12px 13px;font:600 13px system-ui;text-align:center;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;cursor:pointer}
+    .primary{background:var(--cyan);border-color:var(--cyan);color:#06202a}
+    .secondary{background:#17263a;color:var(--text)}
+    button:active,.btn:active{transform:scale(.985)}
+    .list{display:grid;gap:8px}
+    .node{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:13px;background:var(--panel2);border:1px solid #22344a;min-width:0}
+    .rank{width:26px;height:26px;flex:none;display:grid;place-items:center;border-radius:8px;background:#223c50;color:var(--cyan);font-size:11px;font-weight:700}
+    .node-main{min-width:0;flex:1}.node-name{font-size:13px;font-weight:650;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.node-meta{font-size:10px;color:var(--muted);margin-top:3px}
+    .node button{min-height:35px;padding:7px 9px;font-size:11px;flex:none}
+    .subgrid{display:grid;gap:9px}
+    .sub{display:flex;align-items:center;gap:12px;padding:13px;border-radius:13px;background:var(--panel2);border:1px solid #22344a}
+    .sub-icon{font-size:19px;width:25px;text-align:center}.sub-text{min-width:0;flex:1}.sub-text strong{display:block;font-size:13px}.sub-text small{display:block;color:var(--muted);font-size:10px;margin-top:2px;overflow-wrap:anywhere}
+    .sub button{min-height:36px;padding:7px 10px;font-size:11px}
+    .notice{font-size:11px;color:var(--muted);line-height:1.55;margin:12px 2px}
+    .notice strong{color:#d9e7f5}
+    .footer{padding:16px 3px 0;color:#71849d;font-size:10px;text-align:center}
+    .toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#e8fbff;color:#09202a;padding:10px 15px;border-radius:999px;font-size:12px;font-weight:700;box-shadow:0 8px 30px #0006;transition:.2s;z-index:5;max-width:90%;text-align:center}
+    .toast.show{opacity:1;transform:translate(-50%,0)}
+    .muted{color:var(--muted)}
+    @media(min-width:600px){.wrap{padding-left:26px;padding-right:26px}.hero{padding:25px}.hero h2{font-size:29px}.card{padding:20px}}
+    @media(max-width:380px){.grid{gap:7px}.stat{padding:11px 9px}.stat strong{font-size:20px}.actions{grid-template-columns:1fr}.version{font-size:10px}}
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <img class="logo" src="./icon.svg" alt="" width="46" height="46">
+    <div class="brand"><h1>FreeWave VPN</h1><p>Мобильная панель подписок</p></div>
+    <span class="version">0.3.0 · Android</span>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">FreeWave network</div>
+    <h2>Твои узлы —<br>в одном месте.</h2>
+    <p>Открывай проверенные VLESS-конфигурации и копируй подписки прямо с телефона. Python и ручной запуск сканера на Android не нужны.</p>
+    <div class="statusline"><span class="dot" id="statusDot"></span><span id="statusText">Загружаю последний результат проверки…</span></div>
+  </section>
+
+  <section class="grid" aria-label="Статистика">
+    <div class="stat"><span>Работают при проверке</span><strong id="validated">—</strong><small>VLESS + HTTPS</small></div>
+    <div class="stat"><span>Проверено</span><strong id="tested">—</strong><small>через Xray</small></div>
+    <div class="stat"><span>Успешность</span><strong id="rate">—</strong><small>от проверенных</small></div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><h3>Лучший узел</h3><span class="tag">по тесту FreeWave</span></div>
+    <div class="server" id="bestServer">Загружаю…</div>
+    <div class="server-meta" id="bestMeta">Проверка выполнялась на GitHub Actions, не на телефоне.</div>
+    <div class="actions">
+      <a class="btn primary" id="openBest" href="#" rel="nofollow">Открыть ключ в VPN-приложении</a>
+      <button class="secondary" id="copyBest" type="button">Копировать ключ</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><h3>Быстрые узлы</h3><span class="muted" id="nodeCount">до 25</span></div>
+    <div class="list" id="nodes"><div class="muted">Получаю список узлов…</div></div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><h3>Подписки</h3><span class="muted">обновляются автоматически</span></div>
+    <div class="subgrid">
+      <div class="sub">
+        <div class="sub-icon">↗</div>
+        <div class="sub-text"><strong>Полный проверенный список</strong><small>Для V2RayTun и совместимых клиентов</small></div>
+        <button class="secondary" data-copy-url="freewave-vless.txt" type="button">Копировать URL</button>
+      </div>
+      <div class="sub">
+        <div class="sub-icon">✦</div>
+        <div class="sub-text"><strong>Один лучший ключ</strong><small>Для приложений, которым нужен один VLESS-ключ</small></div>
+        <button class="secondary" data-copy-url="freewave-best.txt" type="button">Копировать URL</button>
+      </div>
+      <div class="sub">
+        <div class="sub-icon">≋</div>
+        <div class="sub-text"><strong>Топ-25 узлов</strong><small>Список по последнему рейтингу FreeWave</small></div>
+        <button class="secondary" data-copy-url="freewave-fast.txt" type="button">Копировать URL</button>
+      </div>
+    </div>
+    <p class="notice">Скопируй URL и добавь его в разделе подписок своего VPN-клиента. Для AvoVPN используй отдельный ключ, открыв его выше или скопировав сам VLESS-ключ. Поддержка подписок зависит от приложения.</p>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><h3>Обновление и установка</h3></div>
+    <p class="notice">Список перепроверяется GitHub Actions примерно раз в 6 часов. Можно установить эту панель как приложение: в Chrome нажми меню <strong>⋮ → Установить приложение</strong> или <strong>Добавить на главный экран</strong>.</p>
+    <div class="actions">
+      <button class="secondary" id="refresh" type="button">↻ Обновить данные</button>
+      <a class="btn secondary" href="https://github.com/danyop12/FreeWaveVPN/actions" target="_blank" rel="noopener">История проверок</a>
+    </div>
+    <div class="server-meta" id="updatedAt" style="margin-top:12px">Время последней проверки: —</div>
+  </section>
+
+  <p class="notice"><strong>Важно.</strong> FreeWave не владеет серверами. Это публичные узлы третьих лиц: они могут отключиться, ограничивать трафик или собирать метаданные. Результаты измеряются на GitHub Actions, поэтому скорость на телефоне будет другой. Не используй такие узлы для чувствительных данных.</p>
+  <footer class="footer">FreeWave VPN · бесплатный агрегатор публичных VLESS-конфигураций<br>Панель не создаёт VPN-туннель — подключение выполняет установленный VPN-клиент.</footer>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(() => {
+  "use strict";
+  const BASE = new URL("./", location.href);
+  const fileUrl = name => new URL(name, BASE).toString();
+  let bestKey = "";
+  let toastTimer = 0;
+
+  const $ = id => document.getElementById(id);
+  const showToast = message => {
+    $("toast").textContent = message;
+    $("toast").classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => $("toast").classList.remove("show"), 2300);
+  };
+  const copy = async value => {
+    if (!value) return showToast("Пока нечего копировать");
+    try {
+      await navigator.clipboard.writeText(value);
+      showToast("Скопировано");
+    } catch {
+      const area = document.createElement("textarea");
+      area.value = value;
+      area.style.position = "fixed";
+      area.style.opacity = "0";
+      document.body.appendChild(area);
+      area.select();
+      const ok = document.execCommand("copy");
+      area.remove();
+      showToast(ok ? "Скопировано" : "Не удалось скопировать");
+    }
+  };
+  const getText = async name => {
+    const response = await fetch(fileUrl(name) + "?v=" + Date.now(), {cache:"no-store"});
+    if (!response.ok) throw new Error(name + ": HTTP " + response.status);
+    return response.text();
+  };
+  const parseLink = line => {
+    try {
+      const url = new URL(line.trim());
+      if (url.protocol !== "vless:") return null;
+      return {raw:line.trim(), host:url.hostname, port:url.port || "—", name:decodeURIComponent(url.hash.slice(1)) || url.hostname};
+    } catch { return null; }
+  };
+  const fmtTime = value => {
+    if (!value) return "—";
+    const d = new Date(value.replace(" UTC", "Z").replace(" ", "T"));
+    return Number.isNaN(d.getTime()) ? value : d.toLocaleString("ru-RU", {dateStyle:"medium",timeStyle:"short"});
+  };
+  const safe = value => String(value).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+
+  async function refresh() {
+    $("statusText").textContent = "Обновляю данные…";
+    try {
+      const [metricsText, bestText, fastText] = await Promise.all([
+        getText("metrics.json"), getText("freewave-best.txt"), getText("freewave-fast.txt")
+      ]);
+      const metrics = JSON.parse(metricsText);
+      const validated = Number(metrics.validated_count || 0);
+      const tested = Number(metrics.tested_count || 0);
+      const failed = Number(metrics.failed_count || 0);
+      const rate = tested ? (validated / tested * 100).toFixed(1).replace(".", ",") + "%" : "0%";
+      $("validated").textContent = validated;
+      $("tested").textContent = tested;
+      $("rate").textContent = rate;
+      $("statusText").textContent = validated
+        ? validated + " узлов прошли две HTTPS-проверки"
+        : "В последней проверке нет подтверждённых узлов";
+      $("statusDot").style.background = validated ? "var(--green)" : "var(--yellow)";
+      $("updatedAt").textContent = "Последняя проверка: " + fmtTime(metrics.generated_at_utc);
+      bestKey = bestText.trim().split(/\r?\n/).find(line => line.startsWith("vless://")) || "";
+      const best = parseLink(bestKey);
+      if (best) {
+        $("bestServer").textContent = best.name;
+        $("bestMeta").textContent = best.host + ":" + best.port + " · узел №1 в последнем рейтинге";
+        $("openBest").href = best.raw;
+        $("openBest").style.opacity = "1";
+      } else {
+        $("bestServer").textContent = "Нет доступного ключа";
+        $("bestMeta").textContent = "Последняя проверка не опубликовала рабочие конфигурации.";
+        $("openBest").href = "#";
+      }
+      const allMetrics = Array.isArray(metrics.results) ? metrics.results : [];
+      const links = fastText.split(/\r?\n/).map(parseLink).filter(Boolean).slice(0,25);
+      $("nodeCount").textContent = links.length + " узлов";
+      $("nodes").innerHTML = links.length ? links.map((node,index) => {
+        const stat = allMetrics.find(item => item.host === node.host && String(item.port) === String(node.port) && item.ok);
+        const meta = stat
+          ? Math.round(stat.latency_ms) + " мс · " + Number(stat.speed_mbps).toFixed(2) + " Мбит/с"
+          : node.host + ":" + node.port;
+        return '<div class="node"><div class="rank">' + (index+1) + '</div><div class="node-main"><div class="node-name">' + safe(node.name) + '</div><div class="node-meta">' + safe(meta) + '</div></div><button class="secondary" type="button" data-open="' + index + '">Открыть</button></div>';
+      }).join("") : '<div class="muted">Сейчас нет проверенных конфигураций.</div>';
+      $("nodes").querySelectorAll("[data-open]").forEach(button => {
+        button.addEventListener("click", () => {
+          const node = links[Number(button.dataset.open)];
+          if (node) location.href = node.raw;
+        });
+      });
+    } catch (error) {
+      $("statusText").textContent = "Не удалось загрузить данные. Проверь интернет.";
+      $("statusDot").style.background = "var(--red)";
+      showToast("Ошибка загрузки: " + error.message);
+    }
+  }
+
+  $("copyBest").addEventListener("click", () => copy(bestKey));
+  document.querySelectorAll("[data-copy-url]").forEach(button => {
+    button.addEventListener("click", () => copy(fileUrl(button.dataset.copyUrl)));
+  });
+  $("refresh").addEventListener("click", refresh);
+  $("openBest").addEventListener("click", event => {
+    if (!bestKey) { event.preventDefault(); showToast("Сейчас нет доступного ключа"); }
+  });
+
+  if ("serviceWorker" in navigator && location.protocol === "https:") {
+    window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
+  }
+  refresh();
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) refresh(); });
+})();
+</script>
+</body>
+</html>
