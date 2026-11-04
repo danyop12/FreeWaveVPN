@@ -347,7 +347,12 @@ def test_node(uri: str) -> dict:
                         12,
                         "%{http_code}\t%{speed_download}\t%{size_download}",
                     )
-                    if status == 200 and len(values) >= 2 and values[0] > 0:
+                    if (
+                        status == 200
+                        and len(values) >= 2
+                        and values[0] > 0
+                        and int(values[1]) >= DOWNLOAD_BYTES
+                    ):
                         speed_mbps = values[0] * 8 / 1_000_000
                         speed_test_bytes = int(values[1])
                 except (subprocess.TimeoutExpired, OSError):
