@@ -1,0 +1,21 @@
+{
+  "id": "./",
+  "name": "FreeWave VPN",
+  "short_name": "FreeWave",
+  "description": "Мобильная панель проверенных VLESS-подписок FreeWave.",
+  "lang": "ru",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#08111f",
+  "theme_color": "#09111f",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
