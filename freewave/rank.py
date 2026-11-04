@@ -245,7 +245,7 @@ def test_node(uri: str) -> dict:
             )
             if validation.returncode != 0:
                 detail = (validation.stderr or validation.stdout).strip().splitlines()
-                reason = detail[-1][:120] if detail else "unknown config error"
+                reason = " | ".join(detail[-3:])[-700:] if detail else "unknown config error"
                 return {"uri": uri, "ok": False, "error": f"Xray config rejected: {reason}"}
 
             log_path = Path(tmp) / "xray.log"
@@ -279,7 +279,7 @@ def test_node(uri: str) -> dict:
                         for line in log_path.read_text(encoding="utf-8", errors="replace").splitlines()
                         if line.strip()
                     ]
-                    reason = detail_lines[-1][:120] if detail_lines else "no startup log"
+                    reason = " | ".join(detail_lines[-3:])[-500:] if detail_lines else "no startup log"
                     last_error = f"Xray did not start: {reason}"
                     continue
 
@@ -296,7 +296,6 @@ def test_node(uri: str) -> dict:
                     except (subprocess.TimeoutExpired, OSError):
                         pass
                 if latency_ms is None:
-                    last_error = "No successful HTTPS request through VLESS"
                     continue
 
                 speed_mbps = None
