@@ -1,4 +1,4 @@
-# FreeWave VPN 0.3.1
+# FreeWave VPN 0.3.2
 
 FreeWave VPN collects public VLESS links from configured HTTPS sources, removes
 duplicates, checks only the exact endpoints published in those links, and
@@ -90,13 +90,13 @@ For a simple one-phone setup, use the full validated subscription rather than im
 - Open the mobile dashboard: [https://danyop12.github.io/FreeWaveVPN/](https://danyop12.github.io/FreeWaveVPN/).
 - Install [v2rayNG](https://github.com/2dust/v2rayNG/releases/latest) from its official releases and use **Add to v2rayNG** on the dashboard to import `freewave-vless.txt`. After import, open the FreeWave group in v2rayNG and run **Update current group subscription** once if the profiles are not displayed yet.
 - In the subscription group's settings, enable automatic updating. In the app's general settings, enable automatic subscription updates and choose 360 minutes. FreeWave's GitHub workflow refreshes its generated list every six hours.
-- Enable **Auto test after updating subscription** and **Auto sort after test** so v2rayNG measures the servers from the phone's own network, rather than relying only on GitHub-runner rankings.
+- To let Xray choose a node automatically, create a **Policy group** in v2rayNG: name it `FreeWave Auto`, set type to **Least Ping**, choose the imported FreeWave subscription under **From subscription group**, and use `.*` in **Remarks regex filter**. Save it and select **FreeWave Auto** as the active profile. The current v2rayNG source builds an Xray `leastPing` balancer and an observatory for this policy-group type.
 - In v2rayNG VPN settings, enable **Connect after device boot**. Then open Android **Settings → VPN → v2rayNG** and enable **Always-on VPN** if the device exposes that setting. Optionally add the v2rayNG Quick Settings tile for a one-tap manual connect/disconnect.
 - On Infinix/XOS, open **Settings → Apps → App Management → v2rayNG → Battery**, allow background activity, and set battery use to **Unrestricted**. Also enable v2rayNG in Auto-start management and exclude it from battery optimization. Menu labels vary by XOS version; search Settings for “autostart”, “background activity”, and “battery”.
 
 Android's **Block connections without VPN** option is optional. It acts as a kill switch, but if the chosen node stops working it can block all internet access until the VPN reconnects. Test normal connection and recovery before enabling it.
 
-The browser dashboard cannot silently start a VPN tunnel. Android requires the VPN client and the operating system's connection permission; the one-tap v2rayNG link only imports the subscription. Boot auto-connect is handled by v2rayNG and Android.
+The browser dashboard cannot silently start a VPN tunnel. Android requires the VPN client and the operating system's connection permission; the one-tap v2rayNG link only imports the subscription. Boot auto-connect is handled by v2rayNG and Android. The **Least Ping** policy group selects a route using periodically measured latency; it does not guarantee maximum download speed or seamless migration of existing connections.
 
 ## Run locally
 
