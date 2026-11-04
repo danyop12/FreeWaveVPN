@@ -1,4 +1,4 @@
-const CACHE = "freewave-shell-v4";
+const CACHE = "freewave-shell-v5";
 const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon.svg"];
 
 self.addEventListener("install", event => {
@@ -35,7 +35,7 @@ self.addEventListener("fetch", event => {
     return;
   }
 
-  const liveData = name === "metrics.json" || name === "STATUS.md" || name.startsWith("freewave-");
+  const liveData = name === "metrics.json" || name === "history.json" || name === "health.json" || name === "STATUS.md" || name.startsWith("freewave-");
   if (liveData) {
     event.respondWith(
       fetch(request, {cache:"no-store"})
