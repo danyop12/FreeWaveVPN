@@ -210,9 +210,9 @@ def curl_request(port: int, url: str, seconds: int, fmt: str):
     result = subprocess.run(command, capture_output=True, text=True, timeout=seconds + 2)
     chunks = result.stdout.strip().split("\t")
     try:
-        return int(float(chunks[0])), [float(x) for x in chunks[1:]]
+        return int(float(chunks[0])), [float(x) for x in chunks[1:]], result.stderr.strip()[:160]
     except (ValueError, IndexError):
-        return 0, []
+        return 0, [], result.stderr.strip()[:160]
 
 
 def test_node(uri: str) -> dict:
@@ -239,13 +239,25 @@ def test_node(uri: str) -> dict:
         with tempfile.TemporaryDirectory(prefix="freewave-probe-") as tmp:
             config_file = Path(tmp) / "xray.json"
             config_file.write_text(json.dumps(config), encoding="utf-8")
+            validation = subprocess.run(
+                [XRAY, "run", "-test", "-c", str(config_file)],
+                capture_output=True, text=True, timeout=8, check=False,
+            )
+            if validation.returncode != 0:
+                detail = (validation.stderr or validation.stdout).strip().splitlines()
+                reason = detail[-1][:120] if detail else "unknown config error"
+                return {"uri": uri, "ok": False, "error": f"Xray config rejected: {reason}"}
+
+            log_path = Path(tmp) / "xray.log"
+            log_handle = log_path.open("w", encoding="utf-8")
             try:
                 process = subprocess.Popen(
                     [XRAY, "run", "-c", str(config_file)],
-                    stdout=subprocess.DEVNULL,
-                    stderr=subprocess.DEVNULL,
+                    stdout=log_handle,
+                    stderr=subprocess.STDOUT,
                 )
             except OSError as exc:
+                log_handle.close()
                 return {"uri": uri, "ok": False, "error": f"Xray launch failed: {exc}"}
 
             try:
@@ -261,18 +273,26 @@ def test_node(uri: str) -> dict:
                     except OSError:
                         time.sleep(0.1)
                 if not ready:
-                    last_error = "Xray SOCKS inbound did not start"
+                    log_handle.flush()
+                    detail_lines = [
+                        line.strip()
+                        for line in log_path.read_text(encoding="utf-8", errors="replace").splitlines()
+                        if line.strip()
+                    ]
+                    reason = detail_lines[-1][:120] if detail_lines else "no startup log"
+                    last_error = f"Xray did not start: {reason}"
                     continue
 
                 latency_ms = None
                 for endpoint in LATENCY_URLS:
                     try:
-                        code, values = curl_request(
+                        code, values, curl_error = curl_request(
                             local_port, endpoint, 8, "%{http_code}\t%{time_total}"
                         )
                         if code == 204 and values and values[0] > 0:
                             latency_ms = values[0] * 1000
                             break
+                        last_error = f"HTTPS probe returned HTTP {code}: {curl_error or 'no response'}"
                     except (subprocess.TimeoutExpired, OSError):
                         pass
                 if latency_ms is None:
@@ -281,7 +301,7 @@ def test_node(uri: str) -> dict:
 
                 speed_mbps = None
                 try:
-                    code, values = curl_request(
+                    code, values, _curl_error = curl_request(
                         local_port,
                         DOWNLOAD_URL,
                         12,
@@ -306,6 +326,7 @@ def test_node(uri: str) -> dict:
                 except subprocess.TimeoutExpired:
                     process.kill()
                     process.wait(timeout=2)
+                log_handle.close()
 
     return {"uri": uri, "ok": False, "error": last_error}
 
@@ -375,6 +396,16 @@ def main() -> int:
         (PUBLIC / "freewave-eu.txt").write_text(
             "\n".join(eu) + ("\n" if eu else ""), encoding="utf-8"
         )
+
+    else:
+        # Do not leave earlier TCP-only configs published as verified subscriptions.
+        for filename in (
+            "freewave-vless.txt",
+            "freewave-vless-base64.txt",
+            "freewave-fast.txt",
+            "freewave-eu.txt",
+        ):
+            (PUBLIC / filename).write_text("", encoding="utf-8")
 
     timestamp = time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime())
     metrics = {
