@@ -1,25 +1,27 @@
 # FreeWave VPN status
 
-- Last run: 2026-11-04 21:59:04 UTC
+- Last run: 2026-11-04 22:01:12 UTC
 - TCP candidates: 424
-- Tested through Xray: 80
-- Passed real HTTPS request through VLESS: 8
-- Failed VLESS test: 72
-- Not tested due to limit: 344
-- Successful 256 KiB download tests: 7
+- Tested through Xray: 160
+- Passed real HTTPS request through VLESS: 11
+- Failed VLESS test: 149
+- Not tested due to limit: 264
+- Successful 256 KiB download tests: 11
 
 ## Top nodes from this GitHub Actions run
 
 | # | Server | Latency | Download test | Score |
 |---:|---|---:|---:|---:|
-| 1 | 51.158.206.97:23576 | 348 ms | 2.84 Mbps | 1.000 |
-| 2 | api.ferrin.uk:443 | 602 ms | 2.64 Mbps | 0.806 |
-| 3 | 144.31.4.234:443 | 442 ms | 2.27 Mbps | 0.796 |
-| 4 | api.ferrin.uk:443 | 601 ms | 2.52 Mbps | 0.778 |
-| 5 | 79.141.164.125:443 | 467 ms | 2.02 Mbps | 0.724 |
-| 6 | 79.141.164.81:443 | 525 ms | 2.05 Mbps | 0.700 |
-| 7 | apply.betust.net:443 | 619 ms | 1.79 Mbps | 0.606 |
-| 8 | 185.126.93.225:443 | 785 ms | not measured | 0.155 |
+| 1 | book.jarbook.net:443 | 693 ms | 2.22 Mbps | 0.920 |
+| 2 | 51.158.206.25:23576 | 534 ms | 1.95 Mbps | 0.920 |
+| 3 | 51.158.206.97:23576 | 553 ms | 1.65 Mbps | 0.819 |
+| 4 | direct-nl.bachidze.com:443 | 650 ms | 1.65 Mbps | 0.771 |
+| 5 | 144.31.4.234:443 | 658 ms | 1.63 Mbps | 0.761 |
+| 6 | api.ferrin.uk:443 | 820 ms | 1.78 Mbps | 0.748 |
+| 7 | 79.141.164.81:443 | 875 ms | 1.66 Mbps | 0.700 |
+| 8 | 79.141.164.125:443 | 728 ms | 1.50 Mbps | 0.696 |
+| 9 | api.ferrin.uk:443 | 843 ms | 1.60 Mbps | 0.690 |
+| 10 | 150.40.126.21:443 | 970 ms | 1.67 Mbps | 0.679 |
 
 ## Subscription files
 
