@@ -19,7 +19,7 @@ MAX_NODES = 250
 MAX_WORKERS = 40
 FETCH_TIMEOUT = 15
 TCP_TIMEOUT = 2.5
-USER_AGENT = "FreeWaveVPN-Collector/0.1.1"
+USER_AGENT = "FreeWaveVPN-Collector/0.2.0"
 
 VLESS_PATTERN = re.compile(r"vless://[^\s\"'<>]+", re.IGNORECASE)
 EU_HINTS = (
@@ -191,42 +191,29 @@ def write_outputs(
     source_errors: list[str],
 ) -> None:
     if not reachable:
-        raise RuntimeError(
-            "No TCP-reachable nodes were found; preserving previous outputs."
-        )
+        raise RuntimeError("No TCP-reachable nodes; previous validated feeds are preserved.")
 
     plain_text = "\n".join(reachable) + "\n"
-    base64_text = base64.b64encode(plain_text.encode("utf-8")).decode("ascii") + "\n"
-    eu_nodes = [uri for uri in reachable if looks_european_by_name(uri)]
+    atomic_write(OUTPUT_DIR / "freewave-tcp.txt", plain_text)
+
     timestamp = time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime())
-
-    atomic_write(OUTPUT_DIR / "freewave-vless.txt", plain_text)
-    atomic_write(OUTPUT_DIR / "freewave-vless-base64.txt", base64_text)
-    atomic_write(
-        OUTPUT_DIR / "freewave-eu.txt",
-        "\n".join(eu_nodes) + ("\n" if eu_nodes else ""),
-    )
-
     status_lines = [
         "# FreeWave VPN status",
         "",
-        f"- Last successful build: {timestamp}",
-        f"- TCP-reachable configurations: {len(reachable)}",
-        f"- Configurations checked: {checked_count}",
-        f"- Configurations not reachable: {checked_count - len(reachable)}",
-        f"- EU-name heuristic matches: {len(eu_nodes)}",
+        f"- Preliminary scan: {timestamp}",
+        f"- TCP-reachable candidates: {len(reachable)}",
+        f"- Unique candidates checked: {checked_count}",
+        f"- Candidates not reachable by TCP: {checked_count - len(reachable)}",
         "",
-        "> TCP reachability is not a VLESS handshake, TLS/REALITY validation,",
-        "> authentication test, speed test, privacy audit, or geolocation check.",
-        "> The EU list is inferred from configuration names only.",
+        "These are preliminary candidates only. The Xray stage must verify an",
+        "actual VLESS connection and HTTPS request before publishing them as",
+        "working subscription nodes.",
         "",
     ]
-
     if source_errors:
         status_lines.extend(["## Source errors", ""])
         status_lines.extend(f"- {error}" for error in source_errors[:20])
         status_lines.append("")
-
     atomic_write(OUTPUT_DIR / "STATUS.md", "\n".join(status_lines))
 
 
