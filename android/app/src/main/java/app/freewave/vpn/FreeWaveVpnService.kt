@@ -234,7 +234,15 @@ class FreeWaveVpnService : VpnService(), PlatformInterface, CommandServerHandler
     override fun getSystemProxyStatus(): SystemProxyStatus? = null
     override fun setSystemProxyEnabled(enabled: Boolean) {}
     override fun writeDebugMessage(message: String?) {
-        Log.d(TAG, "sing-box diagnostic event")
+        val line = message?.trim().orEmpty()
+        if (line.isBlank()) return
+        val safeLine = line.take(420)
+        Log.d(TAG, safeLine)
+        synchronized(FreeWaveVpnService::class.java) {
+            val prefs = getSharedPreferences("vpn_diagnostics", MODE_PRIVATE)
+            val previous = prefs.getString("recent", "").orEmpty()
+            prefs.edit().putString("recent", (previous + "\n" + safeLine).takeLast(2200)).apply()
+        }
     }
 
     // Optional root, SSH and bridge facilities are intentionally unsupported by this client.
