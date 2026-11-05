@@ -278,6 +278,7 @@ class MainActivity : Activity() {
                     statusDetail.text = node.name + " · " + node.host + ":" + node.port
                 }
                 try {
+                    getSharedPreferences("vpn_diagnostics", MODE_PRIVATE).edit().putString("recent", "").apply()
                     startNode(node.uri)
                     if (waitForCoreReady(7000)) {
                         val probeFailure = waitForInternet()
@@ -285,7 +286,11 @@ class MainActivity : Activity() {
                             working = node
                             break
                         }
-                        lastFailure = probeFailure
+                        val coreLog = getSharedPreferences("vpn_diagnostics", MODE_PRIVATE)
+                            .getString("recent", "").orEmpty().trim()
+                        lastFailure = if (coreLog.isNotBlank()) {
+                            (probeFailure + " | sing-box: " + coreLog.takeLast(420)).take(900)
+                        } else probeFailure
                     } else {
                         lastFailure = coreFailure ?: "Ядро не подтвердило запуск за 7 секунд"
                     }
