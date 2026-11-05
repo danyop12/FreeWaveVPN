@@ -1,22 +1,25 @@
 # FreeWave VPN for Android
 
-Current Android app version: **0.1.3**.
+Current Android app version: **0.2.0**.
 
-Native Android client for the FreeWave public VLESS feeds.
+Native Android client for FreeWave's public VLESS feeds. The app is free to use and does not require a subscription or a paid FreeWave server.
 
-## Milestone 0.1.0
+## 0.2.0 — Android dashboard and server pool
 
-- Kotlin application with Android system VPN tunnel.
+- Redesigned connection dashboard with a clearer connection state and server controls.
+- Merges the fast, Europe, best and full public feeds instead of stopping at the first non-empty feed.
+- Keeps up to 50 unique VLESS candidates for automatic failover.
+- Remembers the last manually selected or successfully connected node between app launches.
+- Automatic mode still requires a successful connection through the local sing-box SOCKS inbound; starting the core alone is not treated as connected.
+- Shows a clear warning that public third-party nodes are not suitable for sensitive traffic.
+
+## Architecture
+
+- Kotlin Android client with system VPN tunnel.
 - sing-box libbox pinned to 1.14.4.
-- Uses the modern TUN `address` array field (compatible with sing-box 1.12+); does not emit removed `inet4_address` legacy field.
-- Downloads freewave-fast.txt, falls back to freewave-vless.txt.
-- Automatic mode tries the full published top-25 list, waits for sing-box startup confirmation, then requires a real HTTPS request through the local sing-box SOCKS inbound.
-- Manual node selection is available for troubleshooting.
-- Launcher icon and in-app brand mark use the FreeWave shield/wave artwork.
-- Failed attempts preserve the latest core error in the connection status instead of prematurely ending the search.
-- The connected state is not shown merely because the core starts.
-
-This is an initial personal-use build. Network-change recovery, boot auto-connect, per-app routing and detailed diagnostics are later milestones.
+- VLESS with TLS or REALITY and supported transports implemented in FreeWaveConfigBuilder.
+- Public feeds are hosted in this repository under `public/`.
+- The app does not operate the exit servers. Feed availability and node quality depend on third parties.
 
 ## Build
 
@@ -33,18 +36,18 @@ PowerShell:
     if ($actual -ne $expected) { throw "libbox.aar checksum mismatch" }
     gradle -p android clean assembleDebug
 
-The APK is written to android/app/build/outputs/apk/debug/app-debug.apk. GitHub Actions also builds it on pushes to the android-app branch and uploads an artifact.
+The APK is written to `android/app/build/outputs/apk/debug/app-debug.apk`. GitHub Actions builds it on pushes to the `android-app` branch and uploads an artifact.
 
 ## Connection checks
 
-The app checks tunnel traffic through a local SOCKS inbound at 127.0.0.1:2080. It performs HTTPS probes to Google static content and example.com. This is only a limited reachability check, not a guarantee that all sites and applications work.
+The app verifies the local SOCKS listener, then tests TCP connectivity to an external IP and a hostname through the tunnel, followed by HTTPS probes. This is a practical reachability test, not a guarantee that every app or website will work.
 
-## Limitations and safety
+## Privacy and limitations
 
-FreeWave does not operate the exit servers. The feed contains public third-party VLESS nodes that may disappear, be overloaded, monitor metadata or be unsafe. Do not use them for banking, passwords, private accounts or sensitive traffic. The app does not guarantee anonymity, privacy, speed, availability or ad removal in the official YouTube app.
+Public VLESS nodes are operated by unknown third parties. Operators may observe connection metadata and may be untrustworthy. Do not use public nodes for banking, passwords, private accounts or sensitive traffic. FreeWave does not guarantee anonymity, privacy, speed, availability, or ad removal in the official YouTube app.
 
-The initial Android client supports VLESS links with TLS or REALITY and the transports implemented in FreeWaveConfigBuilder. Unsupported or malformed links may not be usable.
+A free client cannot guarantee stable service when all available public nodes are offline or overloaded. FreeWave can test nodes and fail over, but cannot create server capacity itself.
 
 ## Licensing
 
-The Android app integrates sing-box libbox, distributed under GNU GPL v3. The Android client module and its source are therefore provided under GPL-3.0; see LICENSE. The rest of the FreeWaveVPN repository retains its existing licensing terms. The libbox AAR is fetched from the upstream release and is not stored in this repository.
+The Android app integrates sing-box libbox, distributed under GNU GPL v3; see the repository LICENSE. The libbox AAR is fetched from the upstream release and is not stored in this repository.
