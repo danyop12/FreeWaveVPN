@@ -208,7 +208,6 @@ class FreeWaveVpnService : VpnService(), PlatformInterface, CommandServerHandler
                 }
                 this.addresses = StringListIterator(systemInterface.interfaceAddresses.mapNotNull(::toAddressPrefix))
                 this.dnsServer = StringListIterator(links.dnsServers.mapNotNull { it.hostAddress?.substringBefore('%') })
-                this.dnsSearchDomain = StringListIterator(links.domains?.split(' ')?.filter { it.isNotBlank() }.orEmpty())
                 this.gateway = StringListIterator(
                     links.routes
                         .filter { it.destination.prefixLength == 0 }
