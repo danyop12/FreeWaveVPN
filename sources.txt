@@ -1,4 +1,8 @@
 # One public HTTPS subscription URL per line.
+# Existing sources
 https://raw.githubusercontent.com/morpheusadam/v2ray-config/main/subs/bundles/best-base64.txt
 https://raw.githubusercontent.com/chaishpish/free_server_v2ray/main/%40TFMTProto
-https://vpnkeys.me/sub/country/al
+# Additional sources: hourly/daily refreshed public VLESS pools
+https://raw.githubusercontent.com/CaptchaQ/vless-servers/main/working_lite.txt
+https://github.com/Au1rxx/free-vpn-subscriptions/raw/main/output/v2ray-base64.txt
+https://radarhub.top/by-protocol/vless.txt
