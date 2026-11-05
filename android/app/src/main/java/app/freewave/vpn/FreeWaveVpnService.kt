@@ -5,6 +5,9 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Intent
 import android.net.VpnService
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.system.OsConstants
 import android.os.Build
 import android.os.ParcelFileDescriptor
 import android.util.Log
@@ -16,6 +19,7 @@ import io.nekohasekai.libbox.Libbox
 import io.nekohasekai.libbox.LocalDNSTransport
 import io.nekohasekai.libbox.NetworkInterfaceIterator
 import io.nekohasekai.libbox.Notification as LibboxNotification
+import io.nekohasekai.libbox.NetworkInterface as LibboxNetworkInterface
 import io.nekohasekai.libbox.OverrideOptions
 import io.nekohasekai.libbox.PlatformInterface
 import io.nekohasekai.libbox.SetupOptions
@@ -23,6 +27,9 @@ import io.nekohasekai.libbox.StringIterator
 import io.nekohasekai.libbox.SystemProxyStatus
 import io.nekohasekai.libbox.TunOptions
 import io.nekohasekai.libbox.WIFIState
+import java.net.Inet4Address
+import java.net.Inet6Address
+import java.net.InterfaceAddress
 
 class FreeWaveVpnService : VpnService(), PlatformInterface, CommandServerHandler {
     companion object {
@@ -177,7 +184,45 @@ class FreeWaveVpnService : VpnService(), PlatformInterface, CommandServerHandler
     override fun findConnectionOwner(ipProtocol: Int, sourceAddress: String, sourcePort: Int,
         destinationAddress: String, destinationPort: Int): ConnectionOwner? = ConnectionOwner()
     override fun readWIFIState(): WIFIState? = null
-    override fun getInterfaces(): NetworkInterfaceIterator? = null
+    override fun getInterfaces(): NetworkInterfaceIterator? {
+        val manager = getSystemService(ConnectivityManager::class.java) ?: return null
+        val result = mutableListOf<LibboxNetworkInterface>()
+        val networks = runCatching { manager.allNetworks.toList() }.getOrDefault(emptyList())
+        for (network in networks) {
+            val capabilities = manager.getNetworkCapabilities(network) ?: continue
+            if (!capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_VPN)) continue
+            val links = manager.getLinkProperties(network) ?: continue
+            val name = links.interfaceName ?: continue
+            val systemInterface = runCatching { java.net.NetworkInterface.getByName(name) }.getOrNull() ?: continue
+            if (!runCatching { systemInterface.isUp && !systemInterface.isLoopback && !systemInterface.isVirtual }.getOrDefault(false)) continue
+
+            val item = LibboxNetworkInterface().apply {
+                this.name = name
+                this.index = systemInterface.index
+                this.mtu = runCatching { systemInterface.mtu }.getOrDefault(1500)
+                this.type = when {
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> Libbox.InterfaceTypeWIFI
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> Libbox.InterfaceTypeCellular
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> Libbox.InterfaceTypeEthernet
+                    else -> Libbox.InterfaceTypeOther
+                }
+                this.addresses = StringListIterator(systemInterface.interfaceAddresses.mapNotNull(::toAddressPrefix))
+                this.dnsServer = StringListIterator(links.dnsServers.mapNotNull { it.hostAddress?.substringBefore('%') })
+                this.dnsSearchDomain = StringListIterator(links.domains?.split(' ')?.filter { it.isNotBlank() }.orEmpty())
+                this.gateway = StringListIterator(
+                    links.routes
+                        .filter { it.destination.prefixLength == 0 }
+                        .mapNotNull { it.gateway }
+                        .filterNot { it.isAnyLocalAddress }
+                        .mapNotNull { it.hostAddress?.substringBefore('%') }
+                )
+                this.flags = OsConstants.IFF_UP or OsConstants.IFF_RUNNING
+                this.metered = !capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_METERED)
+            }
+            result.add(item)
+        }
+        return NetworkInterfaceListIterator(result)
+    }
     override fun startDefaultInterfaceMonitor(listener: InterfaceUpdateListener?) {}
     override fun closeDefaultInterfaceMonitor(listener: InterfaceUpdateListener?) {}
     override fun clearDNSCache() {}
@@ -246,4 +291,33 @@ class FreeWaveVpnService : VpnService(), PlatformInterface, CommandServerHandler
         val scrubbed = raw.replace(Regex("(?i)(uuid|password|token|secret)[=: ]+[^,; ]+"), "credential=<hidden>").take(180)
         return scrubbed.ifBlank { "Не удалось запустить VPN-ядро" }
     }
+
+    private class StringListIterator(private val values: List<String>) : StringIterator {
+        private var index = 0
+        override fun hasNext(): Boolean = index < values.size
+        override fun len(): Int = values.size
+        override fun next(): String = values[index++]
+    }
+
+    private class NetworkInterfaceListIterator(
+        private val values: List<LibboxNetworkInterface>
+    ) : NetworkInterfaceIterator {
+        private var index = 0
+        override fun hasNext(): Boolean = index < values.size
+        override fun next(): LibboxNetworkInterface = values[index++]
+    }
+
+    private fun toAddressPrefix(address: InterfaceAddress): String? {
+        val inet = address.address ?: return null
+        val bits = when (inet) {
+            is Inet4Address -> 32
+            is Inet6Address -> 128
+            else -> return null
+        }
+        val host = inet.hostAddress?.substringBefore('%')?.trim().orEmpty()
+        val prefix = address.networkPrefixLength.toInt()
+        if (host.isBlank() || prefix !in 0..bits) return null
+        return host + "/" + prefix
+    }
+
 }
