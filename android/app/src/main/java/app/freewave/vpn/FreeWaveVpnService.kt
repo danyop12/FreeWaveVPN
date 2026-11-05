@@ -81,7 +81,7 @@ class FreeWaveVpnService : VpnService(), PlatformInterface, CommandServerHandler
             val server = CommandServer(this, this)
             commandServer = server
             server.start()
-            server.checkConfig(config)
+            Libbox.checkConfig(config)
             server.startOrReloadService(config, OverrideOptions())
             Log.i(TAG, "sing-box service started")
             publishState("CORE_STARTED", "Ядро запущено; проверяю доступ к интернету")
@@ -154,8 +154,13 @@ class FreeWaveVpnService : VpnService(), PlatformInterface, CommandServerHandler
         v6Routes.forEach { builder.addRoute(it.first, it.second) }
         if (v4Routes.none { it.second == 0 }) builder.addRoute("0.0.0.0", 0)
         if (v6Addresses.isNotEmpty() && v6Routes.none { it.second == 0 }) builder.addRoute("::", 0)
-        runCatching { options.getDNSServerAddress()?.value }.getOrNull()
-            ?.takeIf { it.isNotBlank() }?.let { builder.addDnsServer(it) }
+        if (options.dnsMode.value != Libbox.DNSModeDisabled) {
+            val dnsServers = options.dnsServerAddress
+            while (dnsServers.hasNext()) {
+                val address = dnsServers.next()
+                if (address.isNotBlank()) builder.addDnsServer(address)
+            }
+        }
         builder.addDnsServer("1.1.1.1")
         runCatching { builder.addDisallowedApplication(packageName) }
         tunFileDescriptor = builder.establish()
@@ -166,7 +171,6 @@ class FreeWaveVpnService : VpnService(), PlatformInterface, CommandServerHandler
     override fun autoDetectInterfaceControl(fd: Int) {
         if (!protect(fd)) throw IllegalStateException("Не удалось защитить исходящий сокет VPN")
     }
-    override fun useProcFS(): Boolean = Build.VERSION.SDK_INT < Build.VERSION_CODES.Q
     override fun usePlatformAutoDetectInterfaceControl(): Boolean = true
     override fun underNetworkExtension(): Boolean = false
     override fun includeAllNetworks(): Boolean = false
@@ -177,7 +181,6 @@ class FreeWaveVpnService : VpnService(), PlatformInterface, CommandServerHandler
     override fun startDefaultInterfaceMonitor(listener: InterfaceUpdateListener?) {}
     override fun closeDefaultInterfaceMonitor(listener: InterfaceUpdateListener?) {}
     override fun clearDNSCache() {}
-    override fun systemCertificates(): StringIterator? = null
     override fun sendNotification(notification: LibboxNotification?) {}
     override fun localDNSTransport(): LocalDNSTransport? = null
     override fun serviceReload() { publishState("CORE_RELOADED", "Настройки VPN обновлены") }
@@ -189,6 +192,33 @@ class FreeWaveVpnService : VpnService(), PlatformInterface, CommandServerHandler
     override fun writeDebugMessage(message: String?) {
         Log.d(TAG, "sing-box diagnostic event")
     }
+
+    // Optional root, SSH and bridge facilities are intentionally unsupported by this client.
+    override fun cancelNotification(identifier: String?, typeID: Int) {}
+    override fun checkPlatformShell() {}
+    override fun closeNeighborMonitor(listener: io.nekohasekai.libbox.NeighborUpdateListener?) {}
+    override fun createBridge(options: io.nekohasekai.libbox.BridgeOptions?): io.nekohasekai.libbox.BridgeSession {
+        throw UnsupportedOperationException("Bridge mode is unavailable on Android")
+    }
+    override fun lookupSFTPServer(): String {
+        throw UnsupportedOperationException("SFTP is unavailable")
+    }
+    override fun lookupUser(username: String?): io.nekohasekai.libbox.PlatformUser {
+        throw UnsupportedOperationException("Platform shell is unavailable")
+    }
+    override fun openShellSession(user: io.nekohasekai.libbox.PlatformUser?, command: String?, environ: StringIterator?, term: String?, rows: Int, cols: Int): io.nekohasekai.libbox.ShellSession {
+        throw UnsupportedOperationException("Platform shell is unavailable")
+    }
+    override fun readSystemSSHHostKey(): String {
+        throw UnsupportedOperationException("SSH is unavailable")
+    }
+    override fun registerMyInterface(name: String?) {}
+    override fun startNeighborMonitor(listener: io.nekohasekai.libbox.NeighborUpdateListener?) {}
+    override fun tailscaleHostname(): String = ""
+    override fun usePlatformBridge(): Boolean = false
+    override fun usePlatformShell(): Boolean = false
+    override fun connectSSHAgent(): Int = -1
+    override fun triggerNativeCrash() {}
 
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return
