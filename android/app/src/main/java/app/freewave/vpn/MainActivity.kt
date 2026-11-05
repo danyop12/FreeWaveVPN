@@ -280,11 +280,12 @@ class MainActivity : Activity() {
                 try {
                     startNode(node.uri)
                     if (waitForCoreReady(7000)) {
-                        if (waitForInternet()) {
+                        val probeFailure = waitForInternet()
+                        if (probeFailure == null) {
                             working = node
                             break
                         }
-                        lastFailure = "Ядро запустилось, но HTTPS через туннель не ответил"
+                        lastFailure = probeFailure
                     } else {
                         lastFailure = coreFailure ?: "Ядро не подтвердило запуск за 7 секунд"
                     }
@@ -334,37 +335,56 @@ class MainActivity : Activity() {
         return coreReady
     }
 
-    private fun waitForInternet(): Boolean {
-        try { Thread.sleep(350) } catch (_: InterruptedException) { return false }
+    // Returns null on success; otherwise keeps the concrete failure for the UI.
+    private fun waitForInternet(): String? {
+        try { Thread.sleep(350) } catch (_: InterruptedException) { return "Проверка прервана" }
+        var lastFailure = "HTTPS не ответил"
         repeat(2) { attempt ->
-            if (Thread.currentThread().isInterrupted) return false
-            if (probeThroughTunnel()) return true
+            if (Thread.currentThread().isInterrupted) return "Проверка прервана"
+            val failure = probeThroughTunnel()
+            if (failure == null) return null
+            lastFailure = failure
             if (attempt == 0) {
-                try { Thread.sleep(500) } catch (_: InterruptedException) { return false }
+                try { Thread.sleep(500) } catch (_: InterruptedException) { return "Проверка прервана" }
             }
         }
-        return false
+        return lastFailure
     }
 
-    private fun probeThroughTunnel(): Boolean {
+    private fun probeThroughTunnel(): String? {
+        // First verify that sing-box exposed its local SOCKS inbound.
+        try {
+            java.net.Socket().use { socket ->
+                socket.connect(InetSocketAddress("127.0.0.1", 2080), 1000)
+            }
+        } catch (error: Exception) {
+            return "Локальный SOCKS 127.0.0.1:2080 недоступен: " +
+                (error.message ?: error.javaClass.simpleName).take(100)
+        }
+
         val proxy = Proxy(Proxy.Type.SOCKS, InetSocketAddress("127.0.0.1", 2080))
         val addresses = listOf(
             "https://www.gstatic.com/generate_204",
             "https://cp.cloudflare.com/generate_204",
             "https://example.com/"
         )
+        val failures = mutableListOf<String>()
         for (address in addresses) {
             var connection: HttpURLConnection? = null
             try {
                 connection = URL(address).openConnection(proxy) as HttpURLConnection
-                connection.connectTimeout = 2800
-                connection.readTimeout = 2800
+                connection.connectTimeout = 3500
+                connection.readTimeout = 3500
                 connection.instanceFollowRedirects = false
-                if (connection.responseCode in 200..399) return true
-            } catch (_: Exception) {
+                val code = connection.responseCode
+                if (code in 200..399) return null
+                failures.add(URL(address).host + ": HTTP " + code)
+            } catch (error: Exception) {
+                val detail = error.message?.takeIf { it.isNotBlank() } ?: error.javaClass.simpleName
+                failures.add(URL(address).host + ": " + error.javaClass.simpleName + " (" + detail.take(75) + ")")
             } finally { connection?.disconnect() }
         }
-        return false
+        return failures.joinToString("; ").take(220).ifBlank { "HTTPS-проверка не удалась" }
     }
     private fun disconnect() {
         stopNode()
