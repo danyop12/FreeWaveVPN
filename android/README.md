@@ -1,8 +1,17 @@
 # FreeWave VPN for Android
 
-Current Android app version: **0.2.0**.
+Current Android app version: **0.2.1**.
 
 Native Android client for FreeWave's public VLESS feeds. The app is free to use and does not require a subscription or a paid FreeWave server.
+
+## 0.2.1 — TCP-based first-pass server ranking
+
+- Measures TCP reachability to candidate host/port pairs concurrently (up to 8 checks at once).
+- Orders automatic connection attempts by measured TCP connection time, with unreachable/time-out nodes after reachable ones.
+- Keeps the selected server as the first candidate when the user explicitly chose one.
+- Shows the measured TCP connection time in the connection detail and server picker.
+- TCP reachability is only a preliminary signal, not end-to-end VPN latency or proof that a node works. Each candidate must still pass the sing-box tunnel and HTTPS checks before the app reports a successful connection.
+- Uses a bounded 9-second ranking window so a large dead feed does not stall connection attempts indefinitely.
 
 ## 0.2.0 — Android dashboard and server pool
 
