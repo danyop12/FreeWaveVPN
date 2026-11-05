@@ -446,93 +446,23 @@ class MainActivity : Activity() {
         return probeThroughTunnel()
     }
 
-    private fun socksConnectDiagnostic(target: String, port: Int): String? {
-        try {
-            java.net.Socket().use { socket ->
-                socket.connect(InetSocketAddress("127.0.0.1", 2080), 1000)
-                socket.soTimeout = 2500
-                val input = socket.getInputStream()
-                val output = socket.getOutputStream()
-
-                // SOCKS5 greeting: one supported method, no authentication.
-                output.write(byteArrayOf(5, 1, 0))
-                output.flush()
-                val version = input.read()
-                val method = input.read()
-                if (version != 5 || method != 0) {
-                    return "$target: SOCKS5 handshake rejected (version=$version, method=$method)"
-                }
-
-                val isIpv4 = target.matches(Regex("""\d{1,3}(?:\.\d{1,3}){3}"""))
-                if (isIpv4) {
-                    val address = target.split('.').map { it.toInt().toByte() }.toByteArray()
-                    output.write(byteArrayOf(5, 1, 0, 1))
-                    output.write(address)
-                } else {
-                    val address = target.toByteArray(Charsets.US_ASCII)
-                    if (address.isEmpty() || address.size > 255) return "$target: invalid SOCKS hostname"
-                    output.write(byteArrayOf(5, 1, 0, 3, address.size.toByte()))
-                    output.write(address)
-                }
-                output.write((port shr 8) and 0xff)
-                output.write(port and 0xff)
-                output.flush()
-
-                val responseVersion = input.read()
-                val reply = input.read()
-                input.read() // reserved
-                input.read() // bound address type
-                if (responseVersion != 5 || reply < 0) {
-                    return "$target:$port: invalid or incomplete SOCKS5 response"
-                }
-                if (reply != 0) {
-                    val reason = when (reply) {
-                        1 -> "общая ошибка прокси"
-                        2 -> "запрещено политикой"
-                        3 -> "сеть недоступна"
-                        4 -> "узел недоступен"
-                        5 -> "соединение отклонено"
-                        6 -> "TTL истёк"
-                        7 -> "команда не поддерживается"
-                        8 -> "тип адреса не поддерживается"
-                        else -> "неизвестный код"
-                    }
-                    val code = "0x" + reply.toString(16).uppercase().padStart(2, '0')
-                    return "$target:$port → SOCKS5 $code ($reason)"
-                }
-            }
-            return null
-        } catch (error: Exception) {
-            val detail = error.message?.takeIf { it.isNotBlank() } ?: error.javaClass.simpleName
-            return "$target:$port → ${error.javaClass.simpleName}: ${detail.take(90)}"
-        }
-    }
-
     private fun probeThroughTunnel(): String? {
-        // Verify the local SOCKS listener, then separate outbound TCP failure from DNS failure.
+        // A local listener only proves that sing-box started, not that VLESS works.
+        // Verify real HTTPS requests (including TLS SNI) through SOCKS instead.
         try {
             java.net.Socket().use { socket ->
-                socket.connect(InetSocketAddress("127.0.0.1", 2080), 1000)
+                socket.connect(InetSocketAddress("127.0.0.1", 2080), 1500)
             }
         } catch (error: Exception) {
             return "Локальный SOCKS 127.0.0.1:2080 недоступен: " +
                 (error.message ?: error.javaClass.simpleName).take(100)
         }
 
-        val ipFailure = socksConnectDiagnostic("1.1.1.1", 443)
-        if (ipFailure != null) {
-            return "Не проходит TCP через VLESS до внешнего IP (проверка без DNS): $ipFailure"
-        }
-
-        val dnsFailure = socksConnectDiagnostic("www.gstatic.com", 443)
-        if (dnsFailure != null) {
-            return "TCP через VLESS по IP работает, но подключение по доменному имени не проходит (вероятна проблема DNS): $dnsFailure"
-        }
-
         val proxy = Proxy(Proxy.Type.SOCKS, InetSocketAddress("127.0.0.1", 2080))
         val addresses = listOf(
             "https://www.gstatic.com/generate_204",
-            "https://cp.cloudflare.com/generate_204",
+            "https://www.google.com/generate_204",
+            "https://github.com/robots.txt",
             "https://example.com/"
         )
         val failures = mutableListOf<String>()
@@ -540,18 +470,27 @@ class MainActivity : Activity() {
             var connection: HttpURLConnection? = null
             try {
                 connection = URL(address).openConnection(proxy) as HttpURLConnection
-                connection.connectTimeout = 3500
-                connection.readTimeout = 3500
+                connection.connectTimeout = 5000
+                connection.readTimeout = 5000
                 connection.instanceFollowRedirects = false
+                connection.requestMethod = "GET"
+                connection.setRequestProperty("User-Agent", "FreeWaveVPN-Android/" + BuildConfig.VERSION_NAME)
                 val code = connection.responseCode
-                if (code in 200..399) return null
-                failures.add(URL(address).host + ": HTTP " + code)
+                // Any valid HTTP response proves that TCP + TLS traversed the VLESS node.
+                if (code in 100..599) return null
+                failures.add(URL(address).host + ": некорректный HTTP-ответ " + code)
             } catch (error: Exception) {
                 val detail = error.message?.takeIf { it.isNotBlank() } ?: error.javaClass.simpleName
-                failures.add(URL(address).host + ": " + error.javaClass.simpleName + " (" + detail.take(75) + ")")
-            } finally { connection?.disconnect() }
+                failures.add(URL(address).host + ": " + error.javaClass.simpleName + " (" + detail.take(85) + ")")
+            } finally {
+                connection?.disconnect()
+            }
         }
-        return failures.joinToString("; ").take(220).ifBlank { "HTTPS-проверка не удалась" }
+
+        // A raw SOCKS CONNECT to 1.1.1.1 with no TLS/SNI is deliberately not
+        // used as a pass/fail condition: public nodes may apply destination rules.
+        return "Не удалось получить HTTPS-ответ через VLESS ни от одной проверки: " +
+            failures.joinToString("; ").take(420)
     }
     private fun disconnect() {
         stopNode()
