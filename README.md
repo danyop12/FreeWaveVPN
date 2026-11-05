@@ -1,4 +1,4 @@
-# FreeWave VPN 0.3.7
+# FreeWave VPN 0.3.8
 
 FreeWave VPN collects public VLESS links from configured HTTPS sources, removes
 duplicates, checks only the exact endpoints published in those links, and
@@ -42,6 +42,8 @@ Generated files are committed under `public/` after each successful workflow:
 - `freewave-fast-base64.txt` — Base64 version of the fast list.
 - `freewave-tcp.txt` — preliminary TCP-only candidates; **not a working-node list**.
 - `freewave-eu.txt` — name-based heuristic subset, not verified geolocation.
+- `freewave-albania.txt` — only validated nodes whose actual endpoint IP is geolocated to Albania (`AL`); country lookup failures are excluded, never guessed.
+- `freewave-albania-base64.txt` — Base64 version of the Albania-only feed.
 - `metrics.json` — tested counts, response times, download rates, reliability and failure reasons.
 - `history.json` — the last 10 scan outcomes keyed by one-way node fingerprints; contains no VLESS links.
 - `STATUS.md` — latest successful scan summary.
@@ -56,6 +58,8 @@ https://raw.githubusercontent.com/danyop12/FreeWaveVPN/main/public/freewave-fast
 https://raw.githubusercontent.com/danyop12/FreeWaveVPN/main/public/freewave-fast-base64.txt
 https://raw.githubusercontent.com/danyop12/FreeWaveVPN/main/public/freewave-best.txt
 https://raw.githubusercontent.com/danyop12/FreeWaveVPN/main/public/freewave-best-base64.txt
+https://raw.githubusercontent.com/danyop12/FreeWaveVPN/main/public/freewave-albania.txt
+https://raw.githubusercontent.com/danyop12/FreeWaveVPN/main/public/freewave-albania-base64.txt
 ```
 
 The subscription files may be empty when no node passes the real VLESS check.
@@ -72,6 +76,8 @@ That is intentional: TCP-only endpoints are not published as verified VPN nodes.
 - **AvoVPN:** its published Google Play instructions describe importing a single
   `vless://` key. Use `freewave-best.txt` and paste its one VLESS link as a key.
   Do not paste the subscription URL where the app expects a single key.
+
+The Albania feed is a separate optional subscription for testing YouTube from an Albanian exit IP. It is built only from nodes that first pass the existing Xray + three-HTTPS-probe validation, then receive an `AL` country code from an IP geolocation lookup. GeoIP databases can be wrong or stale, and the list may be empty; verify the apparent country on the phone before relying on it. This is a geographic selection, not an ad-blocking DNS profile, and YouTube may still show ads or change how it serves them.
 
 The GitHub-runner ranking is only a starting point. Your phone may see a different
 fastest node because routes and performance vary by network and location. The best-key
