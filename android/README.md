@@ -1,6 +1,6 @@
 # FreeWave VPN for Android
 
-Current Android app version: **0.1.1**.
+Current Android app version: **0.1.2**.
 
 Native Android client for the FreeWave public VLESS feeds.
 
@@ -8,6 +8,7 @@ Native Android client for the FreeWave public VLESS feeds.
 
 - Kotlin application with Android system VPN tunnel.
 - sing-box libbox pinned to 1.14.4.
+- Uses the modern TUN `address` array field (compatible with sing-box 1.12+); does not emit removed `inet4_address` legacy field.
 - Downloads freewave-fast.txt, falls back to freewave-vless.txt.
 - Automatic mode tries the full published top-25 list, waits for sing-box startup confirmation, then requires a real HTTPS request through the local sing-box SOCKS inbound.
 - Manual node selection is available for troubleshooting.
