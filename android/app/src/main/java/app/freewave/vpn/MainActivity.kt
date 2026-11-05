@@ -214,7 +214,7 @@ class MainActivity : Activity() {
         val connection = URL(BASE_URL + file).openConnection() as HttpURLConnection
         connection.connectTimeout = 10000
         connection.readTimeout = 12000
-        connection.setRequestProperty("User-Agent", "FreeWaveVPN-Android/0.1.0")
+        connection.setRequestProperty("User-Agent", "FreeWaveVPN-Android/" + BuildConfig.VERSION_NAME)
         connection.setRequestProperty("Cache-Control", "no-cache")
         try {
             if (connection.responseCode !in 200..299) return ""
@@ -343,21 +343,75 @@ class MainActivity : Activity() {
     // Returns null on success; otherwise keeps the concrete failure for the UI.
     private fun waitForInternet(): String? {
         try { Thread.sleep(350) } catch (_: InterruptedException) { return "Проверка прервана" }
-        var lastFailure = "HTTPS не ответил"
-        repeat(2) { attempt ->
-            if (Thread.currentThread().isInterrupted) return "Проверка прервана"
-            val failure = probeThroughTunnel()
-            if (failure == null) return null
-            lastFailure = failure
-            if (attempt == 0) {
-                try { Thread.sleep(500) } catch (_: InterruptedException) { return "Проверка прервана" }
+        if (Thread.currentThread().isInterrupted) return "Проверка прервана"
+        // probeThroughTunnel already performs layered TCP, DNS and HTTPS checks.
+        return probeThroughTunnel()
+    }
+
+    private fun socksConnectDiagnostic(target: String, port: Int): String? {
+        try {
+            java.net.Socket().use { socket ->
+                socket.connect(InetSocketAddress("127.0.0.1", 2080), 1000)
+                socket.soTimeout = 2500
+                val input = socket.getInputStream()
+                val output = socket.getOutputStream()
+
+                // SOCKS5 greeting: one supported method, no authentication.
+                output.write(byteArrayOf(5, 1, 0))
+                output.flush()
+                val version = input.read()
+                val method = input.read()
+                if (version != 5 || method != 0) {
+                    return "$target: SOCKS5 handshake rejected (version=$version, method=$method)"
+                }
+
+                val isIpv4 = target.matches(Regex("""\d{1,3}(?:\.\d{1,3}){3}"""))
+                if (isIpv4) {
+                    val address = target.split('.').map { it.toInt().toByte() }.toByteArray()
+                    output.write(byteArrayOf(5, 1, 0, 1))
+                    output.write(address)
+                } else {
+                    val address = target.toByteArray(Charsets.US_ASCII)
+                    if (address.isEmpty() || address.size > 255) return "$target: invalid SOCKS hostname"
+                    output.write(byteArrayOf(5, 1, 0, 3, address.size.toByte()))
+                    output.write(address)
+                }
+                output.write((port shr 8) and 0xff)
+                output.write(port and 0xff)
+                output.flush()
+
+                val responseVersion = input.read()
+                val reply = input.read()
+                input.read() // reserved
+                input.read() // bound address type
+                if (responseVersion != 5 || reply < 0) {
+                    return "$target:$port: invalid or incomplete SOCKS5 response"
+                }
+                if (reply != 0) {
+                    val reason = when (reply) {
+                        1 -> "общая ошибка прокси"
+                        2 -> "запрещено политикой"
+                        3 -> "сеть недоступна"
+                        4 -> "узел недоступен"
+                        5 -> "соединение отклонено"
+                        6 -> "TTL истёк"
+                        7 -> "команда не поддерживается"
+                        8 -> "тип адреса не поддерживается"
+                        else -> "неизвестный код"
+                    }
+                    val code = "0x" + reply.toString(16).uppercase().padStart(2, '0')
+                    return "$target:$port → SOCKS5 $code ($reason)"
+                }
             }
+            return null
+        } catch (error: Exception) {
+            val detail = error.message?.takeIf { it.isNotBlank() } ?: error.javaClass.simpleName
+            return "$target:$port → ${error.javaClass.simpleName}: ${detail.take(90)}"
         }
-        return lastFailure
     }
 
     private fun probeThroughTunnel(): String? {
-        // First verify that sing-box exposed its local SOCKS inbound.
+        // Verify the local SOCKS listener, then separate outbound TCP failure from DNS failure.
         try {
             java.net.Socket().use { socket ->
                 socket.connect(InetSocketAddress("127.0.0.1", 2080), 1000)
@@ -365,6 +419,16 @@ class MainActivity : Activity() {
         } catch (error: Exception) {
             return "Локальный SOCKS 127.0.0.1:2080 недоступен: " +
                 (error.message ?: error.javaClass.simpleName).take(100)
+        }
+
+        val ipFailure = socksConnectDiagnostic("1.1.1.1", 443)
+        if (ipFailure != null) {
+            return "Не проходит TCP через VLESS до внешнего IP (проверка без DNS): $ipFailure"
+        }
+
+        val dnsFailure = socksConnectDiagnostic("www.gstatic.com", 443)
+        if (dnsFailure != null) {
+            return "TCP через VLESS по IP работает, но подключение по доменному имени не проходит (вероятна проблема DNS): $dnsFailure"
         }
 
         val proxy = Proxy(Proxy.Type.SOCKS, InetSocketAddress("127.0.0.1", 2080))
