@@ -220,6 +220,42 @@ def make_config(uri: str, target_ip: str, socks_port: int) -> dict:
     }
 
 
+def country_code_for_ip(address: str) -> str | None:
+    """Best-effort country lookup for a validated server IP; unknown is never guessed."""
+    try:
+        request = urllib.request.Request(
+            f"https://ipapi.co/{address}/country/",
+            headers={"User-Agent": "FreeWaveVPN-CountryCheck/0.3.8"},
+        )
+        with urllib.request.urlopen(request, timeout=5) as response:
+            code = response.read(32).decode("ascii", errors="ignore").strip().upper()
+        return code if len(code) == 2 and code.isalpha() else None
+    except Exception as exc:
+        log(f"Country lookup unavailable for {address}: {str(exc)[:100]}")
+        return None
+
+
+def add_country_metadata(nodes: list[dict]) -> None:
+    """Geolocate only nodes that already passed the real VLESS/HTTPS checks."""
+    addresses = sorted({
+        item.get("server_ip") for item in nodes
+        if item.get("ok") and item.get("server_ip")
+    })
+    countries: dict[str, str | None] = {}
+    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as pool:
+        futures = {pool.submit(country_code_for_ip, address): address for address in addresses}
+        for future in concurrent.futures.as_completed(futures):
+            address = futures[future]
+            try:
+                countries[address] = future.result()
+            except Exception:
+                countries[address] = None
+    for item in nodes:
+        address = item.get("server_ip")
+        if address:
+            item["country_code"] = countries.get(address)
+
+
 def free_port() -> int:
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
         sock.bind(("127.0.0.1", 0))
@@ -370,6 +406,7 @@ def test_node(uri: str) -> dict:
 
                 return {
                     "uri": uri, "ok": True, "host": host, "port": port,
+                    "server_ip": address,
                     "latency_ms": round(latency_ms, 2),
                     "jitter_ms": jitter_ms,
                     "stability_score": round(stability_score, 4),
@@ -515,6 +552,10 @@ def main() -> int:
         key=lambda x: (x.get("score", 0), x.get("speed_mbps") or 0, -x["latency_ms"]),
         reverse=True,
     )
+    # Country filtering is based on the actual endpoint IP used by the successful
+    # Xray probe, not the user-supplied remark/flag (which is often misleading).
+    add_country_metadata(passed)
+    albania = [item["uri"] for item in passed if item.get("country_code") == "AL"]
 
     if passed:
         full = "\n".join(item["uri"] for item in passed) + "\n"
@@ -547,6 +588,12 @@ def main() -> int:
         (PUBLIC / "freewave-eu.txt").write_text(
             "\n".join(eu) + ("\n" if eu else ""), encoding="utf-8"
         )
+        albania_text = "\n".join(albania) + ("\n" if albania else "")
+        (PUBLIC / "freewave-albania.txt").write_text(albania_text, encoding="utf-8")
+        (PUBLIC / "freewave-albania-base64.txt").write_text(
+            base64.b64encode(albania_text.encode()).decode() + ("\n" if albania_text else ""),
+            encoding="utf-8",
+        )
 
     else:
         # Do not leave earlier TCP-only configs published as verified subscriptions.
@@ -558,6 +605,8 @@ def main() -> int:
             "freewave-fast.txt",
             "freewave-fast-base64.txt",
             "freewave-eu.txt",
+            "freewave-albania.txt",
+            "freewave-albania-base64.txt",
         ):
             (PUBLIC / filename).write_text("", encoding="utf-8")
 
@@ -578,7 +627,8 @@ def main() -> int:
                 "host", "port", "ok", "latency_ms", "jitter_ms", "stability_score",
                 "speed_mbps", "score", "speed_test_ok", "speed_test_bytes", "confirmed_https_probes",
                 "latency_samples_ms", "probe_urls", "history_attempts",
-                "history_successes", "history_success_rate", "reliability_factor", "error"
+                "history_successes", "history_success_rate", "reliability_factor",
+                "country_code", "error"
             )}
             for item in passed + [x for x in results if not x.get("ok")]
         ],
@@ -623,6 +673,7 @@ def main() -> int:
         f"- Not tested due to limit: {max(0, len(candidates) - len(results))}",
         f"- Nodes confirmed by at least {REQUIRED_HTTPS_PROBES} separate HTTPS probes: {sum(1 for x in passed if x.get('confirmed_https_probes', 0) >= REQUIRED_HTTPS_PROBES)}",
         f"- Successful {DOWNLOAD_BYTES // 1024} KiB download tests: {sum(1 for x in passed if x.get('speed_test_ok'))}",
+        f"- Nodes geolocated to Albania (AL): {len(albania)}",
         "", "## Top nodes from this GitHub Actions run", "",
         "| # | Server | Median latency | Jitter (MAD) | Download | History | Score |",
         "|---:|---|---:|---:|---:|---:|---:|",
@@ -645,6 +696,8 @@ def main() -> int:
         "- freewave-fast.txt — top 25 by relative score",
         "- freewave-fast-base64.txt — Base64 version of the top 25",
         "- freewave-vless-base64.txt — Base64 version of validated nodes",
+        "- freewave-albania.txt — validated nodes whose endpoint IP geolocates to Albania (AL)",
+        "- freewave-albania-base64.txt — Base64 version of the Albania-only feed",
         "- freewave-tcp.txt — preliminary TCP-only candidates",
         "- metrics.json — detailed test results and rolling reliability scores",
         "- history.json — last 10 scan outcomes per hashed node identifier; contains no VLESS links",
