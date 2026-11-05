@@ -221,41 +221,58 @@ def make_config(uri: str, target_ip: str, socks_port: int) -> dict:
     }
 
 
-def country_code_for_ip(address: str) -> str | None:
-    """Best-effort country lookup for a validated server IP; unknown is never guessed."""
-    try:
-        request = urllib.request.Request(
-            f"https://ipapi.co/{address}/country/",
-            headers={"User-Agent": "FreeWaveVPN-CountryCheck/0.3.8"},
-        )
-        with urllib.request.urlopen(request, timeout=5) as response:
-            code = response.read(32).decode("ascii", errors="ignore").strip().upper()
-        return code if len(code) == 2 and code.isalpha() else None
-    except Exception as exc:
-        log(f"Country lookup unavailable for {address}: {str(exc)[:100]}")
-        return None
-
-
 def add_country_metadata(nodes: list[dict]) -> None:
-    """Geolocate only nodes that already passed the real VLESS/HTTPS checks."""
+    """Resolve validated endpoint IPs in HTTPS batches; unknown locations stay unknown."""
     addresses = sorted({
         item.get("server_ip") for item in nodes
         if item.get("ok") and item.get("server_ip")
     })
     countries: dict[str, str | None] = {}
-    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as pool:
-        futures = {pool.submit(country_code_for_ip, address): address for address in addresses}
-        for future in concurrent.futures.as_completed(futures):
-            address = futures[future]
-            try:
-                countries[address] = future.result()
-            except Exception:
-                countries[address] = None
+
+    # countries.dev accepts up to 100 IPs per HTTPS POST, avoiding per-IP rate limits.
+    for offset in range(0, len(addresses), 100):
+        batch = addresses[offset:offset + 100]
+        try:
+            request = urllib.request.Request(
+                "https://countries.dev/ip",
+                data=json.dumps(batch).encode("utf-8"),
+                headers={
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "User-Agent": "FreeWaveVPN-CountryCheck/0.3.8",
+                },
+                method="POST",
+            )
+            with urllib.request.urlopen(request, timeout=15) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+
+            # The API returns one result per IP. Keep the parser defensive so
+            # a partial/provider response cannot assign a guessed country.
+            if isinstance(payload, list):
+                for result in payload:
+                    if not isinstance(result, dict):
+                        continue
+                    address = result.get("ip") or result.get("query")
+                    code = result.get("countryCode") or result.get("country_code")
+                    if address in batch and isinstance(code, str) and len(code) == 2 and code.isalpha():
+                        countries[address] = code.upper()
+            elif isinstance(payload, dict):
+                results = payload.get("results")
+                if isinstance(results, list):
+                    for result in results:
+                        if not isinstance(result, dict):
+                            continue
+                        address = result.get("ip") or result.get("query")
+                        code = result.get("countryCode") or result.get("country_code")
+                        if address in batch and isinstance(code, str) and len(code) == 2 and code.isalpha():
+                            countries[address] = code.upper()
+        except Exception as exc:
+            log(f"Country batch lookup unavailable ({len(batch)} IPs): {str(exc)[:120]}")
+
     for item in nodes:
         address = item.get("server_ip")
         if address:
             item["country_code"] = countries.get(address)
-
 
 def free_port() -> int:
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
