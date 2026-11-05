@@ -1,8 +1,15 @@
 # FreeWave VPN for Android
 
-Current Android app version: **0.2.1**.
+Current Android app version: **0.2.2**.
 
 Native Android client for FreeWave's public VLESS feeds. The app is free to use and does not require a subscription or a paid FreeWave server.
+
+## 0.2.2 — Real HTTPS verification through VLESS
+
+- Removes the raw `1.1.1.1:443` SOCKS CONNECT as a mandatory pass/fail check. A raw IP CONNECT without a TLS ClientHello can be rejected by destination policies even when ordinary HTTPS traffic is allowed.
+- Verifies real HTTPS requests through the local SOCKS inbound instead, including TLS/SNI, against Google, Google Static, GitHub and example.com.
+- Accepts any valid HTTP response as proof that the VLESS tunnel carried the request; a target's 403/404 response is not mistaken for a broken tunnel.
+- Shows the failures from all HTTPS probes only when none can traverse the selected node.
 
 ## 0.2.1 — TCP-based first-pass server ranking
 
