@@ -27,7 +27,7 @@ import java.net.URL
 import java.util.concurrent.Executors
 
 class MainActivity : Activity() {
-    private data class Node(val uri: String, val name: String, val host: String, val port: Int)
+    private data class Node(val uri: String, val name: String, val host: String, val port: Int, val latencyMs: Long? = null)
     companion object {
         private const val VPN_REQUEST = 4107
         private const val BASE_URL = "https://raw.githubusercontent.com/danyop12/FreeWaveVPN/main/public/"
@@ -318,12 +318,23 @@ class MainActivity : Activity() {
         coreFailure = null
         connectButton.isEnabled = false
         statusTitle.text = "Ищу рабочий сервер…"
-        statusDetail.text = "Проверяю до " + MAX_NODES + " конфигураций и жду фактического запуска sing-box."
-        val orderedCandidates = preferredNode?.let { selected ->
+        statusDetail.text = "Сначала измерю доступность серверов, затем проверю VPN-туннель."
+        val preferred = preferredNode
+        val sourceCandidates = (preferred?.let { selected ->
             listOf(selected) + nodes.filterNot { it.uri == selected.uri }
-        } ?: nodes
-        val candidates = orderedCandidates.take(MAX_NODES)
+        } ?: nodes).take(MAX_NODES)
         executor.execute {
+            val ranked = rankCandidates(sourceCandidates)
+            val orderedCandidates = if (preferred != null) {
+                listOfNotNull(ranked.firstOrNull { it.uri == preferred.uri }) +
+                    ranked.filterNot { it.uri == preferred.uri }
+            } else ranked
+            val candidates = orderedCandidates
+            runOnUiThread {
+                countText.text = if (ranked.isEmpty()) "Нет доступных TCP-узлов"
+                    else "Оценено ${ranked.size} серверов · сначала быстрые"
+                statusDetail.text = "Проверяю соединение через лучшие доступные узлы…"
+            }
             var working: Node? = null
             var lastFailure = "Не получен ответ от VPN-ядра"
             var tested = 0
@@ -334,7 +345,7 @@ class MainActivity : Activity() {
                 coreFailure = null
                 runOnUiThread {
                     statusTitle.text = "Проверяю сервер $tested из " + candidates.size
-                    statusDetail.text = node.name + " · " + node.host + ":" + node.port
+                    statusDetail.text = node.name + " · " + (node.latencyMs?.let { "$it мс до узла" } ?: "TCP-проверка не пройдена")
                 }
                 try {
                     getSharedPreferences("vpn_diagnostics", MODE_PRIVATE).edit().putString("recent", "").apply()
@@ -369,7 +380,7 @@ class MainActivity : Activity() {
                         .putString("preferred_uri", working!!.uri).apply()
                     serverText.text = working!!.name
                     statusTitle.text = "Подключено"
-                    statusDetail.text = "HTTPS-проверка прошла через " + working!!.host
+                    statusDetail.text = "Интернет проверен через " + working!!.host + (working!!.latencyMs?.let { " · TCP $it мс" } ?: "")
                     connectButton.text = "Отключить VPN"
                 } else {
                     connected = false
@@ -379,6 +390,32 @@ class MainActivity : Activity() {
                     connectButton.text = "Повторить поиск"
                 }
             }
+        }
+    }
+
+    // TCP reachability is only a first-pass ranking signal, not a real VPN latency test.
+    // Every candidate is still verified through sing-box before it can be marked connected.
+    private fun rankCandidates(candidates: List<Node>): List<Node> {
+        if (candidates.size < 2) return candidates
+        val pool = Executors.newFixedThreadPool(8)
+        try {
+            val futures = pool.invokeAll(candidates.map { node ->
+                java.util.concurrent.Callable {
+                    val started = System.nanoTime()
+                    val latency = runCatching {
+                        java.net.Socket().use { socket ->
+                            socket.connect(InetSocketAddress(node.host, node.port), 1400)
+                        }
+                        ((System.nanoTime() - started) / 1_000_000L).coerceAtLeast(1L)
+                    }.getOrNull()
+                    node.copy(latencyMs = latency)
+                }
+            }, 9, java.util.concurrent.TimeUnit.SECONDS)
+            return futures.mapNotNull { future ->
+                runCatching { if (future.isDone && !future.isCancelled) future.get() else null }.getOrNull()
+            }.sortedWith(compareBy<Node> { it.latencyMs == null }.thenBy { it.latencyMs ?: Long.MAX_VALUE })
+        } finally {
+            pool.shutdownNow()
         }
     }
 
@@ -526,11 +563,12 @@ class MainActivity : Activity() {
     }
     private fun showServerPicker() {
         val options = arrayListOf("Автоматически · рейтинг FreeWave")
-        options.addAll(nodes.map { it.name + " · " + it.host })
+        options.addAll(nodes.map { node -> node.name + " · " + node.host + (node.latencyMs?.let { " · $it мс" } ?: " · не проверен") })
         AlertDialog.Builder(this).setTitle("Выбрать сервер")
             .setItems(options.toTypedArray()) { _, which ->
                 if (which == 0) {
                     preferredNode = null
+                    getSharedPreferences("freewave", MODE_PRIVATE).edit().remove("preferred_uri").apply()
                     serverText.text = "Автоматически · лучший доступный"
                 } else {
                     preferredNode = nodes[which - 1]
