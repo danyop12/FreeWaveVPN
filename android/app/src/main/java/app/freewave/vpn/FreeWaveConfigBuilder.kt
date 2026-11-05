@@ -92,7 +92,7 @@ object FreeWaveConfigBuilder {
                     .put("type", "tun")
                     .put("tag", "tun-in")
                     .put("interface_name", "tun0")
-                    .put("inet4_address", "172.19.0.1/30")
+                    .put("address", JSONArray().put("172.19.0.1/30"))
                     .put("mtu", 1400)
                     .put("auto_route", true)
                     .put("strict_route", true)
