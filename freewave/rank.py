@@ -12,6 +12,7 @@ import statistics
 import subprocess
 import tempfile
 import time
+import urllib.request
 from pathlib import Path
 from urllib.parse import parse_qs, unquote, urlsplit
 
@@ -581,9 +582,15 @@ def main() -> int:
             "london", "belgium", "switzerland", "austria", "czech",
             "romania", "bulgaria",
         )
+        eu_country_codes = {
+            "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR",
+            "DE", "GR", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL",
+            "PL", "PT", "RO", "SK", "SI", "ES", "SE",
+        }
         eu = [
             item["uri"] for item in passed
-            if any(hint in unquote(urlsplit(item["uri"]).fragment).lower() for hint in eu_hints)
+            if item.get("country_code") in eu_country_codes
+            or any(hint in unquote(urlsplit(item["uri"]).fragment).lower() for hint in eu_hints)
         ]
         (PUBLIC / "freewave-eu.txt").write_text(
             "\n".join(eu) + ("\n" if eu else ""), encoding="utf-8"
