@@ -1,28 +1,29 @@
 # FreeWave VPN status
 
-- Last run: 2026-11-04 23:50:42 UTC
+- Last run: 2026-11-05 00:27:42 UTC
 - TCP candidates: 424
 - Tested through Xray: 424
-- Passed real HTTPS request through VLESS: 20
-- Failed VLESS test: 404
+- Passed real HTTPS request through VLESS: 29
+- Failed VLESS test: 395
 - Not tested due to limit: 0
-- Nodes confirmed by at least 3 separate HTTPS probes: 20
-- Successful 1024 KiB download tests: 20
+- Nodes confirmed by at least 3 separate HTTPS probes: 29
+- Successful 1024 KiB download tests: 21
+- Nodes geolocated to Albania (AL): 0
 
 ## Top nodes from this GitHub Actions run
 
 | # | Server | Median latency | Jitter (MAD) | Download | History | Score |
 |---:|---|---:|---:|---:|---:|---:|
-| 1 | 79.141.164.83:443 | 283 ms | 57.0 ms | 8.66 Mbps | 2/2 | 0.971 |
-| 2 | 79.141.164.83:443 | 293 ms | 57.4 ms | 8.69 Mbps | 2/2 | 0.962 |
-| 3 | book.jarbook.net:443 | 298 ms | 57.3 ms | 7.38 Mbps | 2/2 | 0.876 |
-| 4 | api.ferrin.uk:443 | 730 ms | 50.6 ms | 8.73 Mbps | 2/2 | 0.807 |
-| 5 | api.ferrin.uk:443 | 737 ms | 3.9 ms | 8.37 Mbps | 2/2 | 0.792 |
-| 6 | 51.158.206.97:23576 | 482 ms | 5.2 ms | 7.39 Mbps | 2/2 | 0.790 |
-| 7 | 89.110.64.15:443 | 474 ms | 18.3 ms | 7.37 Mbps | 2/2 | 0.788 |
-| 8 | 51.158.206.25:23576 | 462 ms | 3.0 ms | 6.98 Mbps | 2/2 | 0.773 |
-| 9 | 217.30.10.72:443 | 540 ms | 6.6 ms | 6.86 Mbps | 2/2 | 0.738 |
-| 10 | 79.141.164.125:443 | 577 ms | 170.9 ms | 7.39 Mbps | 2/2 | 0.729 |
+| 1 | 79.141.164.83:443 | 300 ms | 58.8 ms | 8.58 Mbps | 3/3 | 0.854 |
+| 2 | book.jarbook.net:443 | 308 ms | 37.9 ms | 8.23 Mbps | 3/3 | 0.835 |
+| 3 | 79.141.164.83:443 | 303 ms | 61.5 ms | 7.91 Mbps | 3/3 | 0.809 |
+| 4 | api.ferrin.uk:443 | 674 ms | 4.9 ms | 8.57 Mbps | 3/3 | 0.778 |
+| 5 | api.ferrin.uk:443 | 666 ms | 0.2 ms | 8.19 Mbps | 3/3 | 0.756 |
+| 6 | 79.141.164.125:443 | 322 ms | 79.0 ms | 6.52 Mbps | 3/3 | 0.705 |
+| 7 | 89.110.64.15:443 | 478 ms | 2.9 ms | 6.85 Mbps | 3/3 | 0.701 |
+| 8 | 51.158.206.25:23576 | 498 ms | 16.6 ms | 6.97 Mbps | 3/3 | 0.700 |
+| 9 | 51.158.206.97:23576 | 488 ms | 8.9 ms | 6.90 Mbps | 3/3 | 0.699 |
+| 10 | 79.141.164.125:443 | 519 ms | 94.3 ms | 7.12 Mbps | 3/3 | 0.687 |
 
 ## Subscription files
 
@@ -32,6 +33,8 @@
 - freewave-fast.txt — top 25 by relative score
 - freewave-fast-base64.txt — Base64 version of the top 25
 - freewave-vless-base64.txt — Base64 version of validated nodes
+- freewave-albania.txt — validated nodes whose endpoint IP geolocates to Albania (AL)
+- freewave-albania-base64.txt — Base64 version of the Albania-only feed
 - freewave-tcp.txt — preliminary TCP-only candidates
 - metrics.json — detailed test results and rolling reliability scores
 - history.json — last 10 scan outcomes per hashed node identifier; contains no VLESS links
