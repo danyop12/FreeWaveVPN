@@ -76,7 +76,7 @@ object FreeWaveConfigBuilder {
         }
         if (transport != null) outbound.put("transport", transport)
         val config = JSONObject()
-            .put("log", JSONObject().put("level", "warn").put("timestamp", true))
+            .put("log", JSONObject().put("level", "debug").put("timestamp", true))
             .put("dns", JSONObject()
                 .put("servers", JSONArray().put(JSONObject()
                     .put("type", "https")
