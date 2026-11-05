@@ -1,6 +1,6 @@
 # FreeWave VPN for Android
 
-Current Android app version: **0.1.2**.
+Current Android app version: **0.1.3**.
 
 Native Android client for the FreeWave public VLESS feeds.
 
