@@ -110,69 +110,115 @@ class MainActivity : Activity() {
     private fun buildInterface() {
         val page = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
-            setPadding(dp(22), dp(24), dp(22), dp(20))
-            setBackgroundColor(Color.rgb(11, 16, 32))
+            setPadding(dp(20), dp(22), dp(20), dp(24))
+            setBackgroundColor(Color.rgb(8, 13, 27))
         }
-        val scroll = ScrollView(this).apply { isFillViewport = true; addView(page) }
-        setContentView(scroll)
-        val brand = LinearLayout(this).apply {
+        setContentView(ScrollView(this).apply { isFillViewport = true; addView(page) })
+
+        val header = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_VERTICAL
         }
-        val brandIcon = ImageView(this).apply {
+        header.addView(ImageView(this).apply {
             setImageResource(R.drawable.ic_launcher_foreground)
             scaleType = ImageView.ScaleType.FIT_CENTER
             contentDescription = "FreeWave VPN"
-            layoutParams = LinearLayout.LayoutParams(dp(52), dp(52))
-        }
-        val brandText = LinearLayout(this).apply {
+        }, LinearLayout.LayoutParams(dp(48), dp(48)).apply { marginEnd = dp(12) })
+        val brand = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
-            addView(text("FREEWAVE VPN", 16, "#55D6BE", true))
-            addView(text("Личный VPN-клиент", 12, "#A8B2C4"), margin(top = 3))
+            addView(text("FREEWAVE", 17, "#F4F7FB", true))
+            addView(text("БЕСПЛАТНЫЙ VPN", 10, "#55D6BE", true), margin(top = 2))
         }
-        brand.addView(brandIcon, LinearLayout.LayoutParams(dp(52), dp(52)).apply { marginEnd = dp(12) })
-        brand.addView(brandText)
-        page.addView(brand, margin(bottom = 18))
-        page.addView(text("VPN без лишних настроек", 25, "#F4F7FB", true), margin(top = 2))
-        page.addView(text("Автоматически ищет сервер, через который действительно открываются сайты.", 14, "#A8B2C4"), margin(top = 8, bottom = 24))
+        header.addView(brand)
+        header.addView(TextView(this).apply {
+            text = "v" + BuildConfig.VERSION_NAME
+            textSize = 11f
+            setTextColor(Color.parseColor("#91A0B8"))
+            gravity = Gravity.CENTER
+            background = rounded("#172238", 12)
+            setPadding(dp(10), dp(7), dp(10), dp(7))
+        }, LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
+            gravity = Gravity.CENTER_VERTICAL
+            marginStart = dp(8)
+        })
+        page.addView(header, margin(bottom = 28))
+        page.addView(text("Твой интернет.\nБез лишних сложностей.", 27, "#F4F7FB", true))
+        page.addView(text("Подберём доступный публичный сервер и проверим реальное соединение.", 14, "#9EABC0"), margin(top = 9, bottom = 22))
 
-        val statusCard = card()
-        statusCard.addView(text("СОСТОЯНИЕ", 11, "#7D8AA3", true))
-        statusTitle = text("Загружаю список серверов…", 21, "#F4F7FB", true)
-        statusDetail = text("Получаю проверенные конфигурации FreeWave.", 13, "#A8B2C4")
-        statusCard.addView(statusTitle, margin(top = 12))
-        statusCard.addView(statusDetail, margin(top = 6))
+        val statusCard = card().apply {
+            setPadding(dp(20), dp(22), dp(20), dp(20))
+            background = rounded("#121E33", 26, "#263B55")
+        }
+        val statusRow = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
+        }
+        statusRow.addView(text("СОЕДИНЕНИЕ", 11, "#91A0B8", true))
+        statusRow.addView(TextView(this).apply {
+            text = "● БЕСПЛАТНО"
+            textSize = 10f
+            setTextColor(Color.parseColor("#55D6BE"))
+            gravity = Gravity.CENTER
+            background = rounded("#173A3A", 20)
+            setPadding(dp(10), dp(6), dp(10), dp(6))
+        }, LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
+            gravity = Gravity.END
+            weight = 1f
+        })
+        statusCard.addView(statusRow)
+        statusTitle = text("Загружаю серверы…", 23, "#F4F7FB", true)
+        statusDetail = text("Получаю свежий список доступных узлов.", 13, "#9EABC0")
+        statusCard.addView(statusTitle, margin(top = 18))
+        statusCard.addView(statusDetail, margin(top = 7))
         connectButton = Button(this).apply {
-            text = "Подключиться автоматически"
+            text = "Подключиться"
             isAllCaps = false
-            textSize = 15f
-            setTextColor(Color.rgb(8, 25, 28))
+            textSize = 16f
+            typeface = Typeface.DEFAULT_BOLD
+            setTextColor(Color.rgb(7, 24, 27))
             background = rounded("#55D6BE", 18)
+            minHeight = dp(56)
             setOnClickListener { if (connected) disconnect() else requestVpnPermission() }
         }
-        statusCard.addView(connectButton, margin(top = 22, bottom = 8))
+        statusCard.addView(connectButton, margin(top = 22))
         page.addView(statusCard, margin(bottom = 16))
 
         val serverCard = card()
-        serverCard.addView(text("ВЫБОР СЕРВЕРА", 11, "#7D8AA3", true))
-        serverText = text("Автоматически · лучший доступный", 16, "#F4F7FB", true)
-        countText = text("Список ещё загружается", 13, "#A8B2C4")
-        serverCard.addView(serverText, margin(top = 10))
+        val serverHeader = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
+        }
+        serverHeader.addView(text("СЕРВЕР", 11, "#91A0B8", true))
+        serverHeader.addView(TextView(this).apply {
+            text = "АВТОВЫБОР"
+            textSize = 9f
+            setTextColor(Color.parseColor("#55D6BE"))
+            gravity = Gravity.CENTER
+            background = rounded("#173A3A", 20)
+            setPadding(dp(9), dp(5), dp(9), dp(5))
+        }, LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
+            gravity = Gravity.END
+            weight = 1f
+        })
+        serverCard.addView(serverHeader)
+        serverText = text("Лучший доступный", 17, "#F4F7FB", true)
+        countText = text("Список серверов загружается…", 12, "#9EABC0")
+        serverCard.addView(serverText, margin(top = 13))
         serverCard.addView(countText, margin(top = 5))
-        val actions = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL; gravity = Gravity.CENTER_VERTICAL }
-        refreshButton = smallButton("Обновить") { loadNodes() }
-        chooseButton = smallButton("Серверы") { showServerPicker() }
-        actions.addView(refreshButton, LinearLayout.LayoutParams(0, dp(48), 1f).apply { marginEnd = dp(6) })
-        actions.addView(chooseButton, LinearLayout.LayoutParams(0, dp(48), 1f).apply { marginStart = dp(6) })
+        val actions = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL }
+        refreshButton = smallButton("Обновить список") { loadNodes() }
+        chooseButton = smallButton("Выбрать сервер") { showServerPicker() }
+        actions.addView(refreshButton, LinearLayout.LayoutParams(0, dp(48), 1f).apply { marginEnd = dp(5) })
+        actions.addView(chooseButton, LinearLayout.LayoutParams(0, dp(48), 1f).apply { marginStart = dp(5) })
         serverCard.addView(actions, margin(top = 16))
         page.addView(serverCard, margin(bottom = 16))
 
-        val infoCard = card()
-        infoCard.addView(text("КАК РАБОТАЕТ АВТОРЕЖИМ", 11, "#7D8AA3", true))
-        infoCard.addView(text("FreeWave проверяет узлы по очереди через настоящий HTTPS-запрос. Если сервер не пропускает интернет, приложение пробует следующий.", 13, "#C1CAD8"), margin(top = 10))
-        page.addView(infoCard, margin(bottom = 16))
-        page.addView(text("Используются публичные серверы третьих лиц. Они могут отключаться и не гарантируют приватность. Не передавай через них пароли, банковские данные и другую чувствительную информацию.", 12, "#77839A"), margin(top = 4))
-        page.addView(text("FreeWave VPN · " + BuildConfig.VERSION_NAME + " · sing-box", 11, "#59657B"), margin(top = 18))
+        val explainCard = card()
+        explainCard.addView(text("КАК ЭТО РАБОТАЕТ", 11, "#91A0B8", true))
+        explainCard.addView(text("1. Получаем список публичных VLESS-серверов.\n2. Проверяем каждый кандидат через VPN-туннель.\n3. Подключаемся к первому узлу, который действительно пропускает интернет.", 13, "#C4CEDD"), margin(top = 12))
+        page.addView(explainCard, margin(bottom = 14))
+        page.addView(text("Важно: серверы принадлежат третьим лицам. Они могут отключаться, быть медленными или ненадёжными. Не используй их для банковских операций, паролей и чувствительных данных. FreeWave не гарантирует анонимность или удаление рекламы в YouTube.", 11, "#75839A"))
+        page.addView(text("FreeWave VPN · sing-box", 11, "#56647B"), margin(top = 18))
     }
 
     private fun loadNodes() {
