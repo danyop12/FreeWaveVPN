@@ -14,6 +14,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
@@ -37,6 +38,8 @@ class MainActivity : Activity() {
     private var preferredNode: Node? = null
     private var connecting = false
     private var connected = false
+    @Volatile private var coreReady = false
+    @Volatile private var coreFailure: String? = null
     private lateinit var statusTitle: TextView
     private lateinit var statusDetail: TextView
     private lateinit var serverText: TextView
@@ -49,12 +52,25 @@ class MainActivity : Activity() {
         override fun onReceive(context: Context?, intent: Intent?) {
             val state = intent?.getStringExtra(FreeWaveVpnService.EXTRA_STATE).orEmpty()
             val message = intent?.getStringExtra(FreeWaveVpnService.EXTRA_MESSAGE).orEmpty()
-            if (state == "ERROR") runOnUiThread {
-                if (connecting) {
-                    statusTitle.text = "Ошибка VPN-ядра"
-                    statusDetail.text = message
-                    connectButton.isEnabled = true
-                    connecting = false
+            when (state) {
+                "CORE_STARTED" -> {
+                    coreReady = true
+                    runOnUiThread {
+                        if (connecting) {
+                            statusTitle.text = "Ядро запущено · проверяю интернет"
+                            statusDetail.text = "Проверяю HTTPS через VPN-туннель…"
+                        }
+                    }
+                }
+                "ERROR" -> {
+                    coreFailure = message.ifBlank { "Ядро остановило подключение без подробной причины" }
+                    coreReady = false
+                    runOnUiThread {
+                        if (connecting) {
+                            statusTitle.text = "Этот сервер не запустился"
+                            statusDetail.text = coreFailure
+                        }
+                    }
                 }
             }
         }
@@ -91,8 +107,25 @@ class MainActivity : Activity() {
         }
         val scroll = ScrollView(this).apply { isFillViewport = true; addView(page) }
         setContentView(scroll)
-        page.addView(text("FREEWAVE", 13, "#55D6BE", true))
-        page.addView(text("VPN без лишних настроек", 25, "#F4F7FB", true), margin(top = 7))
+        val brand = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
+        }
+        val brandIcon = ImageView(this).apply {
+            setImageResource(R.drawable.ic_launcher_foreground)
+            scaleType = ImageView.ScaleType.FIT_CENTER
+            contentDescription = "FreeWave VPN"
+            layoutParams = LinearLayout.LayoutParams(dp(52), dp(52))
+        }
+        val brandText = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            addView(text("FREEWAVE VPN", 16, "#55D6BE", true))
+            addView(text("Личный VPN-клиент", 12, "#A8B2C4"), margin(top = 3))
+        }
+        brand.addView(brandIcon, LinearLayout.LayoutParams(dp(52), dp(52)).apply { marginEnd = dp(12) })
+        brand.addView(brandText)
+        page.addView(brand, margin(bottom = 18))
+        page.addView(text("VPN без лишних настроек", 25, "#F4F7FB", true), margin(top = 2))
         page.addView(text("Автоматически ищет сервер, через который действительно открываются сайты.", 14, "#A8B2C4"), margin(top = 8, bottom = 24))
 
         val statusCard = card()
@@ -131,7 +164,7 @@ class MainActivity : Activity() {
         infoCard.addView(text("FreeWave проверяет узлы по очереди через настоящий HTTPS-запрос. Если сервер не пропускает интернет, приложение пробует следующий.", 13, "#C1CAD8"), margin(top = 10))
         page.addView(infoCard, margin(bottom = 16))
         page.addView(text("Используются публичные серверы третьих лиц. Они могут отключаться и не гарантируют приватность. Не передавай через них пароли, банковские данные и другую чувствительную информацию.", 12, "#77839A"), margin(top = 4))
-        page.addView(text("FreeWave VPN · 0.1.0 · sing-box", 11, "#59657B"), margin(top = 18))
+        page.addView(text("FreeWave VPN · " + BuildConfig.VERSION_NAME + " · sing-box", 11, "#59657B"), margin(top = 18))
     }
 
     private fun loadNodes() {
@@ -216,25 +249,50 @@ class MainActivity : Activity() {
 
     private fun beginAutoConnect() {
         if (connecting) return
+        if (nodes.isEmpty()) {
+            loadNodes()
+            return
+        }
         connecting = true
         connected = false
+        coreReady = false
+        coreFailure = null
         connectButton.isEnabled = false
         statusTitle.text = "Ищу рабочий сервер…"
-        statusDetail.text = "Проверяю реальные HTTPS-запросы, а не только ping."
-        val candidates = (preferredNode?.let { selected ->
+        statusDetail.text = "Проверяю до " + MAX_NODES + " конфигураций и жду фактического запуска sing-box."
+        val orderedCandidates = preferredNode?.let { selected ->
             listOf(selected) + nodes.filterNot { it.uri == selected.uri }
-        } ?: nodes).take(8)
+        } ?: nodes
+        val candidates = orderedCandidates.take(MAX_NODES)
         executor.execute {
             var working: Node? = null
+            var lastFailure = "Не получен ответ от VPN-ядра"
+            var tested = 0
             for ((index, node) in candidates.withIndex()) {
+                if (Thread.currentThread().isInterrupted) break
+                tested = index + 1
+                coreReady = false
+                coreFailure = null
                 runOnUiThread {
-                    statusTitle.text = "Проверяю сервер " + (index + 1) + " из " + candidates.size
-                    statusDetail.text = node.name
+                    statusTitle.text = "Проверяю сервер $tested из " + candidates.size
+                    statusDetail.text = node.name + " · " + node.host + ":" + node.port
                 }
-                startNode(node.uri)
-                if (waitForInternet()) { working = node; break }
+                try {
+                    startNode(node.uri)
+                    if (waitForCoreReady(7000)) {
+                        if (waitForInternet()) {
+                            working = node
+                            break
+                        }
+                        lastFailure = "Ядро запустилось, но HTTPS через туннель не ответил"
+                    } else {
+                        lastFailure = coreFailure ?: "Ядро не подтвердило запуск за 7 секунд"
+                    }
+                } catch (error: Exception) {
+                    lastFailure = error.message?.take(140) ?: "Ошибка запуска сервиса"
+                }
                 stopNode()
-                try { Thread.sleep(350) } catch (_: InterruptedException) { break }
+                try { Thread.sleep(650) } catch (_: InterruptedException) { break }
             }
             runOnUiThread {
                 connecting = false
@@ -248,8 +306,9 @@ class MainActivity : Activity() {
                     connectButton.text = "Отключить VPN"
                 } else {
                     connected = false
-                    statusTitle.text = "Не найден рабочий сервер"
-                    statusDetail.text = "Проверено " + candidates.size + " узлов. Обнови список и попробуй ещё раз."
+                    statusTitle.text = "Не удалось подключиться"
+                    statusDetail.text = "Проверено $tested из " + candidates.size +
+                        " серверов. Последняя причина: " + lastFailure
                     connectButton.text = "Повторить поиск"
                 }
             }
@@ -265,25 +324,41 @@ class MainActivity : Activity() {
     private fun stopNode() {
         startService(Intent(this, FreeWaveVpnService::class.java).setAction(FreeWaveVpnService.ACTION_STOP))
     }
+    private fun waitForCoreReady(timeoutMs: Long): Boolean {
+        val deadline = System.currentTimeMillis() + timeoutMs
+        while (System.currentTimeMillis() < deadline && !Thread.currentThread().isInterrupted) {
+            if (coreReady) return true
+            if (coreFailure != null) return false
+            try { Thread.sleep(100) } catch (_: InterruptedException) { return false }
+        }
+        return coreReady
+    }
+
     private fun waitForInternet(): Boolean {
-        try { Thread.sleep(450) } catch (_: InterruptedException) { return false }
+        try { Thread.sleep(350) } catch (_: InterruptedException) { return false }
         repeat(2) { attempt ->
             if (Thread.currentThread().isInterrupted) return false
             if (probeThroughTunnel()) return true
             if (attempt == 0) {
-                try { Thread.sleep(350) } catch (_: InterruptedException) { return false }
+                try { Thread.sleep(500) } catch (_: InterruptedException) { return false }
             }
         }
         return false
     }
+
     private fun probeThroughTunnel(): Boolean {
         val proxy = Proxy(Proxy.Type.SOCKS, InetSocketAddress("127.0.0.1", 2080))
-        for (address in listOf("https://www.gstatic.com/generate_204", "https://example.com/")) {
+        val addresses = listOf(
+            "https://www.gstatic.com/generate_204",
+            "https://cp.cloudflare.com/generate_204",
+            "https://example.com/"
+        )
+        for (address in addresses) {
             var connection: HttpURLConnection? = null
             try {
                 connection = URL(address).openConnection(proxy) as HttpURLConnection
-                connection.connectTimeout = 1600
-                connection.readTimeout = 1600
+                connection.connectTimeout = 2800
+                connection.readTimeout = 2800
                 connection.instanceFollowRedirects = false
                 if (connection.responseCode in 200..399) return true
             } catch (_: Exception) {
