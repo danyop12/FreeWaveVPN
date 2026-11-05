@@ -31,7 +31,7 @@ class MainActivity : Activity() {
     companion object {
         private const val VPN_REQUEST = 4107
         private const val BASE_URL = "https://raw.githubusercontent.com/danyop12/FreeWaveVPN/main/public/"
-        private const val MAX_NODES = 25
+        private const val MAX_NODES = 50
     }
     private val executor = Executors.newSingleThreadExecutor()
     private var nodes: List<Node> = emptyList()
@@ -78,6 +78,14 @@ class MainActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        preferredNode = getSharedPreferences("freewave", MODE_PRIVATE)
+            .getString("preferred_uri", null)?.let { saved ->
+                runCatching {
+                    val parsed = android.net.Uri.parse(saved)
+                    Node(saved, parsed.fragment?.ifBlank { null } ?: parsed.host.orEmpty(),
+                        parsed.host.orEmpty(), parsed.port.takeIf { it > 0 } ?: 443)
+                }.getOrNull()
+            }
         buildInterface()
         loadNodes()
     }
@@ -180,6 +188,7 @@ class MainActivity : Activity() {
                     else nodes.size.toString() + " серверов в списке · проверим на этом телефоне"
                 if (preferredNode != null && nodes.none { it.uri == preferredNode?.uri }) {
                     preferredNode = null
+                    getSharedPreferences("freewave", MODE_PRIVATE).edit().remove("preferred_uri").apply()
                     serverText.text = "Автоматически · лучший доступный"
                 }
                 refreshButton.isEnabled = true
@@ -193,10 +202,12 @@ class MainActivity : Activity() {
         }
     }
     private fun fetchNodes(): List<Node> {
-        val fast = downloadFeed("freewave-fast.txt")
-        val text = if (fast.isNotBlank()) fast else downloadFeed("freewave-vless.txt")
+        // Merge feeds: fast/europe/best are preferred, full feed is fallback.
+        val feeds = listOf("freewave-fast.txt", "freewave-eu.txt", "freewave-best.txt", "freewave-vless.txt")
         val result = linkedMapOf<String, Node>()
-        for (line in text.lineSequence()) {
+        for (feed in feeds) {
+            val text = downloadFeed(feed)
+            for (line in text.lineSequence()) {
             val raw = line.trim()
             if (!raw.startsWith("vless://") || raw.length > 16384) continue
             runCatching {
@@ -205,6 +216,8 @@ class MainActivity : Activity() {
                 val port = uri.port.takeIf { it > 0 } ?: 443
                 val name = uri.fragment?.takeIf { it.isNotBlank() } ?: host
                 result.putIfAbsent(raw, Node(raw, name, host, port))
+            }
+                if (result.size >= MAX_NODES) break
             }
             if (result.size >= MAX_NODES) break
         }
@@ -306,6 +319,8 @@ class MainActivity : Activity() {
                 if (working != null) {
                     connected = true
                     preferredNode = working
+                    getSharedPreferences("freewave", MODE_PRIVATE).edit()
+                        .putString("preferred_uri", working!!.uri).apply()
                     serverText.text = working!!.name
                     statusTitle.text = "Подключено"
                     statusDetail.text = "HTTPS-проверка прошла через " + working!!.host
@@ -473,6 +488,8 @@ class MainActivity : Activity() {
                     serverText.text = "Автоматически · лучший доступный"
                 } else {
                     preferredNode = nodes[which - 1]
+                    getSharedPreferences("freewave", MODE_PRIVATE).edit()
+                        .putString("preferred_uri", preferredNode?.uri).apply()
                     serverText.text = preferredNode?.name ?: "Автоматически"
                 }
             }.setNegativeButton("Закрыть", null).show()
