@@ -223,7 +223,7 @@ class MainActivity : Activity() {
         statusDetail.text = "Проверяю реальные HTTPS-запросы, а не только ping."
         val candidates = (preferredNode?.let { selected ->
             listOf(selected) + nodes.filterNot { it.uri == selected.uri }
-        } ?: nodes).take(10)
+        } ?: nodes).take(8)
         executor.execute {
             var working: Node? = null
             for ((index, node) in candidates.withIndex()) {
@@ -234,7 +234,7 @@ class MainActivity : Activity() {
                 startNode(node.uri)
                 if (waitForInternet()) { working = node; break }
                 stopNode()
-                try { Thread.sleep(900) } catch (_: InterruptedException) { break }
+                try { Thread.sleep(350) } catch (_: InterruptedException) { break }
             }
             runOnUiThread {
                 connecting = false
@@ -266,10 +266,13 @@ class MainActivity : Activity() {
         startService(Intent(this, FreeWaveVpnService::class.java).setAction(FreeWaveVpnService.ACTION_STOP))
     }
     private fun waitForInternet(): Boolean {
-        repeat(10) {
+        try { Thread.sleep(450) } catch (_: InterruptedException) { return false }
+        repeat(2) { attempt ->
             if (Thread.currentThread().isInterrupted) return false
             if (probeThroughTunnel()) return true
-            try { Thread.sleep(900) } catch (_: InterruptedException) { return false }
+            if (attempt == 0) {
+                try { Thread.sleep(350) } catch (_: InterruptedException) { return false }
+            }
         }
         return false
     }
@@ -279,8 +282,8 @@ class MainActivity : Activity() {
             var connection: HttpURLConnection? = null
             try {
                 connection = URL(address).openConnection(proxy) as HttpURLConnection
-                connection.connectTimeout = 3000
-                connection.readTimeout = 3000
+                connection.connectTimeout = 1600
+                connection.readTimeout = 1600
                 connection.instanceFollowRedirects = false
                 if (connection.responseCode in 200..399) return true
             } catch (_: Exception) {
