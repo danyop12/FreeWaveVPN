@@ -248,24 +248,40 @@ class MainActivity : Activity() {
         }
     }
     private fun fetchNodes(): List<Node> {
-        // Merge feeds: fast/europe/best are preferred, full feed is fallback.
-        val feeds = listOf("freewave-fast.txt", "freewave-eu.txt", "freewave-best.txt", "freewave-vless.txt")
+        // Read every feed before applying the cap. The previous early break
+        // stopped after fast + EU and never reached best/full fallback feeds.
+        val feedNames = listOf(
+            "freewave-fast.txt",
+            "freewave-eu.txt",
+            "freewave-best.txt",
+            "freewave-vless.txt"
+        )
+        val parsedFeeds = feedNames.map { feed ->
+            val parsed = linkedMapOf<String, Node>()
+            val body = runCatching { downloadFeed(feed) }.getOrDefault("")
+            for (line in body.lineSequence()) {
+                val raw = line.trim()
+                if (!raw.startsWith("vless://") || raw.length > 16384) continue
+                runCatching {
+                    val uri = android.net.Uri.parse(raw)
+                    val host = uri.host ?: return@runCatching
+                    val port = uri.port.takeIf { it in 1..65535 } ?: 443
+                    val name = uri.fragment?.takeIf { it.isNotBlank() } ?: host
+                    parsed.putIfAbsent(raw, Node(raw, name, host, port))
+                }
+            }
+            parsed.values.toList()
+        }
+
+        // Round-robin sources so the first feed cannot monopolize all slots.
         val result = linkedMapOf<String, Node>()
-        for (feed in feeds) {
-            val text = downloadFeed(feed)
-            for (line in text.lineSequence()) {
-            val raw = line.trim()
-            if (!raw.startsWith("vless://") || raw.length > 16384) continue
-            runCatching {
-                val uri = android.net.Uri.parse(raw)
-                val host = uri.host ?: return@runCatching
-                val port = uri.port.takeIf { it > 0 } ?: 443
-                val name = uri.fragment?.takeIf { it.isNotBlank() } ?: host
-                result.putIfAbsent(raw, Node(raw, name, host, port))
+        val maxRows = parsedFeeds.maxOfOrNull { it.size } ?: 0
+        for (row in 0 until maxRows) {
+            for (feed in parsedFeeds) {
+                val node = feed.getOrNull(row) ?: continue
+                result.putIfAbsent(node.uri, node)
+                if (result.size >= MAX_NODES) return result.values.toList()
             }
-                if (result.size >= MAX_NODES) break
-            }
-            if (result.size >= MAX_NODES) break
         }
         return result.values.toList()
     }
