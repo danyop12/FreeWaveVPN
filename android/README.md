@@ -1,8 +1,15 @@
 # FreeWave VPN for Android
 
-Current Android app version: **0.2.2**.
+Current Android app version: **0.2.3**.
 
 Native Android client for FreeWave's public VLESS feeds. The app is free to use and does not require a subscription or a paid FreeWave server.
+
+## 0.2.3 — Interleaved public feed discovery
+
+- Downloads all four configured public feeds before applying the candidate limit.
+- Interleaves candidates across fast, EU, best and full feeds so the first feed cannot consume all 50 slots.
+- Fixes the previous early-exit behavior that could prevent the best/full feed from being read at all.
+- This broadens candidate coverage; it does not guarantee that public nodes are alive or trustworthy.
 
 ## 0.2.2 — Real HTTPS verification through VLESS
 
