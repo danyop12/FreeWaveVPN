@@ -112,7 +112,9 @@ object FreeWaveConfigBuilder {
                 .put(outbound)
                 .put(JSONObject().put("type", "direct").put("tag", "direct")))
             .put("route", JSONObject()
-                .put("auto_detect_interface", true)
+                // Android routes protected sockets through VpnService.protect(fd).
+                // auto_detect_interface is not supported on Android and can bind
+                // proxy sockets to an invalid interface, breaking every outbound.
                 .put("rules", JSONArray().put(JSONObject()
                     .put("protocol", "dns")
                     .put("action", "hijack-dns")))
