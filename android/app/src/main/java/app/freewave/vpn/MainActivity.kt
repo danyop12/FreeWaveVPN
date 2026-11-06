@@ -3,6 +3,7 @@ package app.freewave.vpn
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.BroadcastReceiver
+import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
@@ -14,6 +15,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ScrollView
@@ -213,6 +215,7 @@ class MainActivity : Activity() {
         actions.addView(refreshButton, LinearLayout.LayoutParams(0, dp(48), 1f).apply { marginEnd = dp(5) })
         actions.addView(chooseButton, LinearLayout.LayoutParams(0, dp(48), 1f).apply { marginStart = dp(5) })
         serverCard.addView(actions, margin(top = 16))
+        serverCard.addView(smallButton("Импортировать VLESS из буфера") { showImportDialog() }, margin(top = 9))
         page.addView(serverCard, margin(bottom = 16))
 
         val explainCard = card()
@@ -224,14 +227,36 @@ class MainActivity : Activity() {
     }
 
     private fun loadNodes() {
+        val prefs = getSharedPreferences("freewave", MODE_PRIVATE)
+        val cached = prefs.getString("cached_nodes", "").orEmpty()
+            .lineSequence().mapNotNull(::parseNodeUri).toList()
+        val custom = prefs.getStringSet("custom_nodes", emptySet()).orEmpty()
+            .mapNotNull(::parseNodeUri)
+        if (cached.isNotEmpty() || custom.isNotEmpty()) {
+            nodes = (cached + custom).distinctBy { it.uri }
+            countText.text = "${nodes.size} серверов · сохранённый список"
+            chooseButton.isEnabled = true
+            if (!connecting && !connected) {
+                statusTitle.text = "Список готов"
+                statusDetail.text = "Использую сохранённые серверы, пока обновляю каталог."
+            }
+        }
         refreshButton.isEnabled = false
-        chooseButton.isEnabled = false
-        statusTitle.text = "Обновляю список…"
-        statusDetail.text = "Загружаю свежие серверы FreeWave."
+        chooseButton.isEnabled = nodes.isNotEmpty()
+        if (cached.isEmpty() && custom.isEmpty()) {
+            statusTitle.text = "Обновляю список…"
+            statusDetail.text = "Загружаю свежие серверы FreeWave."
+        }
         executor.execute {
             val downloaded = runCatching { fetchNodes() }.getOrDefault(emptyList())
             runOnUiThread {
-                nodes = downloaded
+                val latestCustom = getSharedPreferences("freewave", MODE_PRIVATE)
+                    .getStringSet("custom_nodes", emptySet()).orEmpty().mapNotNull(::parseNodeUri)
+                nodes = (downloaded + latestCustom).distinctBy { it.uri }
+                if (downloaded.isNotEmpty()) {
+                    getSharedPreferences("freewave", MODE_PRIVATE).edit()
+                        .putString("cached_nodes", downloaded.joinToString("\n") { it.uri }).apply()
+                }
                 countText.text = if (nodes.isEmpty()) "Рабочих конфигураций пока не найдено"
                     else nodes.size.toString() + " серверов в списке · проверим на этом телефоне"
                 if (preferredNode != null && nodes.none { it.uri == preferredNode?.uri }) {
@@ -305,6 +330,56 @@ class MainActivity : Activity() {
             }
             return output.toString()
         } finally { connection.disconnect() }
+    }
+
+    private fun parseNodeUri(rawValue: String): Node? {
+        val raw = rawValue.trim()
+        if (!raw.startsWith("vless://") || raw.length > 16384) return null
+        return runCatching {
+            val parsed = android.net.Uri.parse(raw)
+            val host = parsed.host ?: return@runCatching null
+            val port = parsed.port.takeIf { it in 1..65535 } ?: 443
+            val name = parsed.fragment?.takeIf { it.isNotBlank() } ?: host
+            Node(raw, name, host, port)
+        }.getOrNull()
+    }
+
+    private fun showImportDialog() {
+        val clipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+        val pasted = runCatching {
+            clipboard.primaryClip?.getItemAt(0)?.coerceToText(this)?.toString().orEmpty()
+        }.getOrDefault("")
+        val field = EditText(this).apply {
+            hint = "vless://…"
+            minLines = 2
+            setText(pasted.takeIf { it.trim().startsWith("vless://") }.orEmpty())
+        }
+        val wrapper = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(dp(20), dp(8), dp(20), 0)
+            addView(field)
+        }
+        AlertDialog.Builder(this).setTitle("Импорт VLESS")
+            .setMessage("Вставь ссылку из буфера или введи её вручную.")
+            .setView(wrapper)
+            .setPositiveButton("Добавить") { _, _ ->
+                val node = parseNodeUri(field.text.toString())
+                if (node == null) {
+                    statusDetail.text = "Не удалось прочитать ссылку. Нужна корректная vless:// конфигурация."
+                } else {
+                    val prefs = getSharedPreferences("freewave", MODE_PRIVATE)
+                    val custom = prefs.getStringSet("custom_nodes", emptySet()).orEmpty().toMutableSet()
+                    custom.add(node.uri)
+                    prefs.edit().putStringSet("custom_nodes", custom)
+                        .putString("preferred_uri", node.uri).apply()
+                    nodes = (listOf(node) + nodes).distinctBy { it.uri }
+                    preferredNode = node
+                    serverText.text = node.name
+                    countText.text = "${nodes.size} серверов · добавлен свой сервер"
+                    chooseButton.isEnabled = true
+                    statusDetail.text = "Сервер добавлен и выбран. Нажми «Подключиться» для проверки."
+                }
+            }.setNegativeButton("Отмена", null).show()
     }
 
     private fun requestVpnPermission() {
