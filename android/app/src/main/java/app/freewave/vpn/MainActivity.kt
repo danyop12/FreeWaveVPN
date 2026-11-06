@@ -595,21 +595,41 @@ class MainActivity : Activity() {
         statusDetail.text = "VPN-туннель остановлен."
     }
     private fun showServerPicker() {
+        val prefs = getSharedPreferences("freewave", MODE_PRIVATE)
+        val favorites = prefs.getStringSet("favorite_uris", emptySet()).orEmpty()
+        val sorted = nodes.sortedWith(compareByDescending<Node> { it.uri in favorites }
+            .thenBy { it.latencyMs ?: Long.MAX_VALUE })
         val options = arrayListOf("Автоматически · рейтинг FreeWave")
-        options.addAll(nodes.map { node -> node.name + " · " + node.host + (node.latencyMs?.let { " · $it мс" } ?: " · не проверен") })
-        AlertDialog.Builder(this).setTitle("Выбрать сервер")
+        options.addAll(sorted.map { node ->
+            (if (node.uri in favorites) "★ " else "") + node.name + " · " + node.host +
+                (node.latencyMs?.let { " · $it мс" } ?: " · не проверен")
+        })
+        AlertDialog.Builder(this).setTitle("Серверы")
             .setItems(options.toTypedArray()) { _, which ->
                 if (which == 0) {
                     preferredNode = null
-                    getSharedPreferences("freewave", MODE_PRIVATE).edit().remove("preferred_uri").apply()
+                    prefs.edit().remove("preferred_uri").apply()
                     serverText.text = "Автоматически · лучший доступный"
                 } else {
-                    preferredNode = nodes[which - 1]
-                    getSharedPreferences("freewave", MODE_PRIVATE).edit()
-                        .putString("preferred_uri", preferredNode?.uri).apply()
+                    preferredNode = sorted[which - 1]
+                    prefs.edit().putString("preferred_uri", preferredNode?.uri).apply()
                     serverText.text = preferredNode?.name ?: "Автоматически"
                 }
-            }.setNegativeButton("Закрыть", null).show()
+            }.setNeutralButton("Избранное") { _, _ -> showFavoritesDialog(sorted) }
+            .setNegativeButton("Закрыть", null).show()
+    }
+
+    private fun showFavoritesDialog(source: List<Node>) {
+        val prefs = getSharedPreferences("freewave", MODE_PRIVATE)
+        val selected = prefs.getStringSet("favorite_uris", emptySet()).orEmpty().toMutableSet()
+        val labels = source.map { node -> node.name + " · " + node.host }.toTypedArray()
+        val checked = source.map { it.uri in selected }.toBooleanArray()
+        AlertDialog.Builder(this).setTitle("Избранные серверы")
+            .setMultiChoiceItems(labels, checked) { _, index, isChecked ->
+                if (isChecked) selected.add(source[index].uri) else selected.remove(source[index].uri)
+                prefs.edit().putStringSet("favorite_uris", selected).apply()
+            }
+            .setPositiveButton("Готово", null).show()
     }
 
     private fun card() = LinearLayout(this).apply {
