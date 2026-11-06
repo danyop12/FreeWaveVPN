@@ -32,6 +32,8 @@ class MainActivity : Activity() {
         private const val VPN_REQUEST = 4107
         private const val BASE_URL = "https://raw.githubusercontent.com/danyop12/FreeWaveVPN/main/public/"
         private const val MAX_NODES = 50
+        private const val MAX_RANK_CANDIDATES = 12
+        private const val MAX_CONNECT_ATTEMPTS = 3
     }
     private val executor = Executors.newSingleThreadExecutor()
     private var nodes: List<Node> = emptyList()
@@ -336,16 +338,17 @@ class MainActivity : Activity() {
         statusTitle.text = "Ищу рабочий сервер…"
         statusDetail.text = "Сначала измерю доступность серверов, затем проверю VPN-туннель."
         val preferred = preferredNode
+        // The feed is pre-ranked server-side. Re-rank only a small shortlist on-device.
         val sourceCandidates = (preferred?.let { selected ->
             listOf(selected) + nodes.filterNot { it.uri == selected.uri }
-        } ?: nodes).take(MAX_NODES)
+        } ?: nodes).take(MAX_RANK_CANDIDATES)
         executor.execute {
             val ranked = rankCandidates(sourceCandidates)
             val orderedCandidates = if (preferred != null) {
                 listOfNotNull(ranked.firstOrNull { it.uri == preferred.uri }) +
                     ranked.filterNot { it.uri == preferred.uri }
             } else ranked
-            val candidates = orderedCandidates
+            val candidates = orderedCandidates.take(MAX_CONNECT_ATTEMPTS)
             runOnUiThread {
                 countText.text = if (ranked.isEmpty()) "Нет доступных TCP-узлов"
                     else "Оценено ${ranked.size} серверов · сначала быстрые"
