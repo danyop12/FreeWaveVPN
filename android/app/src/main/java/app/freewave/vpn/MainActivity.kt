@@ -35,7 +35,7 @@ class MainActivity : Activity() {
         private const val BASE_URL = "https://raw.githubusercontent.com/danyop12/FreeWaveVPN/main/public/"
         private const val MAX_NODES = 50
         private const val MAX_RANK_CANDIDATES = 12
-        private const val MAX_CONNECT_ATTEMPTS = 3
+        private const val MAX_CONNECT_ATTEMPTS = 2
     }
     private val executor = Executors.newSingleThreadExecutor()
     private var nodes: List<Node> = emptyList()
@@ -444,7 +444,7 @@ class MainActivity : Activity() {
                 try {
                     getSharedPreferences("vpn_diagnostics", MODE_PRIVATE).edit().putString("recent", "").apply()
                     startNode(node.uri)
-                    if (waitForCoreReady(7000)) {
+                    if (waitForCoreReady(5000)) {
                         val probeFailure = waitForInternet()
                         if (probeFailure == null) {
                             working = node
@@ -456,7 +456,7 @@ class MainActivity : Activity() {
                             (probeFailure + " | sing-box: " + coreLog.takeLast(420)).take(900)
                         } else probeFailure
                     } else {
-                        lastFailure = coreFailure ?: "Ядро не подтвердило запуск за 7 секунд"
+                        lastFailure = coreFailure ?: "Ядро не подтвердило запуск за 5 секунд"
                     }
                 } catch (error: Exception) {
                     lastFailure = error.message?.take(140) ?: "Ошибка запуска сервиса"
@@ -504,7 +504,7 @@ class MainActivity : Activity() {
                     }.getOrNull()
                     node.copy(latencyMs = latency)
                 }
-            }, 9, java.util.concurrent.TimeUnit.SECONDS)
+            }, 5, java.util.concurrent.TimeUnit.SECONDS)
             return futures.mapNotNull { future ->
                 runCatching { if (future.isDone && !future.isCancelled) future.get() else null }.getOrNull()
             }.sortedWith(compareBy<Node> { it.latencyMs == null }.thenBy { it.latencyMs ?: Long.MAX_VALUE })
@@ -555,8 +555,6 @@ class MainActivity : Activity() {
         val proxy = Proxy(Proxy.Type.SOCKS, InetSocketAddress("127.0.0.1", 2080))
         val addresses = listOf(
             "https://www.gstatic.com/generate_204",
-            "https://www.google.com/generate_204",
-            "https://github.com/robots.txt",
             "https://example.com/"
         )
         val failures = mutableListOf<String>()
@@ -564,8 +562,8 @@ class MainActivity : Activity() {
             var connection: HttpURLConnection? = null
             try {
                 connection = URL(address).openConnection(proxy) as HttpURLConnection
-                connection.connectTimeout = 5000
-                connection.readTimeout = 5000
+                connection.connectTimeout = 3000
+                connection.readTimeout = 3000
                 connection.instanceFollowRedirects = false
                 connection.requestMethod = "GET"
                 connection.setRequestProperty("User-Agent", "FreeWaveVPN-Android/" + BuildConfig.VERSION_NAME)
