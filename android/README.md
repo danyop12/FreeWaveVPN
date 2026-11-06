@@ -1,8 +1,15 @@
 # FreeWave VPN for Android
 
-Current Android app version: **0.2.3**.
+Current Android app version: **0.2.4**.
 
 Native Android client for FreeWave's public VLESS feeds. The app is free to use and does not require a subscription or a paid FreeWave server.
+
+## 0.2.4 — Android outbound routing fix
+
+- Removes `route.auto_detect_interface` from the Android sing-box configuration. This option is documented for Linux, Windows and macOS, not Android.
+- Android outbound proxy sockets are instead protected with the native `VpnService.protect(fd)` callback already implemented by the service.
+- This addresses a shared Android routing misconfiguration that could prevent every otherwise-valid VLESS node from opening outbound connections.
+- Public node availability and credentials still vary; this change does not guarantee that third-party nodes are online.
 
 ## 0.2.3 — Interleaved public feed discovery
 
@@ -63,7 +70,7 @@ The APK is written to `android/app/build/outputs/apk/debug/app-debug.apk`. GitHu
 
 ## Connection checks
 
-The app verifies the local SOCKS listener, then tests TCP connectivity to an external IP and a hostname through the tunnel, followed by HTTPS probes. This is a practical reachability test, not a guarantee that every app or website will work.
+The app verifies the local SOCKS listener and then makes HTTPS requests through it. The Android service protects sing-box outbound sockets with VpnService.protect(fd), avoiding routing loops through the VPN interface. This is a practical reachability test, not a guarantee that every app or website will work.
 
 ## Privacy and limitations
 
