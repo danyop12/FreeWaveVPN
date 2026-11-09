@@ -1,1 +1,1 @@
-vless://e3149c82-00f6-4227-b2c0-b78f1dd81279@172.67.199.126:2053?security=tls&type=ws&path=%2Fws-tesla&host=fast.145779.xyz&packetEncoding=xudp&alpn=http%2F1.1&sni=fast.145779.xyz&fp=chrome#%F0%9F%87%BA%F0%9F%87%B8%20United%20States%2012
+vless://ce18d0eb-5c71-41f9-96e5-1632e22456e4@195.123.240.65:443?flow=xtls-rprx-vision&fp=chrome&path=%2F&pbk=StPbcmBuzpuYUfa4oZ5SI3Bq1OSF_-oU1vp2AcyvQVE&security=reality&sid=19296c9f1bf9c7b1&sni=www.cloudflare.com&type=tcp#vless-1927724275
