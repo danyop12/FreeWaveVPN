@@ -1,1 +1,1 @@
-vless://e9a8144e-5237-488a-afb1-9ca3d8d54c80@108.61.119.63:18580?fp=firefox&security=tls&sni=us007.zestapp778.com&type=raw#vless-1946062464
+vless://e3149c82-00f6-4227-b2c0-b78f1dd81279@172.67.199.126:2053?security=tls&type=ws&path=%2Fws-tesla&host=fast.145779.xyz&packetEncoding=xudp&alpn=http%2F1.1&sni=fast.145779.xyz&fp=chrome#%F0%9F%87%BA%F0%9F%87%B8%20United%20States%2012
