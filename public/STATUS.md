@@ -1,29 +1,29 @@
 # FreeWave VPN status
 
-- Last run: 2026-11-14 22:35:05 UTC
-- TCP candidates: 387
-- Tested through Xray: 387
-- Passed real HTTPS request through VLESS: 252
-- Failed VLESS test: 135
+- Last run: 2026-11-15 06:45:04 UTC
+- TCP candidates: 406
+- Tested through Xray: 406
+- Passed real HTTPS request through VLESS: 209
+- Failed VLESS test: 197
 - Not tested due to limit: 0
-- Nodes confirmed by at least 3 separate HTTPS probes: 252
-- Successful 1024 KiB download tests: 198
+- Nodes confirmed by at least 3 separate HTTPS probes: 209
+- Successful 1024 KiB download tests: 167
 - Nodes geolocated to Albania (AL): 0
 
 ## Top nodes from this GitHub Actions run
 
 | # | Server | Median latency | Jitter (MAD) | Download | History | Score |
 |---:|---|---:|---:|---:|---:|---:|
-| 1 | 195.211.98.43:443 | 93 ms | 1.3 ms | 97.87 Mbps | 4/4 | 0.869 |
-| 2 | 195.211.98.43:443 | 53 ms | 0.9 ms | 25.23 Mbps | new | 0.589 |
-| 3 | 167.17.69.171:443 | 122 ms | 3.1 ms | 30.93 Mbps | 2/2 | 0.452 |
-| 4 | 167.17.69.171:443 | 132 ms | 9.0 ms | 31.83 Mbps | 3/3 | 0.441 |
-| 5 | 167.17.69.171:443 | 115 ms | 1.5 ms | 26.44 Mbps | 5/5 | 0.435 |
-| 6 | 169.40.42.202:443 | 144 ms | 1.2 ms | 29.95 Mbps | 4/4 | 0.428 |
-| 7 | 167.17.69.171:443 | 122 ms | 6.2 ms | 26.70 Mbps | 5/5 | 0.423 |
-| 8 | 167.17.69.171:443 | 133 ms | 18.2 ms | 30.21 Mbps | 3/3 | 0.422 |
-| 9 | 167.17.69.171:443 | 134 ms | 11.1 ms | 29.11 Mbps | 3/3 | 0.421 |
-| 10 | 167.17.69.171:443 | 135 ms | 15.0 ms | 29.55 Mbps | 5/5 | 0.419 |
+| 1 | 185.95.231.156:443 | 56 ms | 1.7 ms | 73.75 Mbps | 2/2 | 0.990 |
+| 2 | 159.89.87.21:28190 | 75 ms | 0.4 ms | 69.65 Mbps | 6/6 | 0.888 |
+| 3 | 159.89.87.21:28190 | 78 ms | 14.9 ms | 72.62 Mbps | 3/3 | 0.879 |
+| 4 | 167.17.69.171:443 | 63 ms | 0.4 ms | 56.33 Mbps | 5/5 | 0.830 |
+| 5 | 185.95.231.156:443 | 57 ms | 1.8 ms | 52.10 Mbps | 2/2 | 0.822 |
+| 6 | 167.17.69.171:443 | 64 ms | 0.7 ms | 51.30 Mbps | 2/2 | 0.788 |
+| 7 | 159.89.87.21:28190 | 58 ms | 2.6 ms | 47.17 Mbps | 4/4 | 0.782 |
+| 8 | 169.40.42.168:443 | 76 ms | 2.8 ms | 54.01 Mbps | 4/4 | 0.766 |
+| 9 | 167.17.69.171:443 | 65 ms | 0.2 ms | 45.01 Mbps | 3/3 | 0.738 |
+| 10 | 169.40.42.35:443 | 70 ms | 0.4 ms | 40.59 Mbps | 2/2 | 0.687 |
 
 ## Subscription files
 
