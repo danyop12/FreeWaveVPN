@@ -1,1 +1,1 @@
-vless://14c80e0e-f7ce-4991-94fc-99a1db4a9b1e@159.89.87.21:28190?flow=xtls-rprx-vision&fp=firefox&pbk=ZJRnFU-1s1JOnO8E9uZ7b00l1fPEh63fGRbdBANFRno&security=reality&sni=aws.amazon.com&type=raw#vless-1853350171
+vless://327b1113-049e-4256-8d72-8815643dbb65@148.135.86.162:10000?security=reality&type=raw&packetEncoding=xudp&sni=addons.mozilla.org&fp=chrome&flow=xtls-rprx-vision&sid=a1b2c3d4&pbk=DCbnS4mIPc1W2-wI0MGHhykwzf2nVuZvBadErSE6MxU&encryption=none#%F0%9F%87%BA%F0%9F%87%B8%20United%20States%2004
