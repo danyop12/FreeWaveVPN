@@ -2,2209 +2,6 @@
   "schema_version": 1,
   "runs": [
     {
-      "generated_at_utc": "2026-11-19 20:48:22 UTC",
-      "tested_count": 366,
-      "validated_count": 212,
-      "nodes": [
-        {
-          "id": "c88122180a871e3636f261e13f40d43c0ed2696e06a12c2bf4b394691448c2b8",
-          "ok": true,
-          "latency_ms": 303.41,
-          "speed_mbps": 15.977
-        },
-        {
-          "id": "2c86632006ef6a0f37e2df0ce7da8c3d7ea0801bd1aaf652c2080fd326a8aa54",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "87ac15e97be4d252810005fed4df3ee7ca5e36fabd21956e6bbcee6b0ac62f39",
-          "ok": true,
-          "latency_ms": 910.3,
-          "speed_mbps": 5.176
-        },
-        {
-          "id": "81ad59f2b94350fa8f5c2cf0c3a646c2fc365192eb8efb22dfbbc688a4448d4d",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "1ddf6807385bb18c8847d9371cad039698194bae30b145d24bdd561aaec00638",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "3d1df26a187b500c9a99aafce5c1438eb3c3af994cf695260b89f60932affdfb",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "9c46a1fa4391b3fe80ab521c58ac3834999af54da35035f86cf069113f05f8d8",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "655eafd795b17c51f6c1699cf705da5569f0138321a2edf512a6cc18321eda76",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "2477f79b43773328421b87b8eea668a43237b3ed15f6151992d7e4c0dedb0695",
-          "ok": true,
-          "latency_ms": 4433.65,
-          "speed_mbps": 1.45
-        },
-        {
-          "id": "58e5d161bf186fa697fbc00105da8f8cac7fa77ba2d098fd2a43d540af557ccd",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "90b0f2d2ae52a4dcda228b939ad2ef2b777e28ac44588c80477f1cba90be46c5",
-          "ok": true,
-          "latency_ms": 3551.08,
-          "speed_mbps": null
-        },
-        {
-          "id": "430537394aed9bc344ab45a734f66aa0a9d0ae29a778404dd18d68b26ccf09ad",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "11371ced385f54ef89122779529f85ece71171eb3b287a7336eba7de1862fdc2",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "a3ed84c326dbf253c46e86c0908a24022817220aaa64878dfd5613d27447d3b2",
-          "ok": true,
-          "latency_ms": 2435.52,
-          "speed_mbps": null
-        },
-        {
-          "id": "fd9d3cbb81a95703930919824e936af9676863c745d337bfe8dbc3a27b50a451",
-          "ok": true,
-          "latency_ms": 5868.88,
-          "speed_mbps": null
-        },
-        {
-          "id": "c00b33d50b6a84b5412cb558f82abc6b63b8cfea8e4a6e0d0b13782d64097234",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "ab94d8ba030101ecacfe38aa816b4ac5eba8141530f978567cb69aac5dd32233",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "9ef02a36dbc9923ff13bf2a87c03ff48c1ee79c0dd0b1273156f1125ed4a0dc6",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "a268dc85d944469564e97d7c34c49f77cfb66020e24a459c77f212582507e4bb",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "16e5f06f354dc20305a808966c37cf8feb7f28ba9b010d4cf837e68ab1a4f35a",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "5f97d2286fdbea43c73ca765515b40eb833507b36b6626869510e8eaa492f36c",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "e3189b635c98272de109b9f0be736d21bec256711e5a3133bf2cdeda15a5c93f",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "8b1ab53b7f7e6d41ce76a4c16669b5898c51089ad49052c5d2c2f63345d542a5",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "ea047d5d3e042df149ce8580048a84301e10571a83966c318f939ea613c9faf2",
-          "ok": true,
-          "latency_ms": 2864.47,
-          "speed_mbps": null
-        },
-        {
-          "id": "3d2847489c54d5a212a74dbff724687aca872225262dba8e0257977adaf3cb6b",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "633e8ff75a99a9724f10467b4e69da842df53bc9fcbe6c3401297db3560ef222",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "1cf9d4716bb7ee340ee832d0e602435c3415e1b2e5f89d2287347679e7cec92f",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "ff0b048aa873e0c864575240de2ef4af1c2e3fbc08a3a0b858e29f41461af843",
-          "ok": true,
-          "latency_ms": 1096.56,
-          "speed_mbps": 3.598
-        },
-        {
-          "id": "e31b59eff0626327d8e7e906fdcabf67c010513c6140856852503c6dcef5c25a",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "4a905011d8c0f03abdf911c8ab6c9a0e058fdbbf86eb10b9ab5e2643194346e7",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "3fd910fbb5cb4f4e3204864b87add942c32152b804e8231330781802058cccf1",
-          "ok": true,
-          "latency_ms": 1089.24,
-          "speed_mbps": 3.714
-        },
-        {
-          "id": "e5b4c233471348d389b6fa96b6b2eccd58a4ca69b64bc466c9d4ce63add597d0",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "865520f28ee59ab3e6a152d341569ebdf2a1c311df840d8aa665061c9bb1f96b",
-          "ok": true,
-          "latency_ms": 1097.36,
-          "speed_mbps": 3.646
-        },
-        {
-          "id": "81f067800573edd67bf19389617242630b7116bffe65638414b05149434caf2b",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "5989ff001cbe8765c2d0328e7f6b1ededb4eec42bf32c684768a8ce636d32fc7",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "03a28eefe20245e4eb963c9816eafe4b7b49588833649959990a26f83390c000",
-          "ok": true,
-          "latency_ms": 1089.59,
-          "speed_mbps": 3.674
-        },
-        {
-          "id": "53b2594185b613e3c4646138de846d9aa8454210e9642a0fe19b6b92ebc75dec",
-          "ok": true,
-          "latency_ms": 291.46,
-          "speed_mbps": 12.335
-        },
-        {
-          "id": "d04dc65c4c58e894fddd882abcc8770b03cda34536b47def7f4442e59104f439",
-          "ok": true,
-          "latency_ms": 2025.85,
-          "speed_mbps": null
-        },
-        {
-          "id": "25531fd77d5b2df8b88bb7221e7011dbfc251179035803904e1757b3094a6424",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "642b2f17adab43eb3310f7fc17c17dde5e94d5038c471c57d8c3690ebcba5c51",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "e8d29a77a0aa4a1196218312e339b32220b53c6559ab641807b36414e8b6bd40",
-          "ok": true,
-          "latency_ms": 2972.39,
-          "speed_mbps": null
-        },
-        {
-          "id": "4cd8ce87182f57eebc2d6183d46037e3a928a3718403a5d9b27ad44733c0b7a7",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "53964d4058d5f8381971e4bc8786b8b0c04a338cb88c63c1c067fc1c193bcdbc",
-          "ok": true,
-          "latency_ms": 4045.7,
-          "speed_mbps": null
-        },
-        {
-          "id": "adfd85cafa9dce2b901c977b4c5eecec3cd14e3e3d3e4263bb20666a61ce45b7",
-          "ok": true,
-          "latency_ms": 398.52,
-          "speed_mbps": 15.693
-        },
-        {
-          "id": "6aab51de82153a9676c536ae7708fc2f9d0f90d1e6728e065fc4cc390b5628d1",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "e8a3c9f811191294757c190051b0035280bee431fe55ab761386e883d29bacc2",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "79bb21078fa5363b4b091d551373582b0094fb6d27c7a0cc6df58fb4c256660e",
-          "ok": true,
-          "latency_ms": 295.93,
-          "speed_mbps": 2.807
-        },
-        {
-          "id": "a1cd14ff69a676da138d4dcf57dde99c772d35fa55f59ae4c5704a869b25933c",
-          "ok": true,
-          "latency_ms": 295.6,
-          "speed_mbps": 15.16
-        },
-        {
-          "id": "6ac08eeb7a8527b2635581f77a1b025bb0c5192ae635ed8da04e850cca1f11d0",
-          "ok": true,
-          "latency_ms": 212.11,
-          "speed_mbps": 17.323
-        },
-        {
-          "id": "e5dfeb6c650d26c5f0c779df8676c052e12dbd1deca21663404c37e7fae0bed8",
-          "ok": true,
-          "latency_ms": 371.97,
-          "speed_mbps": 15.298
-        },
-        {
-          "id": "f07c30b42f8f63fa9f0b4785f8d8b197b1b575a091d85f584b91d7432ac7a853",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "84213f88041f184d533aae302a87ca49d692e09c09230a97b310d5d0588c5621",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "368859eef8fd579a398e59889f86ed65d771e8496bb25f7801ea3f1970e32e85",
-          "ok": true,
-          "latency_ms": 231.51,
-          "speed_mbps": 9.761
-        },
-        {
-          "id": "f97344523c1d93fdb984f8cc538d9911a74210a446221b086bbc0e05215a5f61",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "3463924197203517dc9130bd424207e411256d81a66b4557653736cc4e50aabc",
-          "ok": true,
-          "latency_ms": 1097.88,
-          "speed_mbps": 3.642
-        },
-        {
-          "id": "c41ae3bc46b4c7dd5cffddcee576e446340d01f447b878798493cc75db5d5f83",
-          "ok": true,
-          "latency_ms": 1092.57,
-          "speed_mbps": 3.688
-        },
-        {
-          "id": "27092dddf2aaccf516d70d891d01d2dc0d214c29f79064a3b15360e1f89e5d13",
-          "ok": true,
-          "latency_ms": 1086.86,
-          "speed_mbps": 3.709
-        },
-        {
-          "id": "69a7e9261a71d37e415107f4c1a7c9492e9e47d0af7059445983d69528c53deb",
-          "ok": true,
-          "latency_ms": 260.82,
-          "speed_mbps": 14.456
-        },
-        {
-          "id": "434bff8a71e452ecbf74da0953170f4cef7efe64f6a8f6cb234b9e89f86277a4",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "d14bffe0a2725474451cab057a88c8f81919c0b784d296547c49cad5d220825f",
-          "ok": true,
-          "latency_ms": 1092.8,
-          "speed_mbps": 3.619
-        },
-        {
-          "id": "876963c1edfb75eaaa34b841cb225ae7d5f2dad5412e83b28495662a999cf6e8",
-          "ok": true,
-          "latency_ms": 1759.49,
-          "speed_mbps": null
-        },
-        {
-          "id": "7f4c3c7392fb0f82cb9f89c7dbd66b56cc19db07a325103b5e9250ff6d5caa46",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "f1777676ff099561f368faaaa36abd99fd52480778b6fb1c95d832c4e348dc44",
-          "ok": true,
-          "latency_ms": 1085.49,
-          "speed_mbps": 3.629
-        },
-        {
-          "id": "c6f38fce98424c6f9d5c19104c59414dbe8151f316d79420be10c9b7a3c5c604",
-          "ok": true,
-          "latency_ms": 1089.44,
-          "speed_mbps": 3.59
-        },
-        {
-          "id": "276f644289387fd2b9b82c923acf0e3caa23a9d8644d5921b1385d7ff572eba3",
-          "ok": true,
-          "latency_ms": 364.02,
-          "speed_mbps": 12.326
-        },
-        {
-          "id": "6a6e0b8b5df95781bf943ecd2593af11a58ed6b6cb50d02f372ce2cd0a61e446",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "0822eeccc9f07ad5388d01b23f9f91fc60668ef69f958ddaff7e36c024c8d472",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "54a8799dfdd5b49e7393506deef46c34a485794c70db6c1b430deb86ec50857d",
-          "ok": true,
-          "latency_ms": 3029.28,
-          "speed_mbps": 0.875
-        },
-        {
-          "id": "07b851a31290c69559119f92a262ebbc914bd6d7c1604a01ff3b2a48b4b6c061",
-          "ok": true,
-          "latency_ms": 1102.84,
-          "speed_mbps": 3.611
-        },
-        {
-          "id": "3243a97c52bb27aefccd1334453efeb90513ab5504b0c08ca91825aa5f1d8226",
-          "ok": true,
-          "latency_ms": 358.0,
-          "speed_mbps": 15.129
-        },
-        {
-          "id": "560d736a94f542fdc312a27c740368e13af19da606b159816ca3d89faabdf109",
-          "ok": true,
-          "latency_ms": 4222.41,
-          "speed_mbps": 0.728
-        },
-        {
-          "id": "c2c3aefb932e9bf1bd5c0085e5ad515c22f379edf08cc1f6223730db2378404f",
-          "ok": true,
-          "latency_ms": 360.38,
-          "speed_mbps": 15.28
-        },
-        {
-          "id": "1a20d319dd75b745bd0cfae2aabcfda8041894d610f692fb02b65a29b1214cdd",
-          "ok": true,
-          "latency_ms": 386.03,
-          "speed_mbps": 14.191
-        },
-        {
-          "id": "e65e9ec93f6e1ccaac7358c678d785c20231c6be9af59273b225c8987930d6b2",
-          "ok": true,
-          "latency_ms": 279.53,
-          "speed_mbps": 14.857
-        },
-        {
-          "id": "c67c6c86b9950921e8722e238ee5dc367e40475433f8e6286d1d0bf45ec57a23",
-          "ok": true,
-          "latency_ms": 308.48,
-          "speed_mbps": 12.298
-        },
-        {
-          "id": "f57cf33bb311ba1edc480387224dec86c660b864defd2078d20410e6bce6b3bf",
-          "ok": true,
-          "latency_ms": 189.75,
-          "speed_mbps": 0.661
-        },
-        {
-          "id": "3b6f71f772b08e3f8727a7f0800461091b5846b0ff75bb9825fb82cd9008d893",
-          "ok": true,
-          "latency_ms": 2143.26,
-          "speed_mbps": null
-        },
-        {
-          "id": "b41c2d075493f4f18728228bb12a4591792193041727b9b2bd44a47a8e04b47d",
-          "ok": true,
-          "latency_ms": 219.64,
-          "speed_mbps": 15.234
-        },
-        {
-          "id": "33c3e0b0ea2ad970dc703114e55d3953f72ed66f567856986b8a685a4ffa1736",
-          "ok": true,
-          "latency_ms": 213.92,
-          "speed_mbps": 17.332
-        },
-        {
-          "id": "7dc97c14db089968626c314e65992cee10404f9c0b3247edbf0a1ed5b57366e6",
-          "ok": true,
-          "latency_ms": 218.23,
-          "speed_mbps": 16.768
-        },
-        {
-          "id": "7d411fa8fcaf0b65e6d67a720ac693c42cc58a6336999b5ace90786919f523f8",
-          "ok": true,
-          "latency_ms": 358.37,
-          "speed_mbps": 14.348
-        },
-        {
-          "id": "673a806a52b6440cebc53e728a6a144a5f247bc8af2c5cb5c98093d7535fbded",
-          "ok": true,
-          "latency_ms": 191.85,
-          "speed_mbps": 0.653
-        },
-        {
-          "id": "5f28a3ac903bd3e6fb812d5cf2688fa29bf53eb3fec60ae17eb4236f6d3163e5",
-          "ok": true,
-          "latency_ms": 228.55,
-          "speed_mbps": 16.582
-        },
-        {
-          "id": "ff9a3be65e1b72d7167554e49ab5895b678a4a6a8e35dac8bcd977f76c68a892",
-          "ok": true,
-          "latency_ms": 228.87,
-          "speed_mbps": 15.789
-        },
-        {
-          "id": "b941e68701fc6eb37747a436b48e21ecfcba7867f35c7364175b1ea9c2627fa4",
-          "ok": true,
-          "latency_ms": 220.45,
-          "speed_mbps": 15.805
-        },
-        {
-          "id": "bdc8d58e579fdd682f094068b6d23f7561e9230b87724afd5a247802cd1d18f7",
-          "ok": true,
-          "latency_ms": 215.44,
-          "speed_mbps": 17.699
-        },
-        {
-          "id": "e0a11ea52e70565643da5436db2736b5896a176ba0773dd17add153a9839ea8a",
-          "ok": true,
-          "latency_ms": 373.8,
-          "speed_mbps": 13.115
-        },
-        {
-          "id": "78a527626f01ede4f45eec60e523b90a8f7a8ab6eb9db08595e0b568d2a78742",
-          "ok": true,
-          "latency_ms": 346.44,
-          "speed_mbps": 16.429
-        },
-        {
-          "id": "002bea325054dc570942ebaa53f3addfcdd2704f478330166e3b783ae3fc3f1e",
-          "ok": true,
-          "latency_ms": 384.83,
-          "speed_mbps": 11.208
-        },
-        {
-          "id": "99ad544fd26f3d911c18fd19983ed475225457ae054ce242e1c217d1fa2902cd",
-          "ok": true,
-          "latency_ms": 276.08,
-          "speed_mbps": 1.162
-        },
-        {
-          "id": "d6dd73a64e1b0ebf0836c73fcaf2489f99e3c6e69c113fc56b05f5194affe174",
-          "ok": true,
-          "latency_ms": 1023.62,
-          "speed_mbps": 4.157
-        },
-        {
-          "id": "3504a221bbedb10ef387b0441fbbbe6a41dddb4b01e2f112deb07f1e04e02d58",
-          "ok": true,
-          "latency_ms": 1358.44,
-          "speed_mbps": 12.604
-        },
-        {
-          "id": "5fdbbe3514d85c52456e03418aafa2d9951d5a5a4439e42bf4e351d7faa7aac7",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "3ed1bb71651a225e998a3cebddb6fdf03a492b80745abf4c45645deb5a4426d4",
-          "ok": true,
-          "latency_ms": 266.98,
-          "speed_mbps": 15.584
-        },
-        {
-          "id": "14f4507419b09ace08e72397f706bb711d9b11767c1fdf70c1262b1365afec0b",
-          "ok": true,
-          "latency_ms": 282.61,
-          "speed_mbps": 0.601
-        },
-        {
-          "id": "365606839b226b6bc9cf07226d31fdb4da78ccad76328a3cc3d05a4721b9d881",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "a1ef758620da1101be01269842c983119c4775bd9ef1d0fd45ba93cdf9623d2f",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "69277415ab4749c91ce15917d66081a5301664ec7fe0c12ff3ead9113e1aa791",
-          "ok": true,
-          "latency_ms": 352.35,
-          "speed_mbps": 12.349
-        },
-        {
-          "id": "9a351635fb0db8615bf8ab9631121109b58b6e56c837a87fdb78575da17267cc",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "b36c895de65297d9313fca039651aa0a924d328ffd79872b1f8c21377f6526ee",
-          "ok": true,
-          "latency_ms": 1097.66,
-          "speed_mbps": 3.645
-        },
-        {
-          "id": "69b17005a16a9a92d483bfe55f29da85f79d36151c970fab7991f3266395618c",
-          "ok": true,
-          "latency_ms": 1424.09,
-          "speed_mbps": null
-        },
-        {
-          "id": "7a1cdd5151ee59cb4c5d4cf4779c6bb7eaf10a1a0a291a16972a4a0680a8b739",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "5bd450f2bcb842899c858d3296ba0b7d3e530ca97e51ca67eeebca691adcca7b",
-          "ok": true,
-          "latency_ms": 217.55,
-          "speed_mbps": 17.455
-        },
-        {
-          "id": "3f17513dbeb5d351c74a499d52493a4310589b5d3c5050ad65e75d90b09cf130",
-          "ok": true,
-          "latency_ms": 1086.33,
-          "speed_mbps": 3.653
-        },
-        {
-          "id": "52c23050a2b2bf4de93e6011b3a4aae2f83deb0b81e1b04e9c02774a9cdafc44",
-          "ok": true,
-          "latency_ms": 213.09,
-          "speed_mbps": 18.195
-        },
-        {
-          "id": "6d728ec341d94d24a07c1cdf85a0526d381717b90bb9800a30380340614cb3ad",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "6e5f96a377454bc4bca6425cfe4a9047aeb3a37346627b593198fc6420a4b203",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "7e104d778d5ffc26c5e19f97d27ad0cdf02f01d30fd007492fdb478914ed8040",
-          "ok": true,
-          "latency_ms": 328.7,
-          "speed_mbps": 10.028
-        },
-        {
-          "id": "9934814c61c0f2d86353571d4125cc4ecf893d4ae298608a1b3962d98254bdea",
-          "ok": true,
-          "latency_ms": 281.69,
-          "speed_mbps": 12.343
-        },
-        {
-          "id": "5d31465feee191eb8150e73d3c140ad9fae2b463e7143e171d0122161bf01d6e",
-          "ok": true,
-          "latency_ms": 431.82,
-          "speed_mbps": 10.759
-        },
-        {
-          "id": "cc1e277941da560ce4955faf0647280857c7bd0c5ddd275fe572b7dbdf9faeaa",
-          "ok": true,
-          "latency_ms": 443.02,
-          "speed_mbps": 13.779
-        },
-        {
-          "id": "a2564412c52ee4dfe7ded445d0425f8c76596fe73a4f877a090c53f5ad26aae4",
-          "ok": true,
-          "latency_ms": 441.17,
-          "speed_mbps": 11.416
-        },
-        {
-          "id": "e2979b90234c708954edc45feeed07cae4f9d9d216359505d7ad56ece2c4aaf0",
-          "ok": true,
-          "latency_ms": 332.1,
-          "speed_mbps": 14.242
-        },
-        {
-          "id": "6c3bf0dc9fa35226e9391c805df846f4428e0052c1b018d80247b26abddaa558",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "1c9e09f853f9d8585755a2bb73acc5213fb7b8528e1d976a134617727f3a622d",
-          "ok": true,
-          "latency_ms": 3706.74,
-          "speed_mbps": null
-        },
-        {
-          "id": "0d2802b06c3edd43431d7872f1ef23b48e141b2e9424ab58b9dac1741bb85cfd",
-          "ok": true,
-          "latency_ms": 304.36,
-          "speed_mbps": 11.768
-        },
-        {
-          "id": "515ac1afb5ffa1c6c4b1e1053a452b65652997bb978aa96d115c280dae840b38",
-          "ok": true,
-          "latency_ms": 1040.72,
-          "speed_mbps": 1.65
-        },
-        {
-          "id": "840008b2e24bc872d2aededd169ea6a35e410493a0e694fbaae5561c799fe921",
-          "ok": true,
-          "latency_ms": 365.4,
-          "speed_mbps": 13.557
-        },
-        {
-          "id": "d07a76e6dde8df1cf1ac6904664f6cf807b59d5d98d117e3e4c6438eb5557a73",
-          "ok": true,
-          "latency_ms": 280.07,
-          "speed_mbps": 15.778
-        },
-        {
-          "id": "42b2d7cbfe66cf48b313b460e79d53dd6a821568e48aa9fd92b750127d7d6ede",
-          "ok": true,
-          "latency_ms": 352.86,
-          "speed_mbps": 8.509
-        },
-        {
-          "id": "0b792c80b82dd0d4e43ae1488f2bd6fee200a3f1a097dddbd9fab5f1096ba136",
-          "ok": true,
-          "latency_ms": 310.03,
-          "speed_mbps": 4.731
-        },
-        {
-          "id": "1f963c2b3ff0a4bf5da1045ea2886b93ebe50fb28ca7f63da017726d2082f907",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "33e339626692ffb08e1b40671854342c4f9ea5f583079c82dbdbe72566998ff9",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "95bed6cc2b5a0530860392223b8b0e223eb08546f0191416c70b73dd8f18ab87",
-          "ok": true,
-          "latency_ms": 203.24,
-          "speed_mbps": 0.747
-        },
-        {
-          "id": "def00a53b34580a4cd5d862425f9eb6fb8d3fc2d737347c497a94a5efe083700",
-          "ok": true,
-          "latency_ms": 3269.02,
-          "speed_mbps": null
-        },
-        {
-          "id": "e013c08acbebd73291d4235b798bbe5108a3f5fa875d57e0f83a681069530c24",
-          "ok": true,
-          "latency_ms": 731.54,
-          "speed_mbps": 0.85
-        },
-        {
-          "id": "7271ecb890eb4b69341b682ba7e5f5182ff817aadccaf9311588a4b9cf1a3643",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "5ae4529bcadbb289c5c1d6382dffaec1565f48d17ace346bde60a09da8b7149b",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "cf7f0110162548065a08d5e6290aea0556ccd6e4cd79985c489e68781dff2e61",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "fc956df5d34899f8511ff9804eb9d352392e0e05b387260d2ae6ba3d765b58f7",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "bcade79a4003d9f5dc7acac2f6a4ff571a8d4963da24b20a5c9fb1bf41491a12",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "7b7b34b691888ca7416047de5d3aa671ae0284cb3fc8296cca33ee67b169fdd1",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "0046162e69437affb689635c43e53fd261e691ac73038f49052efac109975ef8",
-          "ok": true,
-          "latency_ms": 353.17,
-          "speed_mbps": 15.423
-        },
-        {
-          "id": "b795db4696f4f4c34b616470e5d5cd2c43980e96641e9531d30be61c8f2671f9",
-          "ok": true,
-          "latency_ms": 481.52,
-          "speed_mbps": 15.043
-        },
-        {
-          "id": "41925b3d7650a8fa22939a251e22cb6ad5a809d95ca835a60308a3e1af4681bb",
-          "ok": true,
-          "latency_ms": 1097.28,
-          "speed_mbps": 3.652
-        },
-        {
-          "id": "009628b58bbce6655eece4201bef8bc35f5e480764e416fe4595399e2c85eb54",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "d4ba07781160d1b8727c15195407687266fe30cee6237e41832eb69d3a7bca46",
-          "ok": true,
-          "latency_ms": 1098.87,
-          "speed_mbps": 3.633
-        },
-        {
-          "id": "e37d5f7f88ea3a72fcb43341359a4247661dd66e4ac87a8223725f35f8bd0105",
-          "ok": true,
-          "latency_ms": 196.46,
-          "speed_mbps": 0.733
-        },
-        {
-          "id": "a47bed111025a72467c41aa1d19385e3273b6ba60295513cd0dd955c80b8c0eb",
-          "ok": true,
-          "latency_ms": 2235.42,
-          "speed_mbps": null
-        },
-        {
-          "id": "53da6fd266c7c5a710f40b0f4c81a5186fc1bd4f995692b7604d61a64e23e6a9",
-          "ok": true,
-          "latency_ms": 347.77,
-          "speed_mbps": 3.86
-        },
-        {
-          "id": "9adb39ad9cd16c9fb6fc91f53c0b143909058eb434c10646855b6cd38fcde051",
-          "ok": true,
-          "latency_ms": 252.45,
-          "speed_mbps": 8.58
-        },
-        {
-          "id": "a6693bb2678ec09dcfb3f3f91fed7e152549d8457971a4a8caefc642921993dd",
-          "ok": true,
-          "latency_ms": 189.94,
-          "speed_mbps": null
-        },
-        {
-          "id": "985c218ce73ab7c89956b6df19303264be2f345d3f3430ef9ffc49826d79531f",
-          "ok": true,
-          "latency_ms": 368.44,
-          "speed_mbps": 13.102
-        },
-        {
-          "id": "40b922db9d846ce60f1f47a9d2fbf87e115de9fe1accef4cfd13d2d2bf0a7274",
-          "ok": true,
-          "latency_ms": 353.59,
-          "speed_mbps": 14.541
-        },
-        {
-          "id": "83eff10a230add9f3c3b87ce958ffd87143e82d25a034264a1314331b3451f20",
-          "ok": true,
-          "latency_ms": 296.03,
-          "speed_mbps": 16.17
-        },
-        {
-          "id": "819d30419831cda87848c4b5726aa3a2a0af58808cd7f7b39a884efada7e8281",
-          "ok": true,
-          "latency_ms": 358.34,
-          "speed_mbps": 13.201
-        },
-        {
-          "id": "fb88fd0a5d6dbbf260dd71e6ec926539457720540d42067c56c180b5d6c06913",
-          "ok": true,
-          "latency_ms": 294.57,
-          "speed_mbps": 12.248
-        },
-        {
-          "id": "09733287407674dff5fc723e2c3fe752ead49f57a6b0e23aab8e0e632da69319",
-          "ok": true,
-          "latency_ms": 439.21,
-          "speed_mbps": 7.83
-        },
-        {
-          "id": "8f496b7c2af3ff0f7b282aaf7245e8e8226a367239ddf0cc2470343b33506482",
-          "ok": true,
-          "latency_ms": 2294.44,
-          "speed_mbps": 0.607
-        },
-        {
-          "id": "1b14bb601584e8f46eea4f568b94a8d9dc41574ca356515638d09d28c3d23165",
-          "ok": true,
-          "latency_ms": 353.42,
-          "speed_mbps": 8.06
-        },
-        {
-          "id": "42c54d03ee41ae0df760d132a1f8cbf28a03009bf3734dad273216bbd82b4f72",
-          "ok": true,
-          "latency_ms": 380.03,
-          "speed_mbps": 14.604
-        },
-        {
-          "id": "4848ce9614acf227446a4d13f1dd3d86e7087618d70f983af8e4a590196c8a29",
-          "ok": true,
-          "latency_ms": 214.48,
-          "speed_mbps": 16.798
-        },
-        {
-          "id": "54ea22c852670009567c0c2485d030cadcc42cadcedf649500a8d1c133d5fe7e",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "ab9b9fd111b7aa4cb1c4092aa58ccfa4edf79004c2f0a8e9e0cde4bf71084560",
-          "ok": true,
-          "latency_ms": 3632.54,
-          "speed_mbps": null
-        },
-        {
-          "id": "d9bcca8d538643eb3fc3b3ed8415179478f72955411d14180f67d1e2b3d2defa",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "a5a829d2adec43018bf9d9244ec7a70859f452e7f6706c6515eacfafaa1b41f5",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "f65d7583e726166f69f19dd3f21f7de581d7ba19bdc7d1dc1f58e9b0b11de8ab",
-          "ok": true,
-          "latency_ms": 535.92,
-          "speed_mbps": 6.908
-        },
-        {
-          "id": "39bcc3b0b0df6f33fd2750b58dc02dfe89513191bff6bd6735c985de292995c0",
-          "ok": true,
-          "latency_ms": 525.69,
-          "speed_mbps": 7.087
-        },
-        {
-          "id": "f76892bc488e660a0e86e64d41c8f30bd6ae7ca137144235919fcc0b94f53b33",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "89276ebef7bf724ae366140126fb774057b7e8ed5da9d67a16bdc7685fd756ed",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "55c0a8eb1a0831ac857a25e369335fb4f92f8d7b9df67882621a60bf5de9016d",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "b0783bd82addf24f884cb77b83a0022d25b614ce634a208b8275b972d1e525c1",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "710b0e33d1a5403d8ca62ec0d620f00636d1657a5089a65ba39b7542e194d448",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "0e62a240ab6c052d1f9d4e8b7a4d02d5f036967b7e04c2ac4d452f47381098ec",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "6260ee7733e7054c2924d5cef0bf8849a3ea0067a9885dfbec967e25e7e608c4",
-          "ok": true,
-          "latency_ms": 510.28,
-          "speed_mbps": 6.251
-        },
-        {
-          "id": "27cdd44ebeecc556dd625039f05f9d2fc0d988e0b980a48675a2d7fb7c8f5270",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "ff13178c04f458eadd36e42e2bc398e9c1655c9a33788bca3afa255d57041ea6",
-          "ok": true,
-          "latency_ms": 562.6,
-          "speed_mbps": 6.586
-        },
-        {
-          "id": "db0634b4b780b08ce1da20007d4703ccd111c89d409aa14c9277e153cac41c4d",
-          "ok": true,
-          "latency_ms": 478.87,
-          "speed_mbps": 7.072
-        },
-        {
-          "id": "28b857a7b0c7436d5afcd60a5880ed8f5cde0369aafddfae886a89cbf887eb9c",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "7eb5c32f0793bfcf16230395f97529d7995847695db126d8cea2f3f2168c55c6",
-          "ok": true,
-          "latency_ms": 273.85,
-          "speed_mbps": 12.406
-        },
-        {
-          "id": "ffc1e9948ee5e90fd4681269681870174c5b8303b232fe1c1265043c5f0af3d2",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "98e696b9dfa41ca76d7f14ef90c1b48afdff1affee7b2f6ce6587d7d6bf4228c",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "536b2625c728f67615ceb28409764db306324a52dad3468fb859dcf186df2e2b",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "01476c72df265bb8465bf653ac3a554fc6c4c61393870fbf6e45c29203264173",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "c567a316e71c9e006eebc4bb5f56511793494efac562a281b087fc0475ea6d68",
-          "ok": true,
-          "latency_ms": 198.5,
-          "speed_mbps": 0.863
-        },
-        {
-          "id": "6112dbe440f9770ad5db4f705cf994895a5cd75225180e25a5b2f079da70b6f1",
-          "ok": true,
-          "latency_ms": 327.77,
-          "speed_mbps": 12.564
-        },
-        {
-          "id": "59cd587e5c79fe1d4885a1c6e4eecd0eaca3f082a8f581a6386ff9c3870fefb9",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "f6ee0d14c0ca49278960d347a1adbfd98034ca5cdb8791d2ab6a78407c0b820d",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "e438791345f60a78c1727422ab88e1b6c76c8bd689918a528d50f8ec5b0a2360",
-          "ok": true,
-          "latency_ms": 312.22,
-          "speed_mbps": 12.428
-        },
-        {
-          "id": "12b2d9e3e2684485b721a5226f4214f2aaa8def084f70b52e098dbe74c446dd8",
-          "ok": true,
-          "latency_ms": 2560.58,
-          "speed_mbps": null
-        },
-        {
-          "id": "0a1c02520aa4be2b55fe230422f00c5bda6918606c67d74127bd95d17fe3e5e2",
-          "ok": true,
-          "latency_ms": 188.65,
-          "speed_mbps": null
-        },
-        {
-          "id": "a829289749379789681060463ca1f9edf0388da46d491f2c03241f0a2cfaab68",
-          "ok": true,
-          "latency_ms": 328.86,
-          "speed_mbps": 9.577
-        },
-        {
-          "id": "bf89e9d92b1fec11c3f728c284246badd77255a20501a041dc8813367b604733",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "3e28066411ccc94426b0aabcdca27b4badd3cbf13c4942d76ad2f34d069fcc29",
-          "ok": true,
-          "latency_ms": 533.9,
-          "speed_mbps": 6.517
-        },
-        {
-          "id": "38762c1f86f74ef88f37f4eb57a039d0b3171b2db9103f82ba9c1c9ae6309090",
-          "ok": true,
-          "latency_ms": 461.33,
-          "speed_mbps": 6.557
-        },
-        {
-          "id": "de81c018f98bbacc86dde64e2b739c5ddc5d22b7b797aa1301d94dfbf7ca110a",
-          "ok": true,
-          "latency_ms": 517.21,
-          "speed_mbps": 6.912
-        },
-        {
-          "id": "5221eda0e523296ae9be786737a47273d1285848b5671c4722d88ab055359a03",
-          "ok": true,
-          "latency_ms": 2188.98,
-          "speed_mbps": null
-        },
-        {
-          "id": "7f0e2770455735b49cacce62eac8ae627fe26deb813b9f72adc5a8cf627831a3",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "678478d2cab8417f861789aa82db2012c783c8c11e0fa834ec2f1fb7794ec0f4",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "84a8bcf723a098954e31dfdc7d220b60beadfe85a95db46488c6f204d8e0688d",
-          "ok": true,
-          "latency_ms": 526.26,
-          "speed_mbps": 6.783
-        },
-        {
-          "id": "bdf194933c216e4bba55a73bd8ea129170315a313d01b1fb22fd0d71cfc21277",
-          "ok": true,
-          "latency_ms": 479.04,
-          "speed_mbps": 7.06
-        },
-        {
-          "id": "84a5e1f557e347942a00bbc758fb2018b2ed46a09243c2915ae7ee63ab4cb156",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "c9da7b2e2852baec6a56600f4965ae3aa9851f6dc7c6bf9b057c2650bb8e811a",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "69d84ee8f5e92e267e6b4128e852d9db73390b3e1bed70993f8ece5a64a9ecea",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "01627ac82ffd4b9b042bd5bb40f4e412fc0f4bd1ea99ec0ea3e7ccaeefcb76dc",
-          "ok": true,
-          "latency_ms": 981.9,
-          "speed_mbps": 3.829
-        },
-        {
-          "id": "7509dfdf92fbb89f52d571c63b627caece05862b2c039965a8a4f2c0844f6583",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "0b2c6fd7bccf454220a60c40d641171f8e61950cd8abe9eeef6046bc7c2ce8b5",
-          "ok": true,
-          "latency_ms": 218.63,
-          "speed_mbps": 7.016
-        },
-        {
-          "id": "b32320088dbca1c206714ed5bfb1f541b488a1df5b742ae6b62c874408725004",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "b19015c086886c05bbfb6baeabfb944f8051f2e7a0dff344fe2888a06fcedd53",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "513070b4357d7d22e67ae6e46179e410da35a66075e879e51c85ddd8a96bd90d",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "460f42b672a821a5c44a6156080de9524cdd8a9190c7c5425bce802ae07dec41",
-          "ok": true,
-          "latency_ms": 854.36,
-          "speed_mbps": 3.369
-        },
-        {
-          "id": "75139b609820560f5332cde4ad345c24eaffef080d2cbcb926d5a8ae29226dd9",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "97bcbd31575417fda8f20a1b2a98aeff0b0e548b25e37c89ec762fa1dfcfab39",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "bf7975867b201a904a70603d650f46506f099513d2817d7c5940de9f91211298",
-          "ok": true,
-          "latency_ms": 338.12,
-          "speed_mbps": 12.635
-        },
-        {
-          "id": "84402e54e95285384868781617acc339ee27d6ef61ef507890b083f5b3e531b1",
-          "ok": true,
-          "latency_ms": 289.26,
-          "speed_mbps": 13.743
-        },
-        {
-          "id": "fcc551b72fe629e437182c72b8abf26b79a9f28c80f6a20591a96256e317997d",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "a421e51e19040cc8fb4a6a0f9fb2329cd83c9932ee23280b52d2d10d7fb80084",
-          "ok": true,
-          "latency_ms": 357.99,
-          "speed_mbps": 12.035
-        },
-        {
-          "id": "a6070a92dd3d8b8235f0d45c528783689406646dfcafe5b1bf13e9b6224dbde9",
-          "ok": true,
-          "latency_ms": 1107.97,
-          "speed_mbps": 3.705
-        },
-        {
-          "id": "86355b89bd2608e7bc5fdc4326ea204cb2116c7655a6e0b6f3f1d5333dacdcb1",
-          "ok": true,
-          "latency_ms": 236.68,
-          "speed_mbps": 9.04
-        },
-        {
-          "id": "69a9a342819a451767d9e4cfb44a930bc80383c07702ad85827c884bf78f867b",
-          "ok": true,
-          "latency_ms": 365.02,
-          "speed_mbps": 16.316
-        },
-        {
-          "id": "2dab0edd7dc213045ae1ed2b252608eca0e3950e1dec22a4c85dbc38cb54a11e",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "4c6a6578e89adae7469b487489fd212eeb6db33e07041e16eaa4de6131e22664",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "c907f3ff76a8bb470727ef469a0f6b190bdd747471f92217ed23c84b08c14bb7",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "a3eb83d45f709fbd5bd65571e0260554c7e23f4721d36efffbcdec7ba08afc4a",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "7d766e45a169af822868edb6f7d45f1d710ea7c448d4e3d11295b2f0c309f3c2",
-          "ok": true,
-          "latency_ms": 536.58,
-          "speed_mbps": 6.803
-        },
-        {
-          "id": "f7d0112aaabf803b788c34f0ca4a47204164683efdf373bac7262082c4f6cb91",
-          "ok": true,
-          "latency_ms": 545.1,
-          "speed_mbps": 6.697
-        },
-        {
-          "id": "be62766d4a6b572588e6140871e12923deb69dece860677cb7ed41fcc96c361c",
-          "ok": true,
-          "latency_ms": 445.7,
-          "speed_mbps": 0.648
-        },
-        {
-          "id": "01409d3a3c0d0b0e6551ec15c5f3c8cd9905a5ef6316307e06b9a38abd009708",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "5d5fce65ff114192037833769a9d8a5ba5ce4ccfea21a195c0348a151e349f09",
-          "ok": true,
-          "latency_ms": 205.31,
-          "speed_mbps": null
-        },
-        {
-          "id": "dcc8118627013f998aec682e0f2a5f6918c0f7b4c6aa3a73333210b1ffbb948f",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "ede124c2498a27d59c164eccf1cc6a86fb8ec435f646fcf82625b29e74ffbe2e",
-          "ok": true,
-          "latency_ms": 561.97,
-          "speed_mbps": 5.748
-        },
-        {
-          "id": "c99dc4aca4bd5900feaeb56b0369300d5fd41893a0ca5bc76b00faacbf2ca00b",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "2204ed4540177f94cdd5048e82e3a85f7ae2fae3f3ee14e7cd9d4c3d75cc9b34",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "42fb5685a6717ffb7d511c24de5e231915c42bf62f855277f8738ab3e68bda47",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "855ddcfb06da2bba5fd1674bdef5d74285a65bcfea5e54c32624353db0325e2e",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "3a074de12b44bb620b6004eba8adbbb7d46926bfc8a996781a9ea520228f93da",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "19c46e89d75981a4bd9fcc62f72550261e09ec942ca15c32d911effe3509da1f",
-          "ok": true,
-          "latency_ms": 524.7,
-          "speed_mbps": 6.912
-        },
-        {
-          "id": "49f56de949904dbecb127729188525c843455e1c662113766e89728c5f0fec84",
-          "ok": true,
-          "latency_ms": 3745.02,
-          "speed_mbps": null
-        },
-        {
-          "id": "a05d4338f51dfab3cd0f1127498a3217a94cca590ed066b9c1ec8a73933fd272",
-          "ok": true,
-          "latency_ms": 487.34,
-          "speed_mbps": 7.024
-        },
-        {
-          "id": "6330d567dc4bdcacdabb78cf823a1d5455cb9cd78644353f8fc90b4668a31bc3",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "54d9d25bad67c83e1daf5dd8f030c578c3badadffd9ed16af396a92b69c16208",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "cfab627c34758676f48f4ec519f0b6cf625037aeee191dc6c601e6175d225490",
-          "ok": true,
-          "latency_ms": 830.72,
-          "speed_mbps": 5.216
-        },
-        {
-          "id": "a11f7de3b5c8d9851746d5ed39b22ded406e18783e795056f6d4f43e638cd1e0",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "055d946f7ddcd54fb3b869c3808695e245339c07335c169f6f175fed64386dee",
-          "ok": true,
-          "latency_ms": 296.86,
-          "speed_mbps": 14.88
-        },
-        {
-          "id": "95f6513f761d1b1686ad64c9b743d5276e73ca5fbfb43bcac33ba5c904bfdaff",
-          "ok": true,
-          "latency_ms": 746.1,
-          "speed_mbps": 5.806
-        },
-        {
-          "id": "594f54dd30cb9949a3c597f865a69d9cf873fc9e3981a12ecc9f0f752a3511e4",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "906e28d750e6bef89e5dfaf0fed577aae331846e46b725ee7a5e29ca7bf50b91",
-          "ok": true,
-          "latency_ms": 3649.73,
-          "speed_mbps": null
-        },
-        {
-          "id": "a18b2204886c57171199ddb48f6face02efbfbc3662e212907d87ce391078ebd",
-          "ok": true,
-          "latency_ms": 2938.93,
-          "speed_mbps": null
-        },
-        {
-          "id": "71445c01d7a61969a66cc41ba6aea1ac632a37b097acaf998b3d33a6950cdf04",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "af9df1e9dac37496434dfbb0185bf7250a6a7d60ae33fb94b13400019033784c",
-          "ok": true,
-          "latency_ms": 525.74,
-          "speed_mbps": 6.527
-        },
-        {
-          "id": "a748c389e2746e9e3f6925638a0a946d9d2dfdff4c73d52e77b84cfb9b94c926",
-          "ok": true,
-          "latency_ms": 192.6,
-          "speed_mbps": 0.634
-        },
-        {
-          "id": "8441809b09e24e7ab25d732e21bf53443c0123f2b42e32c86697aa623c27be30",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "896bfaaba0473c1f0e6e9fc4ac8c0657024f1c763879c97a1dd5391094b5048f",
-          "ok": true,
-          "latency_ms": 800.26,
-          "speed_mbps": null
-        },
-        {
-          "id": "606562f4eb757598328ae156d0580ed9490d5790ac3660b69036896f913538e6",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "60971e7d350923484fb52393f477ee4625a7ca0cd476c661a4b31aa9cf92db24",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "f99e126674aa1321eee81ea23a1caec583027ca2b7c8c2cd883f13c01d48f58e",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "4f5e7dc1dc9ee5418dab0ee9625e023c44c416c55eaa4b8bdecc8d74648c171c",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "1b4c47f4862502b157fd6599a16e2ed1a1e88b7e69f6ae021cb3fb1f592f1db6",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "fff4447371ae789b2b17c0f34f8a32073fc17b831a2b0c0cd7eccf39a242dc31",
-          "ok": true,
-          "latency_ms": 2914.24,
-          "speed_mbps": null
-        },
-        {
-          "id": "a0d21923feb6b7d06e76c1048a70dea7797aef6de18037b5b66adf08bf13de52",
-          "ok": true,
-          "latency_ms": 4316.31,
-          "speed_mbps": null
-        },
-        {
-          "id": "643e947c0c3ef6a544e7b340a228e80b94aca062d65980235f04ce4549de514d",
-          "ok": true,
-          "latency_ms": 2267.72,
-          "speed_mbps": null
-        },
-        {
-          "id": "f66bbd679bcc1d375743641c12d8bfc018b75596f5767650530a1da27a581c63",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "f5e581f529500692ede221d0e441a8a6f984e5d6ff5426e107001e6cb533ac02",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "e2d1f3c5205a8d0d509d61041a512d570c061d3d120121bdb8bbf0542a2a6b6d",
-          "ok": true,
-          "latency_ms": 3821.07,
-          "speed_mbps": null
-        },
-        {
-          "id": "4a6485c5d1c5f925be8edde7055cd949bc0a6c5880cbba18899571be03018ee3",
-          "ok": true,
-          "latency_ms": 3108.68,
-          "speed_mbps": null
-        },
-        {
-          "id": "0db45243669403838f269d40a43f4385bbb17a4bb8d17d7b9003fedf4ac6bf5a",
-          "ok": true,
-          "latency_ms": 1938.49,
-          "speed_mbps": null
-        },
-        {
-          "id": "b574e45327de0a94d01c98bdc267fd2aae553b5ed5f7568148afc5437e542651",
-          "ok": true,
-          "latency_ms": 2468.19,
-          "speed_mbps": null
-        },
-        {
-          "id": "a1b1797a9b54c297111b51c76ee0364150bcf68a04cd47db971b26f69b8b9927",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "be7e015a8f0253af93ec23a181b0de81dc213074e9edeac01f05edf65137b207",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "812efca75b73d221a918c053add78850eb1177cc63552edfaeebf87483aeb36c",
-          "ok": true,
-          "latency_ms": 2105.23,
-          "speed_mbps": null
-        },
-        {
-          "id": "0b1d79fb13a1e78b1f51a1898fb62867f6e50af6551c8fae79e06890d8410397",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "fd1c4723a6f726546dad589b9cfd436a12e39bfdd2086f23efe2a022fd92a44e",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "36b4f4dd0080c740636ee30961439cd5a96249cb8b8aa2fb66e39906d8d5c33a",
-          "ok": true,
-          "latency_ms": 527.81,
-          "speed_mbps": 5.816
-        },
-        {
-          "id": "1f65ec5bb18ddd0efa893855598b051e0853d1157bc417a5c65fc9d959867fea",
-          "ok": true,
-          "latency_ms": 542.56,
-          "speed_mbps": 6.514
-        },
-        {
-          "id": "a22148a153a3bee45e4fd688948e02eb002106b4b57451bf1710a421c4ee990f",
-          "ok": true,
-          "latency_ms": 532.9,
-          "speed_mbps": 6.777
-        },
-        {
-          "id": "5a8e7d5a12402c2f035923fbb6bb6126312aab19b77e49e40ec239964f878fe9",
-          "ok": true,
-          "latency_ms": 802.83,
-          "speed_mbps": null
-        },
-        {
-          "id": "ecb79469ecb1ebcfd90a556940d700cfef92565ab0bfc480dd38688c96d4e573",
-          "ok": true,
-          "latency_ms": 3045.26,
-          "speed_mbps": null
-        },
-        {
-          "id": "f8e9d5340ce4119f3370b62e4f24776741fbef13c5a419353afd1a937fb92402",
-          "ok": true,
-          "latency_ms": 834.62,
-          "speed_mbps": 4.15
-        },
-        {
-          "id": "bfef05dca97bdd80b164181f91ce543de0904dafd376207ef73b4771d47c31c1",
-          "ok": true,
-          "latency_ms": 985.98,
-          "speed_mbps": 3.835
-        },
-        {
-          "id": "de4ca2ea12750307672c496e7dc1e4c6109e6fd23506d7346cdedac100095858",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "77dab7966f63af46f8461284c125e08093219cacff3ede26582b5d55c9f06b5e",
-          "ok": true,
-          "latency_ms": 849.22,
-          "speed_mbps": 3.892
-        },
-        {
-          "id": "bf361f38c6f48b9a6d8227098d6a8420dcc4047e3c0f4a6401b883b0d3feab6a",
-          "ok": true,
-          "latency_ms": 836.99,
-          "speed_mbps": 4.151
-        },
-        {
-          "id": "44f9e15603a3aafa6dc0bb69e45c107d088882b433d80a548a5da7650d4c49a1",
-          "ok": true,
-          "latency_ms": 3727.87,
-          "speed_mbps": 1.096
-        },
-        {
-          "id": "1531ed4adbf1a7c66553cdab245406930cb8536484ae686b75df0c97f13a38e2",
-          "ok": true,
-          "latency_ms": 4214.41,
-          "speed_mbps": null
-        },
-        {
-          "id": "73877114848e559fd92562b744361f9d108f06206338afc6b616585f15fe027f",
-          "ok": true,
-          "latency_ms": 1093.22,
-          "speed_mbps": 3.665
-        },
-        {
-          "id": "584337fe612ce56dfddbfffc1559a08d7d3c70b5dca4cc6562978638dc4252ec",
-          "ok": true,
-          "latency_ms": 1099.32,
-          "speed_mbps": 3.651
-        },
-        {
-          "id": "4dcf1355f98f97ad2c2ce9ca72af32013fced13340645427c1666fabaf51d42b",
-          "ok": true,
-          "latency_ms": 2382.03,
-          "speed_mbps": 1.024
-        },
-        {
-          "id": "3c316f82da55d519b08a9bcdc5a9725bcaac25222b2f45d12ca7dd64ad97f2c1",
-          "ok": true,
-          "latency_ms": 1088.28,
-          "speed_mbps": 3.695
-        },
-        {
-          "id": "28ed485e81b55f06df18b1d1395a2fa077f51695e89930be7531bae4e30ad7bd",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "a4955985f6d8788c0f0985c81d867f543ac1e5769f1dfd681f97e282e226f882",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "e59ea53ffbbe154cc8bc3f2700cd44b10953f993fd1ebd757efe1ba794cfce95",
-          "ok": true,
-          "latency_ms": 4597.86,
-          "speed_mbps": 2.242
-        },
-        {
-          "id": "98b704349d5f460c9a3fe5ad8f933ad30e692bc944a01b6ff6f86c917e498521",
-          "ok": true,
-          "latency_ms": 3735.65,
-          "speed_mbps": 2.551
-        },
-        {
-          "id": "54eab7016e7bbdb0de3428556f41918403cd587af1b620912197a406a0a5bcb0",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "04da315d141f064e15d803becc39dfc84bb3be481f6842106c458848ae3d1098",
-          "ok": true,
-          "latency_ms": 972.99,
-          "speed_mbps": 4.801
-        },
-        {
-          "id": "3f3f92e25778c3935f665ce1a88988a53c7a4db268db7e31db98485a14055825",
-          "ok": true,
-          "latency_ms": 2116.32,
-          "speed_mbps": 2.109
-        },
-        {
-          "id": "9158f04becce25d2254b862f0388c2191eb4227a9da8a29147ad9e9be20821cd",
-          "ok": true,
-          "latency_ms": 954.12,
-          "speed_mbps": 5.57
-        },
-        {
-          "id": "87f2662fda0ecaf2bfa8a18159e13843680c950c6ec2867106fa95be70dbe4fb",
-          "ok": true,
-          "latency_ms": 476.37,
-          "speed_mbps": 7.426
-        },
-        {
-          "id": "3e7ed173850d0ad6e4d264e594d5bc72cd8e482d7b20c15faec187953e39b9e4",
-          "ok": true,
-          "latency_ms": 945.41,
-          "speed_mbps": 3.454
-        },
-        {
-          "id": "d205d1a8844d1127c413971706e70d0b875090397bc503f8b8f423d2d930a964",
-          "ok": true,
-          "latency_ms": 2500.99,
-          "speed_mbps": 1.486
-        },
-        {
-          "id": "bb297c0ac19e179126a3368ea2d2a1b71bb4247d0990bd432bf8777616fb1846",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "84ec9ab87be1bc32efee526c8183ba4b049bd6a4001a925d0b0e8be9fefec7f5",
-          "ok": true,
-          "latency_ms": 869.24,
-          "speed_mbps": 5.861
-        },
-        {
-          "id": "6d883603ccd0ec5b38d981b299a3b398491b13c8e77d284062d18ac1a7d0c7ef",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "e6af25b85ed8efb9b0bebf098e9a463833b6733425298270b82eb883842f1ba8",
-          "ok": true,
-          "latency_ms": 516.8,
-          "speed_mbps": 6.571
-        },
-        {
-          "id": "49f6f0f4ffead65b8235eb56e8dd378cdd71d88cb0852eb6f126f2fc2d8bf457",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "c3b87859581229c6adf363d754c527271d8771d80890c52b8678a4a565018fb5",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "029d780f4d87a89600fefd737802b220d58a3b60db6b4950a64b93c4895f0bb4",
-          "ok": true,
-          "latency_ms": 775.12,
-          "speed_mbps": 5.535
-        },
-        {
-          "id": "b9475a1b0d1f79be675be70ef6cd941766384a8b89b49f0ad72e491beb85f84c",
-          "ok": true,
-          "latency_ms": 523.15,
-          "speed_mbps": 6.641
-        },
-        {
-          "id": "6ec4b868236d7c2c18cf9e28a910d9d717f36331bb9074357d678be89e06b9ef",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "de473932535643dc4935995ed5e2816709cf466c7a072e0fa37be0a0ea2ac9a4",
-          "ok": true,
-          "latency_ms": 751.25,
-          "speed_mbps": 5.744
-        },
-        {
-          "id": "96061e9272ab74356d281a22009e519662cbb38f5a44eb04a199f53531f34b6c",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "4c6ff55cda83ab8de6c739aa327170b4248c6d3b649e73f68e36fe758f579f23",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "2e049b758c7bfcfdee1f532c18b6f60f82c4b5cd4457aa46a10cb61f325b40f5",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "750242ca714a36c4ee070f695f0cbbf45dcc6cea9e8e9663dd99340cc8ef669b",
-          "ok": true,
-          "latency_ms": 2252.87,
-          "speed_mbps": 3.657
-        },
-        {
-          "id": "27e793f85ae98634f2ccead5119e088f3c1fc28d066d07473958fae416785beb",
-          "ok": true,
-          "latency_ms": 521.73,
-          "speed_mbps": 6.54
-        },
-        {
-          "id": "447a743a9583bfa6ef35178b3b32e8d0db9e915900fe551049ac68962461d6eb",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "b839c091f060dec8ab9812f1a1a7068318c8eb14b6cb1bd020842d976e3bb82a",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "cca1a0c2b5fee3c43dbc227fbbe11cb943555231e7f6c2adf1ccfa107e7ae265",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "c4133ec5458241740768d48cdc40fa044681fe4475c1b17d1f16770bfb4c0a42",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "6d788e630be5798cbf01747ce3bf41176f6536fb3746e1dc3bdbea4be4a34db8",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "2255e309d888211b85b65a4bd2549f527507bc3733c09f42fbdd807add1bd670",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "d2a03badcf5b490124b34bc5f663c5876924b583d7d28314ac3914ebd3b6bdbf",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "408f16f5d04f2ed123868e9a20da35c67be2583211927c82a8c12597f10a87bd",
-          "ok": true,
-          "latency_ms": 4924.34,
-          "speed_mbps": 2.269
-        },
-        {
-          "id": "8249f888284737d44987cf57021627f8076d20a2146e1921e5573504efa1848d",
-          "ok": true,
-          "latency_ms": 1858.03,
-          "speed_mbps": null
-        },
-        {
-          "id": "c581d219dd6970ca335a5a9f6926e2609d721e3f7cd1f167c405390c793bc13d",
-          "ok": true,
-          "latency_ms": 1255.47,
-          "speed_mbps": null
-        },
-        {
-          "id": "2fb6a652a1832a48ba773b4bbefb9624ac2da4604526fac026ac5735ca6313d9",
-          "ok": true,
-          "latency_ms": 520.12,
-          "speed_mbps": 6.578
-        },
-        {
-          "id": "8753ba07af0bdc59920e2d76bf082a88775e928edf834fd5c2a284ade0f53e62",
-          "ok": true,
-          "latency_ms": 785.0,
-          "speed_mbps": 5.04
-        },
-        {
-          "id": "166ff874f144af50255212cf7483cbe27e93674939f3ae2e961ca26751b483c1",
-          "ok": true,
-          "latency_ms": 2704.61,
-          "speed_mbps": null
-        },
-        {
-          "id": "ef41940c315fd4551d79d6d3bf6b3972fdaac04f9f349842296e733cf966c284",
-          "ok": true,
-          "latency_ms": 1806.8,
-          "speed_mbps": 2.882
-        },
-        {
-          "id": "0429d1db353fe4c2afbdc8ed1c86a50bfb0fbc5c12844f7fbd42b6439ef085a3",
-          "ok": true,
-          "latency_ms": 1807.85,
-          "speed_mbps": 2.432
-        },
-        {
-          "id": "31d6186ef77eac64bb8050256f763be68b06d5a343fbdb7600ae8015ebe5863d",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "6fbd995d4c113dc34d4ff9c631f6f3a2e474183376387edb5c29ccc02dfedea5",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "5aa5011b84a3a57cdc0b2bfe2de01051f8a850894ba07618b53dbed7c59edd30",
-          "ok": true,
-          "latency_ms": 1770.16,
-          "speed_mbps": 2.347
-        },
-        {
-          "id": "1bf5b0cec1eee1960817589b8e7b3bb392905890fbb410bef631a573f4fa24c0",
-          "ok": true,
-          "latency_ms": 2117.24,
-          "speed_mbps": 1.777
-        },
-        {
-          "id": "36067a186d256510de5b58737b12438d104f43b77296f8759069076da2e4f84f",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "addb2f290dadfc0417547d1f5f01dbda33aba692e3f14e339bd1dbd45dbbeee5",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "691867b50016a52f252b0d65d5828e11070540a5d5a2aed994092acf7fe06de0",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "65aa55a852b33d9766655f24826f5c48c325ae82825c4a59269e7a39e8b659e2",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "f58687759a76ed95b38b3fa454ab8a86537973083825f288ba75d52aadbe1134",
-          "ok": true,
-          "latency_ms": 3835.63,
-          "speed_mbps": null
-        },
-        {
-          "id": "8c9760a88a47c977bf398778ec84ad1105899cc363a70e5873b0865971ae3ad3",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "92da84c41b0cf815671dbe5ae9f5667bee1a4346ff1f3862f897c2428c203b51",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "32eea4a27c7bbfc18fcb38a9f03de8eb8081b6f27cd367edc38c7110fac4e885",
-          "ok": true,
-          "latency_ms": 2170.93,
-          "speed_mbps": 3.072
-        },
-        {
-          "id": "266959fbe6514e44cdecf86ed655bd213d3058bb9cbe935181b5280f1720fc47",
-          "ok": true,
-          "latency_ms": 1523.66,
-          "speed_mbps": 3.972
-        },
-        {
-          "id": "826c678e563aefecd82ff224d1981418bedff95a87b8e4b5063e1504cc5e8201",
-          "ok": true,
-          "latency_ms": 1649.9,
-          "speed_mbps": 1.88
-        },
-        {
-          "id": "3565f3d570ac5f59040e04bb2756e4bad3e92572a2e64729879233c296cfd6b5",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "9a05c13e2224a220775c14f795262509e647dc7f93849add4a759d382006f347",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "8b9811155fbe9c8de67526b8d5a35e20c1558a2166fb7faa5c033be08f6792c6",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "75d4dcf2c2b0f9315c681eddc3c6f69086b285c0c307b224c32f56aba7130ba8",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "a1a5e72ce20b20319444ba75c858ca6864a43df4633882c6b1b06c2cbb6dbba2",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "fed4f8cc9e22cbabaa910ed7ccc40b04e80d050d155f1338e9889d3c5a069f0c",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "c3e622694273d068772e905d335395c7c4257d08d92f17a65b425717b21c620e",
-          "ok": true,
-          "latency_ms": 879.31,
-          "speed_mbps": 4.656
-        },
-        {
-          "id": "061a1e59db3f9c8da3c51c77ffa565c8e38416d01c2ff1b1f54318cc7cf5eda9",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "d4bba397a1b8daf4037ae7aa3973dd4a7eeee988325a2d18e31cb191b3fcd8cd",
-          "ok": true,
-          "latency_ms": 1724.82,
-          "speed_mbps": 2.819
-        },
-        {
-          "id": "592260fcc5442f5d3f06ca9109cf8680ddfd0782ce9ad7980eccfce77c77e06c",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "8d54a659b21f3c42ce9aa9455116e6d1c9cb735735176adc9bb18900da40ecff",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "e3efab9f408ab08a1850edee3dad5d62fd67c52ccd046784ba2a2ffb63c9a9e6",
-          "ok": true,
-          "latency_ms": 1699.24,
-          "speed_mbps": 2.829
-        },
-        {
-          "id": "9d8cb017ec797213c36d53cda1092e1c47481ee7fbfc9604aabb6616b13a229c",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "24a405daa46beaae9b933f1cddd8ffbb89cf6be73c600d3019f4da15c0073179",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "4265d94d4ff4af1255ad6e4d865f630f728930e9014037847a741353794b8172",
-          "ok": true,
-          "latency_ms": 1375.53,
-          "speed_mbps": 3.738
-        },
-        {
-          "id": "364577aa24949ca2876776eb4ba0fcad98a962cdc13a9e6f9bc7b52039ecc157",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "5aedfb3b446b8ab36d673c00ddcaf8ff8efdd103760a61d2e64d72d0565e9be4",
-          "ok": true,
-          "latency_ms": 1002.58,
-          "speed_mbps": 3.994
-        },
-        {
-          "id": "98594fd6feabc51052684cd5305939228cb6176229c0f51c6f17888032a78258",
-          "ok": true,
-          "latency_ms": 3504.78,
-          "speed_mbps": 1.772
-        },
-        {
-          "id": "cbd2e367cd95336182b69d063a957b345661e70de4d2a3f46a4f90a94af6c23c",
-          "ok": true,
-          "latency_ms": 1487.97,
-          "speed_mbps": 3.65
-        },
-        {
-          "id": "0ec3fbe2175f21adea7c99987061bc1514f79d583d166750c92f657d24e9f45e",
-          "ok": true,
-          "latency_ms": 3257.04,
-          "speed_mbps": 1.169
-        },
-        {
-          "id": "a741e4aedbf2350ed5aa951f9efbb5d3b8caf197849a69f4b8276aa97c9bb952",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "e01faa87ab6c5d15cab9d100972d77bb5f0f529c1774efb6e3806419c2a20d8b",
-          "ok": true,
-          "latency_ms": 2671.14,
-          "speed_mbps": 0.848
-        },
-        {
-          "id": "ceb45c0d0040ef12fa5ae5de7950b5e6cd29c3ba04e681c99f41e7167b29794c",
-          "ok": true,
-          "latency_ms": 3428.52,
-          "speed_mbps": 1.807
-        },
-        {
-          "id": "905ac4305b32cb461ca7e60f498528514f7adb21f7334950d0b96af08152618c",
-          "ok": true,
-          "latency_ms": 4268.0,
-          "speed_mbps": null
-        },
-        {
-          "id": "833254e1edbb5f65fd99df93f693162a1c61adb261df12475fcf81f798b1e557",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "f8dbccbc226508f9b87851b9354671cbd127d6f2601656f866dc0104a73f021b",
-          "ok": true,
-          "latency_ms": 4984.83,
-          "speed_mbps": 0.66
-        },
-        {
-          "id": "af16a037604f7271eb3f5661dff65e067f2da4d3ceb9225b16689032a767d055",
-          "ok": true,
-          "latency_ms": 4634.13,
-          "speed_mbps": null
-        },
-        {
-          "id": "ea750a1524d56f1d796da1a8b8ffcbc77cd285ae7a0679f441e0dec8007b4f1f",
-          "ok": true,
-          "latency_ms": 3345.88,
-          "speed_mbps": null
-        },
-        {
-          "id": "1a32e029b1fa6c5d99dfcf9901da3e3d30223165992a81f3045738eed7fddeda",
-          "ok": true,
-          "latency_ms": 3629.08,
-          "speed_mbps": 0.584
-        },
-        {
-          "id": "a36337df69562ecf0c65b48feb4aac4f50ad24e4329532266d57763ae71e81d8",
-          "ok": true,
-          "latency_ms": 4134.71,
-          "speed_mbps": null
-        },
-        {
-          "id": "721b5b4905a1504e2e3364aa113436bd5221ef228edb2dd841c9a31ed65c3931",
-          "ok": false,
-          "latency_ms": null,
-          "speed_mbps": null
-        },
-        {
-          "id": "b5bd06cfe462aa9fb1fb39816e108ff8879841c40b5f49d762de104ece14a40a",
-          "ok": true,
-          "latency_ms": 4410.58,
-          "speed_mbps": 0.876
-        },
-        {
-          "id": "b55d4b5019eca370fd14f578b2a6d2229feefbfbbca8495eff7e32a63a3bb31b",
-          "ok": true,
-          "latency_ms": 5442.15,
-          "speed_mbps": null
-        }
-      ]
-    },
-    {
       "generated_at_utc": "2026-11-20 07:29:27 UTC",
       "tested_count": 396,
       "validated_count": 183,
@@ -23528,6 +21325,2401 @@
           "ok": false,
           "latency_ms": null,
           "speed_mbps": null
+        }
+      ]
+    },
+    {
+      "generated_at_utc": "2026-11-24 22:35:38 UTC",
+      "tested_count": 398,
+      "validated_count": 193,
+      "nodes": [
+        {
+          "id": "865f9e8008fa2ea449a6e044396c228f46a621e385b7f468016e261a893e9ce1",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "495e8f92e2ad501b72e6b21c88f79a4ad01894c590e5a06890b689aea45fed4c",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "a7a4c042d79283c50bf7929e2a42d3410c3ddad2476ac0026a781cbd8a012dba",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "879eae0f49fbf77dc273422d97d1a8519ff1234f45eeb01e367c5e1d24e130f3",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "393ed0329762a1ba62cb62252ab12f4f6729a8ce071f215c367d0025be633446",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "b0de0b8e835c4c15bfcb0c87f5f9420f08c8ca09b8a80427541c1ef25605b99b",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "fa8d1281c6a9a846566f59716a31590884bac454ed779e60d6bb4a9623d800f8",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "8c0e6f8df6b610fe515427bdd149e889dd6d7bd6544abecd21d7c03b9697c1ce",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "98ec475d2261ade681fc984a8a707cd2343f0d854aa232c15f4a2678f02b5c91",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "48266234dd1208af2345976df3683e55aef13ba7f1e3f536b84f4ffb3cb59b03",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "dc126ac2f4bd09abdf8018de756fd647ccddc8593b7c62f621733c14ec488efe",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "c9a606f6ebe6ca6650929b51e2aefc59d76b415687ff804e859ec2b1143732c4",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "bd6635af62de8631bb85298eff2480dd694a66daf49f464230da12e8cb930a35",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "1f6c62870131ddc34cad3564ab728c989aac16064a7b0d7d50431b9c2412a5f9",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "c9cfd063d9cdfee2b6dc0e54973c79aa9dfc7446847f6ee990598dd3a98b97d2",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "bedbe6de9caac3a4ccff6f34c6444eafda94c7d2ea1c94e3f23c3721c951ef53",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "72f61832e0cd54dab4c3f0cd46429f985e8301d36224a2edcf1ec3c346d0b9ec",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "0833364134ec167880f8643fafc3d21393bb2088905283e9d36bc907b4429a3e",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "fb85f7a39362d2630404a56e2d0f6857d8905672085fc2c4a3836f2bec881a46",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "32eeb7f544060c1d387b76bce8ba2bd8ebee7e42692d3e3295f6d3f25cea46fc",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "9534784b05f7e676081bf653ca49357c19c8ede2f0fa23f52d9dab051a72f661",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "c07e72423aab652c80d0bb294631ed08d38541b81ac944797530aff871cfc020",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "46bd45d16f57dda55a87ded71402cb0f16be8ee0ba2e4a2b61c491086d8acdca",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "232954c0a159687413b032b8edf95a384b2ea5440ccf0a0a948e3aca7435178c",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "d5fac7612d6a47d1a73a5ea0672d256e1769eed978c416cb0667518ddcee638c",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "d8440ee10c5859db7ed8c142fbb46fae801ff4c728cb2c0e40480db272d04273",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "41502ef00d9368f59bac7771807b0a9b4c4db53bb6ee7fadb5ec41cdb73676dd",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "7281c0093df33d4ca5fe8828ad373bdeac3f207dac94f79bfc532e48bccc0236",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "da99ff5a60c36b8ae8cd3e3743dbe0442d680165c03091c396d8c2273d188dc4",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "0f12ce5b547ce88dd1720f95a24644664d3fdcf15cf89dbd4531059c20388dc3",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "2e6beb861b9e0d2d4733ea550415b191a8a91d705bc1a11e2f4603c1162bbfcc",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "9aea00e1de31a7250dfe912a2fa979c3b03ab3e919f2f87aac9982869b19c180",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "34048bdb0b3df7636d84bc50b08f81f796ddf3ea5e41a07b403412c47640c0dd",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "f4c0ae1410201d1444624773c5285a93233e79c961150f79e234bcde13562748",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "95aca781d81a181f19d8c52edfecad5c18d921b26c82e4ade4f6e72e1e0e8395",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "7f14933effdce04f0876c2679199287050e7ef67c7e8e8392a82a4d5c4744735",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "2932938d4cf95459c8518633d65b1fb020257a403fb05c2d76ff23e7f274dfc9",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "2a468768db5194efcafdbe84546591bd52e9fc7255c9f42d96fdde2e790a6336",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "80b8d89c6dcdca6d67ba445a9061e6eb51b7edb67e1e30922acefc549716f37c",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "08ee7e54c20b10356a7b58e6d02ebf0a2bb426f2f4c9a5b353fcd0e7dafd599b",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "59ea01684ebefe1f26f30c42a4c4b1551ba18a8d04062d500432dad14712fb6c",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "13a704fd9afec119d5b07ded7538a9c2ca9678b5c9e2031c53047333e9ec485c",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "144469ee98cf530cb7f9b388f54c7035399568329c9092d6e302b3dce53657de",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "8a0ad48ba9ba417aaedd76e1951f4784ac654d737ba4372c889d73eec03c0ccc",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "bd5b17d636d0b982a2fae6c53f1f356a5a105017834c6b9fbce52927dac41198",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "22cf6f1385ce9c586dcf6d0b65a66150d8dc2dcf826a660177f3dca5406a1852",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "d83778d584b07169e39f10f3aceb0c2d078a12c33bd36a49ea56955bbbfa7a08",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "d61a501a99af35c216f34729eb9d9b3a6ee02568b9dda7cbdf31a2c81e64d08c",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "c1453b0df69b2dfdfc5502a7fd6d82f61a5d98a5b73c08101d421b3b19f2c1d8",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "9b10d6452928f1c8e96e963d4c28265f43bdb10e7801ac484511eea2bda176bd",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "a4579b5f05f7bc5efb6f8c82ce16a64c0ef6dc2afdc7535cf84ff299ffc0594e",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "f8020cbb114dd301c61a29aae94ba1ea02f3c77243c305c2893ec73be225f24e",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "05493a71c9b52382f05e57b36300e5ede5b2ec4a3a290329c3a564b7e2015ef5",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "994eedd32e5c8d7f3eadba3737297e2f439b52f86b2529a1faa8e8793e58aa47",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "19dcca4475521f3fa8489d37d6e842868a3c28dafa1683aa2479e1c92ca259bf",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "12801060c324d90eae98f3c8f2b4921fc0555063e4bb1387ea99edf1bb1f9bfd",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "c082c72fbff2c1b6f949240cd2a6e748779d6a360aaebc5cc9cc4836ec8eaef6",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "9ee381fe8dd4f720923e071cbfa16715501956e71a504c71f08151e6ce72b60c",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "37059c6f78d9250542bdad1e33e4d40bb077e795122560008a5dba90bd46d203",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "a289235f811aa3847ccf759c594ae909eb586dbbd384fe5d16b0f3ae823b6d11",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "eea12d83bff96f48c8e86657b407ba87c3cd9e1c9eef4cd8d26720c48d665a62",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "44f9e6f5671abd11a9bb352b3303f1e964ad14a116cc80668698a7e7b42bdab2",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "52feb53a4309f111bfba27f24f23af5a6d668bbadb4ccf5fbe2c22b07550fc76",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "85091eb12aabe5366ad7959375fd280526118eae293d908baa08b1fd55411685",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "e846ef1345d20e0d14478e9440191b9f8ca7571167c8cf07e849553eca6759e2",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "6194444267241f545aead259b1d838743474af6df0015d7a4ca9f239940f13bc",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "f8fe0c02c2d70ae7fa095e80d7584afaa72e1276c0ea8917e13ca38bf8cb191b",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "c54c559e09f4636b459b90449daadff18d89ff51e465d19f0253860e69b534b1",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "5246f2b97ce59cc41e4b951d0bd4f72d74f314d7d5e9686698c4a8f7f3309f9c",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "b5aa7370d16e97a55ae90bd2df696c2954ba40f83fae3237c19b64a28566d979",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "b5c4bf9d67fbd15e0fb3261a83280d4f9e5e6c6890cd4c86d64f53f6636fe8cd",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "112264c9b669d27d57507e94b6f6b07424bd0f4241a5a51023aead5734856b39",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "480f9a106398e312bc11030150dd90ea609b04650136562f4cc0e78448671da1",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "6bc0bc65e7e3305cf0f52cb2f3683450c98cf8278b6975113e4793aa261903cd",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "e28fe64a02546a377e2428efa3c805d2413546c5442331e24c845e0a1ada65b3",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "c5472466bcf704ee0ba1e80c52af361995768d370efde635266825e017c9cdaf",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "3c097945a90f9792f3594ae02db19d790e289ba0fcd03fe7aed4221a170fe3e1",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "ba03af7c8fcc890a8466dfd7ae29dd9d027d8f33c4739b356a630da9268af23e",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "0677d20dc7fffbdf1305b5e6fb8b3b74519cca35cf305e66e90d7916fe4edb22",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "973bc9ef8f0eba9d6d7518a0d4d58af56ac407bd4f60b9bd37a0cac9ce765cbf",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "78761028e74abf79ac029ece13d133598b7870c13f0934f3fe7b7ede7194e06c",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "834d434c2a6459d98a987cae676fb1d4d3572ad25b1a8ad6868c3d3f8e159f0b",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "90c395d214ac843e9cb5eb884e52e693f897e4dd7aa5e4dbd1c79337e02412d0",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "b6c932d50c461dd7c85f7fe4b0edd6613297f68a9a7b5cea18872cc87568e34d",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "61ada745163eef903ffe3a0198599b66730ac6e79c48debe0a7b13fa7f3fa02b",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "78140715e968640e21ed8d57194cf67d1db6e85abcfd63481e5714fd918d7fc0",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "eefe9e52d0ccf9d49086f2f6b34f1e7f39362289a12c850d29d1c093742a00cd",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "7effa1b2656b8217ef242d6934d9babb57c80139bc9babe3b82682c397b5bae2",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "f70208c44e1c8654ebea784136346cb06efddd580159294a57e1653405b6f173",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "bd8b7614063492f2ebf848af354015a76ffd3a9995974a79d069e0583f485a03",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "d404a6fb62b87611e2be8deba13e1f762bd5f567e58830cd41a841577309ebf2",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "d631fcb6105c5f4a53368c642f3880c8dd5576feb063c59280883f16d84f38d9",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "1a6cf23063b9fe6e001a31b9159e7f8dfca3042bdc0ebc6976943f4f560b36f5",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "7052b571e6715847c190facbd30a151b566198d650ef79f63483c9caf8876aab",
+          "ok": true,
+          "latency_ms": 537.73,
+          "speed_mbps": 5.04
+        },
+        {
+          "id": "f5c301acd0ccee5ed21a056eb9959176d6e635d922f6e5c5658420c8b0e5ab1e",
+          "ok": true,
+          "latency_ms": 698.78,
+          "speed_mbps": 5.202
+        },
+        {
+          "id": "fcdaa9adf6d3acaefb43e6ab8ac0019b836c823a78a48d0b22a9a0ace244a908",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "e753d1ae7777a9c8f0d47550ac130b1e6886ac997d83698a8d45836f1863a59c",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "8e69593f90fae566d86531844bb555cb97dfaef4a0d8e4dbff3730c0ed5ab050",
+          "ok": true,
+          "latency_ms": 911.66,
+          "speed_mbps": 5.338
+        },
+        {
+          "id": "ba37f85707dd6fd3c543c963e41bf51cd43bcbeccbcfe9e28dfeacbc343fedcf",
+          "ok": true,
+          "latency_ms": 722.64,
+          "speed_mbps": 5.371
+        },
+        {
+          "id": "1ee0afa1eb496b0592e846cc118bf9b1b9790e352977d7c9808ac9058eb3618b",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "5d60284b7f10437d240739eed014e1e94ee0a463b77cb1036fe75126463c5f60",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "06c2abea57a60776c34bc267c21fc539345b8e8205106d6de7ff87e288a5a242",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "a015aaf16f6a044c4fb8e8e0dc2827fa1ec7b1c975d71867dd2161c7ae8e7766",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "b4359270901b5df2d9d0bb1586645963accdaaa87af0160cb493c351356987ba",
+          "ok": true,
+          "latency_ms": 891.41,
+          "speed_mbps": 5.193
+        },
+        {
+          "id": "c93d1a4dd45f61b717f912971e5218a116ae4012159687c444d4d1b8ced7a063",
+          "ok": true,
+          "latency_ms": 737.06,
+          "speed_mbps": 4.229
+        },
+        {
+          "id": "2577cba98ba7dc91c39c0faecf0d511c008f88d010e6ffce98981b83c9e8e596",
+          "ok": true,
+          "latency_ms": 2364.84,
+          "speed_mbps": 0.834
+        },
+        {
+          "id": "dd972f90d7c92f1c79563eae5cc29c9632340932e9d550f48050ec5683d66adb",
+          "ok": true,
+          "latency_ms": 1625.66,
+          "speed_mbps": null
+        },
+        {
+          "id": "2931c33942ef4b70943e171d52c98e8b294fb1d15d756b47d0e85c554ea42832",
+          "ok": true,
+          "latency_ms": 2115.87,
+          "speed_mbps": null
+        },
+        {
+          "id": "58e5d161bf186fa697fbc00105da8f8cac7fa77ba2d098fd2a43d540af557ccd",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "f39c8f04648d4c028d0dc448ffd1e93dcecdeb43f551e43bd42caf5766b3ea17",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "9ef02a36dbc9923ff13bf2a87c03ff48c1ee79c0dd0b1273156f1125ed4a0dc6",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "158cb00b25f98227352d949b8a98192afe4139ac1b4b87cd99a3f51e9db8f5e2",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "5f97d2286fdbea43c73ca765515b40eb833507b36b6626869510e8eaa492f36c",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "4e71fa7aa5220fffc99979939790119bad4358fcde27a7a5bee99fbeec591375",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "a52b22ac0a88292b0c8e1bd14ae6d74f1ac9497fff4e0c4ab02205cf6276c4d8",
+          "ok": true,
+          "latency_ms": 1046.35,
+          "speed_mbps": 3.868
+        },
+        {
+          "id": "a06691b2879bb6850c2beab2d099b2ac97e650ae0259df73b7b748303076a172",
+          "ok": true,
+          "latency_ms": 1047.53,
+          "speed_mbps": 3.877
+        },
+        {
+          "id": "e31b59eff0626327d8e7e906fdcabf67c010513c6140856852503c6dcef5c25a",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "865520f28ee59ab3e6a152d341569ebdf2a1c311df840d8aa665061c9bb1f96b",
+          "ok": true,
+          "latency_ms": 1048.83,
+          "speed_mbps": 3.576
+        },
+        {
+          "id": "653d87c2cae2262750c4b6c62c95806c42817c092140790d9800f7ebaba250d4",
+          "ok": true,
+          "latency_ms": 1044.95,
+          "speed_mbps": 3.856
+        },
+        {
+          "id": "e5b4c233471348d389b6fa96b6b2eccd58a4ca69b64bc466c9d4ce63add597d0",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "1cf9d4716bb7ee340ee832d0e602435c3415e1b2e5f89d2287347679e7cec92f",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "5989ff001cbe8765c2d0328e7f6b1ededb4eec42bf32c684768a8ce636d32fc7",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "5dc69d6a814dd240dce17ecf471e11d1bd20d690756433d176687ce7e781b9d2",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "609788261403f061d4d34ec67d01da59738a98ec906cb0860f27cef7a1d3dc75",
+          "ok": true,
+          "latency_ms": 1043.9,
+          "speed_mbps": 3.884
+        },
+        {
+          "id": "c41ae3bc46b4c7dd5cffddcee576e446340d01f447b878798493cc75db5d5f83",
+          "ok": true,
+          "latency_ms": 1045.4,
+          "speed_mbps": 3.892
+        },
+        {
+          "id": "3fff7f7fa064dc214b6aef0490174e9edd1fbe92f7b4215fcbf53d4901ac153e",
+          "ok": true,
+          "latency_ms": 1044.83,
+          "speed_mbps": 3.844
+        },
+        {
+          "id": "feadef2bdfb59603c412c598337e0cf34dee30a6821ee94a2d9b142fc209f08f",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "cf7e49afa85ee6db483be3a20406cdc8c798d912b28e234c9352c2aa03770faa",
+          "ok": true,
+          "latency_ms": 424.98,
+          "speed_mbps": 12.033
+        },
+        {
+          "id": "2f4d6fc3d20e4a60e90ce6883d8640504bcb1f2378779373c491088bdc1a7193",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "642b2f17adab43eb3310f7fc17c17dde5e94d5038c471c57d8c3690ebcba5c51",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "49605f78f5b2f56607cd7256824cdbbf86fb57850aff573e2539441e5d7724d8",
+          "ok": true,
+          "latency_ms": 351.35,
+          "speed_mbps": 11.01
+        },
+        {
+          "id": "f07c30b42f8f63fa9f0b4785f8d8b197b1b575a091d85f584b91d7432ac7a853",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "74024d7f46e7c4e5bd5379abf7cad549078f8d42cdf41e9fa957a796e9e0ba7a",
+          "ok": true,
+          "latency_ms": 296.99,
+          "speed_mbps": 12.076
+        },
+        {
+          "id": "6ac08eeb7a8527b2635581f77a1b025bb0c5192ae635ed8da04e850cca1f11d0",
+          "ok": true,
+          "latency_ms": 249.88,
+          "speed_mbps": 12.063
+        },
+        {
+          "id": "e8d29a77a0aa4a1196218312e339b32220b53c6559ab641807b36414e8b6bd40",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "96bbfe773c6af1139abe17fcd15680115154b5a64d4415f47b0c2cdc99524396",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "5823386d4401d31030785635d2b99d2dff212c3442037b85522184b5afd55bc7",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "c68712956920b098615f310e552df01f372cc613886cc893b101d40cd00c57dc",
+          "ok": true,
+          "latency_ms": 346.84,
+          "speed_mbps": 10.026
+        },
+        {
+          "id": "634132c14051c598655653d7087fd70e109ebf4b17c2b8cb0106af4c4cbd2811",
+          "ok": true,
+          "latency_ms": 1053.54,
+          "speed_mbps": 3.854
+        },
+        {
+          "id": "18e3b5400d007ceae04e24d8d1bccf62a84f5f87626ca30aff381ed5403ed41c",
+          "ok": true,
+          "latency_ms": 365.95,
+          "speed_mbps": 12.007
+        },
+        {
+          "id": "27092dddf2aaccf516d70d891d01d2dc0d214c29f79064a3b15360e1f89e5d13",
+          "ok": true,
+          "latency_ms": 1047.64,
+          "speed_mbps": 3.552
+        },
+        {
+          "id": "f57cf33bb311ba1edc480387224dec86c660b864defd2078d20410e6bce6b3bf",
+          "ok": true,
+          "latency_ms": 268.51,
+          "speed_mbps": 1.258
+        },
+        {
+          "id": "b2314361250cc5d77742621345d0930e86f0d0691cdabd1ae1ee1d306d1a213f",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "c6f38fce98424c6f9d5c19104c59414dbe8151f316d79420be10c9b7a3c5c604",
+          "ok": true,
+          "latency_ms": 1045.19,
+          "speed_mbps": 3.863
+        },
+        {
+          "id": "3243a97c52bb27aefccd1334453efeb90513ab5504b0c08ca91825aa5f1d8226",
+          "ok": true,
+          "latency_ms": 352.6,
+          "speed_mbps": 11.462
+        },
+        {
+          "id": "e27c98931ecdef9baef616c454f26c25a714600017a51fcdf6949f721dae95aa",
+          "ok": true,
+          "latency_ms": 1044.6,
+          "speed_mbps": 3.882
+        },
+        {
+          "id": "275d4e39d2b49da227bec6b87cef0ef452265527e0685992cb5ea98929170418",
+          "ok": true,
+          "latency_ms": 1043.62,
+          "speed_mbps": 3.778
+        },
+        {
+          "id": "e4fd26dafa66c405601a0b4ce36786ad2751986ad63d49bfaf11e1dd65fa3db0",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "c67c6c86b9950921e8722e238ee5dc367e40475433f8e6286d1d0bf45ec57a23",
+          "ok": true,
+          "latency_ms": 292.53,
+          "speed_mbps": 10.246
+        },
+        {
+          "id": "c464094e7985daed2e62c1f10e6733830c093f8763746f0aa9390c646ec3f2fb",
+          "ok": true,
+          "latency_ms": 290.95,
+          "speed_mbps": 11.365
+        },
+        {
+          "id": "76d587fc1cb02dc2d5483fe105619cfcfcba629a1e30e6655f265254afb01c2f",
+          "ok": true,
+          "latency_ms": 301.12,
+          "speed_mbps": 11.111
+        },
+        {
+          "id": "9295304130da137e423cc3cb4ceaa33a29171c74a6b88b03ba25b7c839add093",
+          "ok": true,
+          "latency_ms": 449.02,
+          "speed_mbps": 7.264
+        },
+        {
+          "id": "78a527626f01ede4f45eec60e523b90a8f7a8ab6eb9db08595e0b568d2a78742",
+          "ok": true,
+          "latency_ms": 516.89,
+          "speed_mbps": 10.209
+        },
+        {
+          "id": "26c15ecd4955078aa20dd0a6a6cce5f52df2b89f8170614578ff346c01943508",
+          "ok": true,
+          "latency_ms": 1045.46,
+          "speed_mbps": 3.812
+        },
+        {
+          "id": "002bea325054dc570942ebaa53f3addfcdd2704f478330166e3b783ae3fc3f1e",
+          "ok": true,
+          "latency_ms": 427.13,
+          "speed_mbps": 12.017
+        },
+        {
+          "id": "0c3600e2f6f819f1df6e3e6281cf423cf14a406cf8d5e2274cedea2877fe28fb",
+          "ok": true,
+          "latency_ms": 369.24,
+          "speed_mbps": 10.628
+        },
+        {
+          "id": "6a6e0b8b5df95781bf943ecd2593af11a58ed6b6cb50d02f372ce2cd0a61e446",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "60925ea9f013c8cd604c8dec8953ebd60667fda1f31999def6433ef5ed05f9a4",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "5f28a3ac903bd3e6fb812d5cf2688fa29bf53eb3fec60ae17eb4236f6d3163e5",
+          "ok": true,
+          "latency_ms": 347.93,
+          "speed_mbps": 10.808
+        },
+        {
+          "id": "ce7b7b4675f38f87210619d83b665cb973651403a4db2d277237bff569cefe34",
+          "ok": true,
+          "latency_ms": 329.61,
+          "speed_mbps": 11.925
+        },
+        {
+          "id": "10382d98f4a137e9e7e5a0d5a105b97ccd9f32b6ad0cba9ddf05fb8f08451838",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "369f0814e586c38f339de6e45dc8adba81b44d913a1b83eaca705f981429f020",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "90a9cfdb190f79ad0fd7b2222d5f87aacdb61a2847422c572c7683cd993f978c",
+          "ok": true,
+          "latency_ms": 355.68,
+          "speed_mbps": 10.674
+        },
+        {
+          "id": "0649027b6823e6cffb954018b55c94e2c1340af4b3239deb727da3eb7c1c916c",
+          "ok": true,
+          "latency_ms": 292.54,
+          "speed_mbps": 11.178
+        },
+        {
+          "id": "9a351635fb0db8615bf8ab9631121109b58b6e56c837a87fdb78575da17267cc",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "515ac1afb5ffa1c6c4b1e1053a452b65652997bb978aa96d115c280dae840b38",
+          "ok": true,
+          "latency_ms": 423.82,
+          "speed_mbps": 11.706
+        },
+        {
+          "id": "11ff85914acd8c552ba5951aa9d0cf949b6b917d9d7a38e58b6230e56ffda518",
+          "ok": true,
+          "latency_ms": 311.12,
+          "speed_mbps": 11.429
+        },
+        {
+          "id": "8636782e1ad22ba9ee6f7b6ccddec9df193761272e43183020eef080669fe6a9",
+          "ok": true,
+          "latency_ms": 378.54,
+          "speed_mbps": 10.091
+        },
+        {
+          "id": "52c23050a2b2bf4de93e6011b3a4aae2f83deb0b81e1b04e9c02774a9cdafc44",
+          "ok": true,
+          "latency_ms": 295.56,
+          "speed_mbps": 13.286
+        },
+        {
+          "id": "482390ea09f63b715d01c9f61ba5412ab9fbba92b2cd95493e915ac9d04be9b3",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "cc1e277941da560ce4955faf0647280857c7bd0c5ddd275fe572b7dbdf9faeaa",
+          "ok": true,
+          "latency_ms": 297.77,
+          "speed_mbps": 9.497
+        },
+        {
+          "id": "e9ef2a67016ac07a04912ba38a458ad67b8357c8694dcfb8e5cd3d63909d4fde",
+          "ok": true,
+          "latency_ms": 401.26,
+          "speed_mbps": 9.953
+        },
+        {
+          "id": "6c3bf0dc9fa35226e9391c805df846f4428e0052c1b018d80247b26abddaa558",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "17237f51023e7748d78c0a0c022a28774f7bd0bfafb4ab6403bde7dcf0d5f6e5",
+          "ok": true,
+          "latency_ms": 1044.98,
+          "speed_mbps": 3.884
+        },
+        {
+          "id": "97d9ae066b51aeba7935d40b7233107b43d719c53e8eb80bc53bba9f37dd53b4",
+          "ok": true,
+          "latency_ms": 520.74,
+          "speed_mbps": 10.351
+        },
+        {
+          "id": "3f17513dbeb5d351c74a499d52493a4310589b5d3c5050ad65e75d90b09cf130",
+          "ok": true,
+          "latency_ms": 1037.98,
+          "speed_mbps": 3.88
+        },
+        {
+          "id": "fc897d3d4f60221c7a04f40e5fcd3a5eb735736cb8f3f521f05ae2ba5cd68abe",
+          "ok": true,
+          "latency_ms": 344.36,
+          "speed_mbps": 10.171
+        },
+        {
+          "id": "2fd50177c3cac10aff2698c8957c03ff08a3c5e60540a0af51b39254209c06a8",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "fc5c8f54fbc45b36f037a3f021570214c60bc096d1beb95a93c8b1ee48f0ddc2",
+          "ok": true,
+          "latency_ms": 462.0,
+          "speed_mbps": 6.981
+        },
+        {
+          "id": "b6578e84f9190b1e4c4adf83e2ab403dbfc5fc15443298d91d56e123de0a31d7",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "4e106fee906b80700963bee2db0a031f7b5dd974385246c2381232bae30bb768",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "ccefc2eb0fe9ad18c9845da7487c32cf714c2600fd58e8cc894cc051c6b88386",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "a152e7a371f647c52a7ac1f59697883d4a13c4ef03c6a5669a1e7b166c3d035b",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "7b7b34b691888ca7416047de5d3aa671ae0284cb3fc8296cca33ee67b169fdd1",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "86d40743783816a3bfa8377c2bf3bb213d3c2ef89b1202b7717bd239fe694e2e",
+          "ok": true,
+          "latency_ms": 295.86,
+          "speed_mbps": 11.794
+        },
+        {
+          "id": "a8152c296a276efb2d196c296a68133b70ac3929275642e56f5fd18bcab0913e",
+          "ok": true,
+          "latency_ms": 298.27,
+          "speed_mbps": 1.266
+        },
+        {
+          "id": "3a89c109dedd782a0f9c112c502d3fbb093e33fd89405e344a31c29d7979e3f3",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "f5b0e78b50e93b37bc154e4ac517022df374ca4b504dc8d0b6109f9e80312155",
+          "ok": true,
+          "latency_ms": 420.41,
+          "speed_mbps": 10.537
+        },
+        {
+          "id": "41925b3d7650a8fa22939a251e22cb6ad5a809d95ca835a60308a3e1af4681bb",
+          "ok": true,
+          "latency_ms": 1045.6,
+          "speed_mbps": 3.889
+        },
+        {
+          "id": "985c218ce73ab7c89956b6df19303264be2f345d3f3430ef9ffc49826d79531f",
+          "ok": true,
+          "latency_ms": 418.42,
+          "speed_mbps": 11.963
+        },
+        {
+          "id": "7e0aeb2cadf40170c8c90b9cc31fe744e33125ba4e5615b6e50e1cf24f68c864",
+          "ok": true,
+          "latency_ms": 362.51,
+          "speed_mbps": 10.301
+        },
+        {
+          "id": "2afdf6e56eb0f0890d845dfa0d1baa63f926325670cd05c153f7c1c08bf47313",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "b770c8ee7ef2eadc416e03f2efb43d3f9f9bd62c5f2c15e63a0a196368ae7d75",
+          "ok": true,
+          "latency_ms": 437.62,
+          "speed_mbps": 11.995
+        },
+        {
+          "id": "019aa569dcf49ce7d5b580db6569aa78bd66d878d9b1115df243e6d8a2dfdf61",
+          "ok": true,
+          "latency_ms": 351.22,
+          "speed_mbps": 11.199
+        },
+        {
+          "id": "3efdc2b4e92b11584736533b79f0de62637cd07948c7e411dbb51822e6c44a99",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "578c27570e19bf85db7ba03af33b9c7833dc8bb15baa634852d8bbf8f7fd898a",
+          "ok": true,
+          "latency_ms": 417.22,
+          "speed_mbps": 11.179
+        },
+        {
+          "id": "ab9b9fd111b7aa4cb1c4092aa58ccfa4edf79004c2f0a8e9e0cde4bf71084560",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "53da6fd266c7c5a710f40b0f4c81a5186fc1bd4f995692b7604d61a64e23e6a9",
+          "ok": true,
+          "latency_ms": 406.39,
+          "speed_mbps": 10.618
+        },
+        {
+          "id": "89276ebef7bf724ae366140126fb774057b7e8ed5da9d67a16bdc7685fd756ed",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "819d30419831cda87848c4b5726aa3a2a0af58808cd7f7b39a884efada7e8281",
+          "ok": true,
+          "latency_ms": 453.54,
+          "speed_mbps": 2.969
+        },
+        {
+          "id": "39bcc3b0b0df6f33fd2750b58dc02dfe89513191bff6bd6735c985de292995c0",
+          "ok": true,
+          "latency_ms": 609.97,
+          "speed_mbps": 5.681
+        },
+        {
+          "id": "92ad54c0ce05afe3819906234d7b6fa00b9d7f78613d3aeb51d3527ced0f1cfc",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "ce019a5c8c45a4c2cffb36e2dd3cd8ce9013f8adcc7caf19b76dd42f87d6136b",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "64a82c5145f48b371e2e0981da4220251d13995d6723b4c674fb453894e69225",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "855d37c784590315ad6bf5dedada09f86c803100b2230e786de89caa1d59d825",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "7eb5c32f0793bfcf16230395f97529d7995847695db126d8cea2f3f2168c55c6",
+          "ok": true,
+          "latency_ms": 146.04,
+          "speed_mbps": 20.477
+        },
+        {
+          "id": "0a1c02520aa4be2b55fe230422f00c5bda6918606c67d74127bd95d17fe3e5e2",
+          "ok": true,
+          "latency_ms": 277.71,
+          "speed_mbps": 0.93
+        },
+        {
+          "id": "e76abffd541b462ad3a7a4e0241e04c3628d05a9e6f3f18858b34a58a9996307",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "01476c72df265bb8465bf653ac3a554fc6c4c61393870fbf6e45c29203264173",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "98e696b9dfa41ca76d7f14ef90c1b48afdff1affee7b2f6ce6587d7d6bf4228c",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "ec6f1daf96ff5c967ac4e2caf79c0b43dca6c6409cd10fe80d34ff8ab010c89a",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "e438791345f60a78c1727422ab88e1b6c76c8bd689918a528d50f8ec5b0a2360",
+          "ok": true,
+          "latency_ms": 430.08,
+          "speed_mbps": 11.19
+        },
+        {
+          "id": "f9dd2079928f76b61f0b6110c4c24b5defd02175a04cc93c9973789ef0310713",
+          "ok": true,
+          "latency_ms": 379.83,
+          "speed_mbps": 9.31
+        },
+        {
+          "id": "b05e3089ff4dd7f8da4cb07210079720db5511656b438ade5dc6788aea5d7a60",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "bfaf16acf1768fc8eb41fe152bc7b9b6f531f203fa9c2d1e1e26abb7a7716316",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "729c95e57ceed923cfcdb8c414ae1a783ac2732cf7b558bb2b80c0b8a21cc375",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "a18d10bad3e046322e0a691ea839e7064e900bdf0b5473c8ad7d506e20cdba79",
+          "ok": true,
+          "latency_ms": 698.56,
+          "speed_mbps": 6.145
+        },
+        {
+          "id": "84a8bcf723a098954e31dfdc7d220b60beadfe85a95db46488c6f204d8e0688d",
+          "ok": true,
+          "latency_ms": 697.35,
+          "speed_mbps": 6.321
+        },
+        {
+          "id": "29c1629678f624288041d13156c26193f13f679ef01f968c1d37331c0eb5b07a",
+          "ok": true,
+          "latency_ms": 2718.68,
+          "speed_mbps": 11.627
+        },
+        {
+          "id": "bdf194933c216e4bba55a73bd8ea129170315a313d01b1fb22fd0d71cfc21277",
+          "ok": true,
+          "latency_ms": 548.29,
+          "speed_mbps": 6.279
+        },
+        {
+          "id": "980489c441ce3408f132e24fd6751cf6ea3b74584b9335710b2abb2644fd8f6e",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "50220d80e12efef6af760bc3191deb9c57e927a260f6b5ba1913ba9bcc2fcc94",
+          "ok": true,
+          "latency_ms": 156.43,
+          "speed_mbps": 24.129
+        },
+        {
+          "id": "b024fbf1d26159712bb6c9ab0e344cfadbe9fd2600baba46f006f23c61600d9f",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "7f0e2770455735b49cacce62eac8ae627fe26deb813b9f72adc5a8cf627831a3",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "ea21ff55a760099ef6fcd25af6c3c0b95a3dd90f286726af082bcd860de5b310",
+          "ok": true,
+          "latency_ms": 421.84,
+          "speed_mbps": 12.284
+        },
+        {
+          "id": "a349cbc8287867462bdb27d9b476a505757bbc997661761d5edaa0db17cb2b9a",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "b5b3ae2f9b40dc0d4edae77fa9c782baaa07d0cc2da1e8ef969d01268488160a",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "bf7975867b201a904a70603d650f46506f099513d2817d7c5940de9f91211298",
+          "ok": true,
+          "latency_ms": 418.0,
+          "speed_mbps": 9.694
+        },
+        {
+          "id": "be62766d4a6b572588e6140871e12923deb69dece860677cb7ed41fcc96c361c",
+          "ok": true,
+          "latency_ms": 263.84,
+          "speed_mbps": 1.089
+        },
+        {
+          "id": "abac5db5ce457863e850f704ca1757a4a33abe0f260664d10c13f2d56fc5405d",
+          "ok": true,
+          "latency_ms": 265.53,
+          "speed_mbps": 1.064
+        },
+        {
+          "id": "1dfbeda3efb94dfffb02633b773a0c8f572538d9829ef001c38d9443df63e58d",
+          "ok": true,
+          "latency_ms": 755.87,
+          "speed_mbps": 4.834
+        },
+        {
+          "id": "51380314f790589546cc4e14ffd891a8e0f4359fe0338fec07a22db30dcb8217",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "5d5fce65ff114192037833769a9d8a5ba5ce4ccfea21a195c0348a151e349f09",
+          "ok": true,
+          "latency_ms": 267.41,
+          "speed_mbps": 1.088
+        },
+        {
+          "id": "4c6a6578e89adae7469b487489fd212eeb6db33e07041e16eaa4de6131e22664",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "86355b89bd2608e7bc5fdc4326ea204cb2116c7655a6e0b6f3f1d5333dacdcb1",
+          "ok": true,
+          "latency_ms": 358.24,
+          "speed_mbps": 10.072
+        },
+        {
+          "id": "c04dd9c9becd88b24971b52d54ea28b15c1a10a28d3f6267e31652fb124762cb",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "cc24280037333aa4108dce084741edcff82d556e573e8862cfd4b7b96154d8be",
+          "ok": true,
+          "latency_ms": 396.0,
+          "speed_mbps": 11.789
+        },
+        {
+          "id": "cba101c04ec77e68e2d9fc77731e6ab2cb540602d16c87c296846dc07f7b8fd1",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "0f429c8107b0e61315fcaa303cf52175d1717376bd2c513e506d7102e42768dd",
+          "ok": true,
+          "latency_ms": 582.55,
+          "speed_mbps": 6.195
+        },
+        {
+          "id": "a5e2b692a9d2f9363f5eb01edfe3e7e336ca4928ba10c99c2ef3efda26bbdfe8",
+          "ok": true,
+          "latency_ms": 1326.72,
+          "speed_mbps": 4.892
+        },
+        {
+          "id": "04bd92f96458f760be63eb50ab82fee301c60af7a934ea994f42bd4f38800b72",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "cfab627c34758676f48f4ec519f0b6cf625037aeee191dc6c601e6175d225490",
+          "ok": true,
+          "latency_ms": 840.61,
+          "speed_mbps": 4.752
+        },
+        {
+          "id": "fb4e22a463ac6645b48f652623f77abb8ea24e66cc754522a3960a95406cf4bb",
+          "ok": true,
+          "latency_ms": 248.16,
+          "speed_mbps": 14.892
+        },
+        {
+          "id": "162e858e44980201af0f6fa4f89f168dd924d993f19277abc0fbd968d44229f0",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "fa01e97f1655d8ea5aba10512ef1f16c4e962281d862a2cd678e0347cf7105d4",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "8e264565d4732127ac7cbe7b466ddd045e962fba1d7472d6f0db659339ee8dc2",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "8d3b3efbd5d3fc88f9f1cf571735c538ddc5267ee3409e71718978c86c5f102a",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "71445c01d7a61969a66cc41ba6aea1ac632a37b097acaf998b3d33a6950cdf04",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "a18b2204886c57171199ddb48f6face02efbfbc3662e212907d87ce391078ebd",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "cddfb9511b5d2a83e8988fa4cdfa6504c7fbbf9f454d4ec095eae4086963f14e",
+          "ok": true,
+          "latency_ms": 1313.95,
+          "speed_mbps": 1.712
+        },
+        {
+          "id": "098e7acf01895151cc23ac6d1f0141402e11c1fd364df29223c4ed7c2f0d1207",
+          "ok": true,
+          "latency_ms": 140.68,
+          "speed_mbps": null
+        },
+        {
+          "id": "75139b609820560f5332cde4ad345c24eaffef080d2cbcb926d5a8ae29226dd9",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "b52d9a5307e61f0de12b20eecb9baec9e55a0fa2f95a54b8763a27bafab403aa",
+          "ok": true,
+          "latency_ms": 1434.2,
+          "speed_mbps": 1.302
+        },
+        {
+          "id": "f2cb6443911aced3744ebbaeaa3bbf9243e3211a17ff1fc54d066d65289d2bc9",
+          "ok": true,
+          "latency_ms": 2941.71,
+          "speed_mbps": 2.235
+        },
+        {
+          "id": "7bed9fd76a313c7f3d013ab24276f07f493e6fe80d62f1f4702966350e99620d",
+          "ok": true,
+          "latency_ms": 155.86,
+          "speed_mbps": null
+        },
+        {
+          "id": "a30770414e40a45a4a9605dc49fa0cb7dcde309c37b73cb2ecf8b9cf691a64e1",
+          "ok": true,
+          "latency_ms": 455.0,
+          "speed_mbps": 7.458
+        },
+        {
+          "id": "30e705cf12953f32f51a76a633d0903f1f0988584bb4ca2ab1e62084c15c7462",
+          "ok": true,
+          "latency_ms": 162.45,
+          "speed_mbps": null
+        },
+        {
+          "id": "606562f4eb757598328ae156d0580ed9490d5790ac3660b69036896f913538e6",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "5d719dd8ad41e5d4543e7e5bb2b81f68a13a33431db9fd6e71ed2eb59cc2d556",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "09ecae18173fc0dd8af2a5599b1facb39aa52d605c098d8be25784b509c44a2c",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "3e199dded025dce509c6ed387f1ead16b01cc9672a15a3f494e43f18375eef26",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "8f261c86c1252486c9abc8fba45f57cc11f1bc9b5e9d30f9dd00acabd8bb91d8",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "f642883578d6304f13bd0ac7528e8370e7aa75aff8cbc8bc9e8f21951a9dfbf3",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "771270d096d76039d644efe2d4e194341bcfd875ea3047c10e0e53c410208e4e",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "687518d16ffaf2dcf06aa16e02fb30c36501208a7dfefbf10bbf8bebdac027af",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "6874145ef0157026682dcdfbe73d38ca53d75370b7ac0e5253b12647ab185ec3",
+          "ok": true,
+          "latency_ms": 466.97,
+          "speed_mbps": 6.798
+        },
+        {
+          "id": "7e67634bbb4b126c66c494fa0dfe6db0c3a09600f0d1386fd3dd2f18226cb4c4",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "975c3f72f84a57fa5f042e22438beb852646bfff61d9498a43e884596449d454",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "79b1d6150937be01d239675bfe536c2e26b79b533968967dbe10487ff2d7c207",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "67f0ebc51297a960bc0bd1951f955a52c85058ea71e1857e7452bf11bb434893",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "2a12f3e7359c810bfaf88cc5253a00e9f4b68449b0906265aff0ac241ef91baf",
+          "ok": true,
+          "latency_ms": 914.57,
+          "speed_mbps": 4.148
+        },
+        {
+          "id": "72d68a4d3b64b73b242d27dc5057ba819db2b3625421487a082b02ab385fe22f",
+          "ok": true,
+          "latency_ms": 1930.35,
+          "speed_mbps": 1.222
+        },
+        {
+          "id": "b485fa491b686edfcd49a346998edef450d6c205010bea6d806bb46990264c77",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "4b090d68fa176221a3329a7a6c455e592384befe388fe941c83e8cb9047bcc06",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "a0758ff431020df6f5476a8d2b9c41f7c0b12c8cc18fd5064e1c074277cef2a8",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "68a0ad6e7d0de3239c86e8abb9ab98c04b0701dffd24526778d0b6f7aef7b005",
+          "ok": true,
+          "latency_ms": 120.35,
+          "speed_mbps": null
+        },
+        {
+          "id": "b05aa8e6edabcf5a2ac8b4cc1b9c69d64379d00ffae4d7084b03508e06826c5c",
+          "ok": true,
+          "latency_ms": 780.98,
+          "speed_mbps": 64.243
+        },
+        {
+          "id": "ed2879a277e74e8386673f0ad3d528de424c4e40267f07402258d8dc7f18be92",
+          "ok": true,
+          "latency_ms": 303.13,
+          "speed_mbps": null
+        },
+        {
+          "id": "a6b7c03ad11d871277159330ea8cb6cda99705feb44f2d809b7d7b85d302a104",
+          "ok": true,
+          "latency_ms": 1043.45,
+          "speed_mbps": 3.889
+        },
+        {
+          "id": "a08e79680478a9a9b789a0dd8008901ad58185c820cb6160ccec9d71eddb4c27",
+          "ok": true,
+          "latency_ms": 763.64,
+          "speed_mbps": null
+        },
+        {
+          "id": "4de944b3e00bcab8237714711dc6414bf8c41ac4637d10611267e4262cbd3ba6",
+          "ok": true,
+          "latency_ms": 1046.21,
+          "speed_mbps": 3.876
+        },
+        {
+          "id": "55c52ba347cd13aa6dc3f112c80a5b06f9b3b9d0f152384479aea1433c318665",
+          "ok": true,
+          "latency_ms": 1045.41,
+          "speed_mbps": 3.862
+        },
+        {
+          "id": "45daa5cea99aada5ef8a15e4b00f6f94d1b87c4bd67bbc38d8e827489835f354",
+          "ok": true,
+          "latency_ms": 135.27,
+          "speed_mbps": null
+        },
+        {
+          "id": "c826fbabcd3e62517bf89f51c074e85ab52e0fb5a6a890f9b9b287feff2ed734",
+          "ok": true,
+          "latency_ms": 137.13,
+          "speed_mbps": 4.198
+        },
+        {
+          "id": "b0f684a31fb9a16b7b6b751513f62d53043018245ddd006d942a792ab460de54",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "c7af4d505ae9b121e2ea684b0ed90e660221e32278b9620ca9f3a03512457137",
+          "ok": true,
+          "latency_ms": 1139.68,
+          "speed_mbps": 5.735
+        },
+        {
+          "id": "be2a0667e592e5148435eef8b6287462bb5096e21b7c4bc819ecfe7c44908bfe",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "ff00b84ed5a2990c569674e444ed319f4e51b2830f08364801b446cc81475f19",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "91e8df2f01996d87c9a89823e57892414b47dd6f8f7a9dd562517f3b311bc5ff",
+          "ok": true,
+          "latency_ms": 156.47,
+          "speed_mbps": null
+        },
+        {
+          "id": "197739a564b1b19a3fffb70d135790c088e696c69cf71120d00a1d71f8866c37",
+          "ok": true,
+          "latency_ms": 250.25,
+          "speed_mbps": null
+        },
+        {
+          "id": "658f68f38bda25af222039a25c97339da455afd14c07f5d9070956473e7450e3",
+          "ok": true,
+          "latency_ms": 887.46,
+          "speed_mbps": 4.894
+        },
+        {
+          "id": "0ebd0473b26ba7531f58e1cc55cc77c50ef2b121ce9b231c98c9a5d50fd65eae",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "1abe4e77ae5c5acfcb35965b798c960378661650e3dc9b279706d3cd8bf3f8c2",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "35455cf89989f3eff0e24acd2a2c910a6ff6935fa59974e9f57400147207bc83",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "b8db6b4bd80b3b74e85093e5156e6ded1c1576c19977a87797bdd71eb8c42951",
+          "ok": true,
+          "latency_ms": 277.3,
+          "speed_mbps": null
+        },
+        {
+          "id": "a5c887b6f3c86da95f9befe99757fea67b950f12b7d41bdd2435884b0cb8b700",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "1280d3581ebd9a83ffd1c5256f75880f6a418e4b5d567fc977af241ab6d665ba",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "16ce49cc73d311d21c7783a7879aadefaf893a4f499bcbf5ae8009b92b06e7a1",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "70b2398171e68f0ecb0c2795840c1f70a52d2839e528355a5c711f2cbf81de1f",
+          "ok": true,
+          "latency_ms": 567.91,
+          "speed_mbps": 6.024
+        },
+        {
+          "id": "c7537c8ca4da39cad2bb84b8e55aec78357573657442df4cb2c9960575b4d3f9",
+          "ok": true,
+          "latency_ms": 618.2,
+          "speed_mbps": 6.016
+        },
+        {
+          "id": "78c0fecaa0ec643cf422796cd372e14ddcb96c7f91974db8ffb5c1014ec2bcc1",
+          "ok": true,
+          "latency_ms": 600.66,
+          "speed_mbps": null
+        },
+        {
+          "id": "399abd394d27d892ee59cfa389b7c291ccf7b1ec6a15f105376c97987c1d80da",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "c475aec7f8401f7cd72f916b2f719513e90f10aebdb2fccb024e25d651fb8d6d",
+          "ok": true,
+          "latency_ms": 872.86,
+          "speed_mbps": null
+        },
+        {
+          "id": "d43133f98124b251b917cff517049af1cba931d1680f07ef40d9b5f140316408",
+          "ok": true,
+          "latency_ms": 588.43,
+          "speed_mbps": 5.935
+        },
+        {
+          "id": "b6941a16ff42076cc4bebfd678bf02e6448c18bb07ac2b75e51f0a1b1436f4f7",
+          "ok": true,
+          "latency_ms": 108.14,
+          "speed_mbps": null
+        },
+        {
+          "id": "cce3ce27b7bf0b341d48836ca2d4b22977bf5fd14fd350358f54bf3452514f04",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "798b7a7bf4b6ef97149b206a72919c99d839c84069a757fd9aa265e358730c01",
+          "ok": true,
+          "latency_ms": 160.79,
+          "speed_mbps": null
+        },
+        {
+          "id": "863d1f9ed227805ca04a8f9d8882c1ad2b0b697dd3c7213f4fff1d0fdab92f29",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "3a0b6d939c30ef2c28f86bb9246fcd7137c1603bc10cc9d46ca926a46d1d2e78",
+          "ok": true,
+          "latency_ms": 1076.37,
+          "speed_mbps": null
+        },
+        {
+          "id": "665e417b0b0eafbbd90348a9dd5dba064ecbf297611c0df45fb8ff180b3e54af",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "01af1ed44453a1fb4ed0808783cda4b5a6c3e64e05ea330db6437a65754d8af2",
+          "ok": true,
+          "latency_ms": 708.8,
+          "speed_mbps": 5.245
+        },
+        {
+          "id": "8dcd207bd44fa8bdda967ac56fb18ec8cc6dc1c373a57cd5c4023139fa0bd918",
+          "ok": true,
+          "latency_ms": 1337.04,
+          "speed_mbps": 3.662
+        },
+        {
+          "id": "9124f30bb95aa4587124f944d32f9280f0563430c19dd8f28b6f57115fddba3a",
+          "ok": true,
+          "latency_ms": 786.79,
+          "speed_mbps": 5.051
+        },
+        {
+          "id": "6cc52304288017d608b1b18b060f937aa8206e59652591ea51af84a71280ce99",
+          "ok": true,
+          "latency_ms": 590.4,
+          "speed_mbps": 6.031
+        },
+        {
+          "id": "6c00334e55c5442b6ed1e94e6746328b065f70292a9bbd918c5c57a13735d730",
+          "ok": true,
+          "latency_ms": 534.24,
+          "speed_mbps": 6.301
+        },
+        {
+          "id": "23fa79f31ebbe1ec90fdf2016ba6b50673b5b3b843bd99e4decb95895a1937db",
+          "ok": true,
+          "latency_ms": 1582.77,
+          "speed_mbps": null
+        },
+        {
+          "id": "85d3bd6d466288386a785a1d1d7bdfe61c43f9640a7b614e2eb7bbf57ff1fe6c",
+          "ok": true,
+          "latency_ms": 559.8,
+          "speed_mbps": 6.284
+        },
+        {
+          "id": "66264a42e1b1366e0c249b313ecbd2b6ffaa1c92a10d8d0a728ac3a505463605",
+          "ok": true,
+          "latency_ms": 1686.63,
+          "speed_mbps": 1.343
+        },
+        {
+          "id": "3874d4bc706b42bb462e6cd1958767db0fa4151efe5beb75ed523b411790ea38",
+          "ok": true,
+          "latency_ms": 591.32,
+          "speed_mbps": 5.498
+        },
+        {
+          "id": "16945c2874494ab060aac72c85f3ff608506f456e52a344729a960fac9ca5a75",
+          "ok": true,
+          "latency_ms": 557.44,
+          "speed_mbps": 5.064
+        },
+        {
+          "id": "454dd4c580f2833f351a1dd30c11a5e9f06ce8d2ea808cdc3bc76ac56217f6fc",
+          "ok": true,
+          "latency_ms": 539.58,
+          "speed_mbps": 6.177
+        },
+        {
+          "id": "80072d378823119dea5ef522dab184bb7e0a909c0829648de23249ed51e11cc6",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "be692d037a565653df398a08a014df7cb41bd847423743fe5573bfcd976b47ac",
+          "ok": true,
+          "latency_ms": 1030.05,
+          "speed_mbps": 3.541
+        },
+        {
+          "id": "8006334eab164befc1fabaafcb2049632232465b6769e4401df02b26f7d77751",
+          "ok": true,
+          "latency_ms": 547.38,
+          "speed_mbps": 6.321
+        },
+        {
+          "id": "c8fc21341f4f4e07a9986def8aebcdb234bd112ee9d17504470197dae6b79092",
+          "ok": true,
+          "latency_ms": 544.58,
+          "speed_mbps": 6.244
+        },
+        {
+          "id": "59dbc51290c44bfd536b844aaf7cfdc5a5ffb1e4e644348ab0940afb5c491955",
+          "ok": true,
+          "latency_ms": 595.45,
+          "speed_mbps": 6.06
+        },
+        {
+          "id": "a8881b1080159b26a97cb5ce34991eeb597d31236ef68e27a7b3f5fafad9db2a",
+          "ok": true,
+          "latency_ms": 540.44,
+          "speed_mbps": 6.351
+        },
+        {
+          "id": "9805fd88fb760644f93da79efb52644609c7d6d7b1a42bdb8606ea55fcecd7ba",
+          "ok": true,
+          "latency_ms": 2328.87,
+          "speed_mbps": 0.771
+        },
+        {
+          "id": "5bd75563b736de2f3120c084af3a8ca88b5436edd53dc3f4b02486ce22ae3d89",
+          "ok": true,
+          "latency_ms": 544.59,
+          "speed_mbps": 6.306
+        },
+        {
+          "id": "4efa54783e5f201c9340b6dce84b082c3d95cc637f75639fd6e759dde84f5551",
+          "ok": true,
+          "latency_ms": 537.89,
+          "speed_mbps": 6.268
+        },
+        {
+          "id": "fa1b31d19c2eb81b9d80ab8f05c1e55d7d23b3c2f5eb1240130436ca593b7346",
+          "ok": true,
+          "latency_ms": 539.46,
+          "speed_mbps": 6.287
+        },
+        {
+          "id": "6a6f6ad2706e03e77a254fe24bd88efdf185fbe110cdbfba39da1df0616e43be",
+          "ok": true,
+          "latency_ms": 536.04,
+          "speed_mbps": 6.36
+        },
+        {
+          "id": "afa2294cf38200039321364a91fa56637d7e3a3bbb1dad1eef302a03c0ee6502",
+          "ok": true,
+          "latency_ms": 537.22,
+          "speed_mbps": 5.82
+        },
+        {
+          "id": "001e09d225045e889b59c60a43fae865ca9669a4f294803afee6827a9a682312",
+          "ok": true,
+          "latency_ms": 605.39,
+          "speed_mbps": 6.124
+        },
+        {
+          "id": "c983cefd4002d2db8e5b18a3e7f8fa360088d069a93a3dd0dc93568fbe64ef35",
+          "ok": true,
+          "latency_ms": 595.82,
+          "speed_mbps": 6.103
+        },
+        {
+          "id": "7f60cc01b7243842e6cb4a0c327b1222564d6a8e17ac8d2121adfc604dd8fce6",
+          "ok": true,
+          "latency_ms": 541.92,
+          "speed_mbps": 6.246
+        },
+        {
+          "id": "5208ccd84ccc2da46817521af2393a1f8578394480d1af6f9efbc053852685b9",
+          "ok": true,
+          "latency_ms": 546.3,
+          "speed_mbps": 6.281
+        },
+        {
+          "id": "ec8b9e3d2839ad0b823883f2868775543829e28c1b93d986a8cac41563f8924a",
+          "ok": true,
+          "latency_ms": 559.73,
+          "speed_mbps": 6.197
+        },
+        {
+          "id": "bdccb4816f325721c9fe48f0fd7f68b451edec8a45be70afc04f4902da0a7c76",
+          "ok": true,
+          "latency_ms": 552.6,
+          "speed_mbps": 6.334
+        },
+        {
+          "id": "23de2f355e9581be4a1e1b2d3cdc026d80dfdfb2996863089709b34216339948",
+          "ok": true,
+          "latency_ms": 911.67,
+          "speed_mbps": 1.109
+        },
+        {
+          "id": "1c88ac71b1bf21b669c121f381b6f263af8bdf7c60c84b87f5043a7e9ff99e0a",
+          "ok": true,
+          "latency_ms": 553.31,
+          "speed_mbps": 6.299
+        },
+        {
+          "id": "1bf956d6c791e5133362badba001d1ebeceea355ac4b6d0b4bb64373bd9bd298",
+          "ok": true,
+          "latency_ms": 677.66,
+          "speed_mbps": 5.67
+        },
+        {
+          "id": "8452d152aa051de6aff56b6dd52a9b657dafee941f4b5f5163c07ad368a574e8",
+          "ok": true,
+          "latency_ms": 552.74,
+          "speed_mbps": 6.758
+        },
+        {
+          "id": "d6096fca8feb9d1e0e7402cf1120ab30951632ec1c906668f90dce3cbe9f7a21",
+          "ok": true,
+          "latency_ms": 717.63,
+          "speed_mbps": 4.383
+        },
+        {
+          "id": "6157f48bf12271afc76fa5a0f02316834639bb73d5cce9e55d207ab52641604d",
+          "ok": true,
+          "latency_ms": 1213.41,
+          "speed_mbps": 4.802
+        },
+        {
+          "id": "f1e52550665efb718e1e26ffe14e05f1f691a03b5a30f6daddba88ed4f6a8244",
+          "ok": true,
+          "latency_ms": 580.85,
+          "speed_mbps": 6.138
+        },
+        {
+          "id": "89d81f6f19a0ec6317a03985a2595dcdbe1491ef16f281b812f608204b8295d1",
+          "ok": true,
+          "latency_ms": 1361.71,
+          "speed_mbps": 3.266
+        },
+        {
+          "id": "edba0d6050b2ff8366881285752ca907bd68918d715a8b427a04e92b2377f5c5",
+          "ok": true,
+          "latency_ms": 535.86,
+          "speed_mbps": 6.382
+        },
+        {
+          "id": "3d5dbc54eab86093d4553bdb73d6a07a50bc1a446145329f990737330c177b57",
+          "ok": true,
+          "latency_ms": 539.81,
+          "speed_mbps": 6.3
+        },
+        {
+          "id": "a3ef9496c3897c8dd49929ba1ffe9ebf91212a3d39d97be4b679d7d02dd11cb6",
+          "ok": true,
+          "latency_ms": 3119.1,
+          "speed_mbps": 0.611
+        },
+        {
+          "id": "df485e5e0b8b59e5ed927d55ca4b04469df6d6b05fbc429c1788c8f6182813c2",
+          "ok": true,
+          "latency_ms": 580.13,
+          "speed_mbps": 6.344
+        },
+        {
+          "id": "3fd3015e047d6373470a62102246b8ba04359e6f2061b7f8f839a238ac520716",
+          "ok": true,
+          "latency_ms": 963.54,
+          "speed_mbps": 3.347
+        },
+        {
+          "id": "79462e112ad779cfa763ba495ec362e2657d9e3c17cf0ac5e958a10b5e277ff9",
+          "ok": true,
+          "latency_ms": 1519.27,
+          "speed_mbps": 2.519
+        },
+        {
+          "id": "8521817dfda40c722ae39ffcf50c11807b646fcff7358f07925ad0dd5b0e7f70",
+          "ok": true,
+          "latency_ms": 1164.27,
+          "speed_mbps": 2.603
+        },
+        {
+          "id": "58dfeee6f1c8d061160750b3e83bb643e952172a1864d885142765515c59971c",
+          "ok": true,
+          "latency_ms": 548.65,
+          "speed_mbps": 6.166
+        },
+        {
+          "id": "0c855760814eb9fb9a80c330a1606260417f3f85711ddf86adbdac5e4908f302",
+          "ok": true,
+          "latency_ms": 550.32,
+          "speed_mbps": 6.377
+        },
+        {
+          "id": "5b734685fa0df0e4c15d69a7ab18d8bc70f0a49ba18e537495f3d9c499cc839d",
+          "ok": true,
+          "latency_ms": 568.36,
+          "speed_mbps": 6.213
+        },
+        {
+          "id": "b5f7340901d29d013a0af21238e7895d27b443f8d4b4c5b6a7fd52383fd3e00b",
+          "ok": true,
+          "latency_ms": 561.97,
+          "speed_mbps": 6.047
+        },
+        {
+          "id": "52567bb308c9d36a85e1336a6f78c0ef8abbb254221a12596da4820b7d493e31",
+          "ok": true,
+          "latency_ms": 548.59,
+          "speed_mbps": 6.235
+        },
+        {
+          "id": "d50c1080dd18dc824a2f260f434f7880bc2d35fde6daa055e2f38e3dfe7a8a14",
+          "ok": true,
+          "latency_ms": 558.1,
+          "speed_mbps": 6.275
+        },
+        {
+          "id": "356abcee925b9c1a87c83a778cfc426a2852e371c7be23f6c5a8e6f5ed7f187a",
+          "ok": true,
+          "latency_ms": 551.03,
+          "speed_mbps": 6.123
+        },
+        {
+          "id": "49251fbb6ed883eed84b955efa6bb0168026ccd1e9199babe52327f77676bfa7",
+          "ok": true,
+          "latency_ms": 553.19,
+          "speed_mbps": 6.673
+        },
+        {
+          "id": "90e6c4c1344535fe1f5431e44d72a758f60c122106e13345547f66041211823e",
+          "ok": true,
+          "latency_ms": 754.03,
+          "speed_mbps": 5.266
+        },
+        {
+          "id": "513812cfbb87c0c73e1eab4b8e1ce18f452fef9699260093a056c99d5fae9263",
+          "ok": true,
+          "latency_ms": 862.1,
+          "speed_mbps": 3.382
+        },
+        {
+          "id": "461d7a6b2f46e3adb8bed58b08bf7e98b549092581ffc37efe09f7b99d8be1c7",
+          "ok": true,
+          "latency_ms": 1855.03,
+          "speed_mbps": 4.449
+        },
+        {
+          "id": "7668c47f282018e2989075f77a1b3dca0c5c9dbc40e8d34dea1efd62778dd962",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "55fc354ee1322d6f9dfc12222cf2e184ad59f03fc238e08e94ef70db482e6bc7",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "ba7100778d2188464fa7b5918eff1e77de611598f25e7cafc6fe21e55dd02951",
+          "ok": true,
+          "latency_ms": 539.79,
+          "speed_mbps": 6.371
+        },
+        {
+          "id": "c4faebab2d2c50dac9e05067d8259b8e1e323f4732eec876f01c27d505500681",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "fbb813be642b51a561f6e99ef8f63f255066e24d010cb27f5a34287bbbf09103",
+          "ok": true,
+          "latency_ms": 1139.38,
+          "speed_mbps": 3.2
+        },
+        {
+          "id": "bfcadc6f369d470c4bf413e34b114145eaf9f37f7ee3718d4c72fc096d231005",
+          "ok": true,
+          "latency_ms": 540.79,
+          "speed_mbps": 6.293
+        },
+        {
+          "id": "af8ba2d47ff783367240f850a3ea35a2af34750735320bd37c92f3c1de5ef8a0",
+          "ok": true,
+          "latency_ms": 964.93,
+          "speed_mbps": 5.015
+        },
+        {
+          "id": "a3a7757b47ee980f5bb75ced21ff9edb022512730b09a8669adfdbf26c3d5a04",
+          "ok": true,
+          "latency_ms": 538.03,
+          "speed_mbps": 6.151
+        },
+        {
+          "id": "22f01da0c541ce2d4e98e2c7753340adf9cc5046b4a922dc4e10df4f2af8bcaf",
+          "ok": true,
+          "latency_ms": 593.89,
+          "speed_mbps": 5.244
+        },
+        {
+          "id": "8a58041436f77fe38bb1ca5ac14aed8bfea3f3355e3ce06db95cd197e1df2e89",
+          "ok": true,
+          "latency_ms": 458.92,
+          "speed_mbps": 6.262
+        },
+        {
+          "id": "9564b9150661ee5c5a33e75f8af3cef4ee798ba3a50a30bc117a90b4a3248be4",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "6efc3421a65db0a7f4d32ef72d8d8d0a6608b9bd5bb6206d2ca2019cc78dd46c",
+          "ok": true,
+          "latency_ms": 1397.5,
+          "speed_mbps": null
+        },
+        {
+          "id": "6144c8183bb39eda1d29828f0bbe3d5e723bb1740db13731e6346bb208234e8b",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "d6f6244926ef723e79744a098f48a4ca55cb25eb49b6e59ddbffba1aecd4f574",
+          "ok": true,
+          "latency_ms": 830.58,
+          "speed_mbps": 6.325
+        },
+        {
+          "id": "8e0670fd63a79c1910f3592698bf48618cade2f70180277bbc9900cab62a2e31",
+          "ok": true,
+          "latency_ms": 2108.57,
+          "speed_mbps": 4.018
+        },
+        {
+          "id": "d77ac5f737341161263270b89cca562ddc01883820aecc21abf3730602421dac",
+          "ok": true,
+          "latency_ms": 1881.82,
+          "speed_mbps": 3.561
+        },
+        {
+          "id": "57fc3faefaea3cf47e41de677e64e0584ee1ff4537ab9d1084e5f71f44716fa0",
+          "ok": true,
+          "latency_ms": 1743.28,
+          "speed_mbps": 2.781
+        },
+        {
+          "id": "9607f4191106fd029214566f82588287961968e4f2aa7d5c84cda4c3520068d8",
+          "ok": true,
+          "latency_ms": 3591.56,
+          "speed_mbps": null
+        },
+        {
+          "id": "ffac9bb30bae174f28c65a9c2bd3b12907839ab14fd97e49a7c759f00a26366b",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "c53a7e9a52a951623bb266036f3497daaf33a7762b278fce0ab7062d86f02c0d",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "ffdc5d09a900cab167c9dc8ec3bc4d4aa8c316e3fcf9e33ed4d52a763753f207",
+          "ok": true,
+          "latency_ms": 1412.64,
+          "speed_mbps": 3.163
+        },
+        {
+          "id": "af598d811932f3f1977540dbbf22facefa5a55e06c63d9c8bcca1d772368db09",
+          "ok": true,
+          "latency_ms": 3169.59,
+          "speed_mbps": 0.687
+        },
+        {
+          "id": "3c5b817c099d078049a81407f8d4e2e767a2cdb1b31fbdc47f2bb6c591a00ab7",
+          "ok": true,
+          "latency_ms": 3251.95,
+          "speed_mbps": 0.811
+        },
+        {
+          "id": "741b6535e6caa61026cc99499e4cd3e575ab2ca513a5c33a839106b35ca5b890",
+          "ok": true,
+          "latency_ms": 2964.88,
+          "speed_mbps": 0.684
+        },
+        {
+          "id": "3b1b81cccfea2ba2242e0ff1291ad815218322550a5f75db60470acbbec37cb0",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "59dce21f95bfcb92aa69810952b68003f1820d15b7db07087ad490d0c19be872",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "ce35e8b2ff35969bdca89bb3cf939f45f639bf065b37d8fd2fe47a304a905646",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "78d809dca9a30237429e4bdf446f4d9b870919b7d1dfb544fbec04339b950210",
+          "ok": true,
+          "latency_ms": 5381.92,
+          "speed_mbps": null
+        },
+        {
+          "id": "233174cc0bdab06064893b47e9152fd53a89a4d7965898a858b68f2582532b2d",
+          "ok": true,
+          "latency_ms": 2930.89,
+          "speed_mbps": 0.857
+        },
+        {
+          "id": "4fb9ac438fb1af0ae1b777857ae95ac641021243dd58b6575ca506b5791c7724",
+          "ok": true,
+          "latency_ms": 2351.38,
+          "speed_mbps": null
+        },
+        {
+          "id": "f504bfc350ba01c8dd74cdd053d30331ad29ef2ba035b969143ecf98e53e47dc",
+          "ok": false,
+          "latency_ms": null,
+          "speed_mbps": null
+        },
+        {
+          "id": "fa54c1b7a48e389f24a63400f2df1ae0841a99eccf55fe64e4dc3754a499f1d1",
+          "ok": true,
+          "latency_ms": 2002.64,
+          "speed_mbps": 1.095
+        },
+        {
+          "id": "e5d54d04ccb5fa264cb1522fd04136aa1a5e9aa245a2b30ce686bc54a8556e95",
+          "ok": true,
+          "latency_ms": 3188.8,
+          "speed_mbps": 0.718
         }
       ]
     }

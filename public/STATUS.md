@@ -1,29 +1,29 @@
 # FreeWave VPN status
 
-- Last run: 2026-11-24 10:04:03 UTC
-- TCP candidates: 402
-- Tested through Xray: 402
-- Passed real HTTPS request through VLESS: 147
-- Failed VLESS test: 255
+- Last run: 2026-11-24 22:35:39 UTC
+- TCP candidates: 398
+- Tested through Xray: 398
+- Passed real HTTPS request through VLESS: 193
+- Failed VLESS test: 205
 - Not tested due to limit: 0
-- Nodes confirmed by at least 3 separate HTTPS probes: 147
-- Successful 1024 KiB download tests: 121
+- Nodes confirmed by at least 3 separate HTTPS probes: 193
+- Successful 1024 KiB download tests: 171
 - Nodes geolocated to Albania (AL): 0
 
 ## Top nodes from this GitHub Actions run
 
 | # | Server | Median latency | Jitter (MAD) | Download | History | Score |
 |---:|---|---:|---:|---:|---:|---:|
-| 1 | 148.135.86.162:10000 | 828 ms | 0.4 ms | 29.10 Mbps | new | 0.751 |
-| 2 | 195.123.235.183:443 | 209 ms | 4.3 ms | 16.64 Mbps | new | 0.666 |
-| 3 | 169.40.42.231:443 | 220 ms | 1.9 ms | 16.98 Mbps | 4/4 | 0.663 |
-| 4 | 195.123.235.183:443 | 216 ms | 13.4 ms | 16.59 Mbps | new | 0.652 |
-| 5 | 169.40.42.229:443 | 225 ms | 9.7 ms | 16.28 Mbps | 3/3 | 0.641 |
-| 6 | 169.40.42.90:443 | 218 ms | 4.2 ms | 15.62 Mbps | 5/5 | 0.638 |
-| 7 | 169.40.42.89:443 | 220 ms | 3.4 ms | 15.21 Mbps | 2/2 | 0.629 |
-| 8 | 169.40.42.163:443 | 218 ms | 4.7 ms | 14.94 Mbps | 3/3 | 0.625 |
-| 9 | 169.40.42.89:443 | 288 ms | 0.1 ms | 16.94 Mbps | 6/6 | 0.619 |
-| 10 | 169.40.42.89:443 | 272 ms | 15.5 ms | 16.19 Mbps | 2/2 | 0.605 |
+| 1 | 148.135.86.162:10000 | 781 ms | 0.2 ms | 64.24 Mbps | new | 0.742 |
+| 2 | ww13.levikogjgfdd.ir:23576 | 156 ms | 11.4 ms | 24.13 Mbps | 6/6 | 0.554 |
+| 3 | 15.204.97.206:23576 | 146 ms | 0.4 ms | 20.48 Mbps | 2/2 | 0.547 |
+| 4 | 172.64.154.113:8443 | 108 ms | 24.8 ms | not measured | new | 0.422 |
+| 5 | 172.64.154.113:8443 | 120 ms | 0.9 ms | not measured | 2/2 | 0.418 |
+| 6 | 166.0.25.92:443 | 137 ms | 11.7 ms | 4.20 Mbps | new | 0.411 |
+| 7 | 195.211.98.43:443 | 248 ms | 7.8 ms | 14.89 Mbps | 2/2 | 0.404 |
+| 8 | 185.95.231.156:443 | 250 ms | 2.4 ms | 12.06 Mbps | 3/3 | 0.382 |
+| 9 | 172.64.154.113:8443 | 135 ms | 8.3 ms | not measured | new | 0.381 |
+| 10 | 195.123.235.183:443 | 296 ms | 1.3 ms | 11.79 Mbps | new | 0.360 |
 
 ## Subscription files
 
