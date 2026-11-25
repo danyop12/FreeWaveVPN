@@ -1,29 +1,29 @@
 # FreeWave VPN status
 
-- Last run: 2026-11-24 22:35:39 UTC
-- TCP candidates: 398
-- Tested through Xray: 398
-- Passed real HTTPS request through VLESS: 193
-- Failed VLESS test: 205
+- Last run: 2026-11-25 08:45:58 UTC
+- TCP candidates: 411
+- Tested through Xray: 411
+- Passed real HTTPS request through VLESS: 156
+- Failed VLESS test: 255
 - Not tested due to limit: 0
-- Nodes confirmed by at least 3 separate HTTPS probes: 193
-- Successful 1024 KiB download tests: 171
+- Nodes confirmed by at least 3 separate HTTPS probes: 156
+- Successful 1024 KiB download tests: 129
 - Nodes geolocated to Albania (AL): 0
 
 ## Top nodes from this GitHub Actions run
 
 | # | Server | Median latency | Jitter (MAD) | Download | History | Score |
 |---:|---|---:|---:|---:|---:|---:|
-| 1 | 148.135.86.162:10000 | 781 ms | 0.2 ms | 64.24 Mbps | new | 0.742 |
-| 2 | ww13.levikogjgfdd.ir:23576 | 156 ms | 11.4 ms | 24.13 Mbps | 6/6 | 0.554 |
-| 3 | 15.204.97.206:23576 | 146 ms | 0.4 ms | 20.48 Mbps | 2/2 | 0.547 |
-| 4 | 172.64.154.113:8443 | 108 ms | 24.8 ms | not measured | new | 0.422 |
-| 5 | 172.64.154.113:8443 | 120 ms | 0.9 ms | not measured | 2/2 | 0.418 |
-| 6 | 166.0.25.92:443 | 137 ms | 11.7 ms | 4.20 Mbps | new | 0.411 |
-| 7 | 195.211.98.43:443 | 248 ms | 7.8 ms | 14.89 Mbps | 2/2 | 0.404 |
-| 8 | 185.95.231.156:443 | 250 ms | 2.4 ms | 12.06 Mbps | 3/3 | 0.382 |
-| 9 | 172.64.154.113:8443 | 135 ms | 8.3 ms | not measured | new | 0.381 |
-| 10 | 195.123.235.183:443 | 296 ms | 1.3 ms | 11.79 Mbps | new | 0.360 |
+| 1 | 148.135.86.162:10000 | 779 ms | 17.1 ms | 42.87 Mbps | new | 0.730 |
+| 2 | ww13.levikogjgfdd.ir:23576 | 147 ms | 1.2 ms | 24.57 Mbps | 4/4 | 0.642 |
+| 3 | 195.123.240.65:443 | 119 ms | 20.4 ms | 16.70 Mbps | 2/2 | 0.562 |
+| 4 | 195.123.240.65:443 | 624 ms | 500.6 ms | 35.16 Mbps | 5/6 | 0.552 |
+| 5 | 172.64.154.113:8443 | 87 ms | 8.1 ms | not measured | new | 0.437 |
+| 6 | 159.89.87.21:28190 | 287 ms | 0.3 ms | 14.56 Mbps | new | 0.428 |
+| 7 | 172.64.154.113:8443 | 92 ms | 3.7 ms | not measured | new | 0.428 |
+| 8 | 159.89.87.21:28190 | 273 ms | 10.6 ms | 14.17 Mbps | 2/2 | 0.422 |
+| 9 | 159.89.87.21:28190 | 247 ms | 2.4 ms | 12.80 Mbps | 2/2 | 0.419 |
+| 10 | 159.89.87.21:28190 | 279 ms | 15.2 ms | 13.81 Mbps | 3/3 | 0.413 |
 
 ## Subscription files
 
