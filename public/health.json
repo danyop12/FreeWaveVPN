@@ -1,9 +1,9 @@
 {
   "status": "success",
-  "last_attempt_at_utc": "2026-11-27 21:25:27 UTC",
-  "last_success_at_utc": "2026-11-27 21:25:27 UTC",
-  "last_success_validated_count": 169,
-  "last_attempt_validated_count": 169,
-  "last_attempt_tested_count": 391,
-  "workflow_run_url": "https://github.com/danyop12/FreeWaveVPN/actions/runs/46069562190"
+  "last_attempt_at_utc": "2026-11-28 07:59:12 UTC",
+  "last_success_at_utc": "2026-11-28 07:59:12 UTC",
+  "last_success_validated_count": 149,
+  "last_attempt_validated_count": 149,
+  "last_attempt_tested_count": 439,
+  "workflow_run_url": "https://github.com/danyop12/FreeWaveVPN/actions/runs/46123165057"
 }
